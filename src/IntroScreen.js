@@ -26,7 +26,6 @@ var RadmarsScreen = me.ScreenObject.extend({
 	onDestroyEvent: function() {
 		me.input.unbindKey(me.input.KEY.ENTER);
 		me.audio.stopTrack();
-		me.game.world.removeChild( this.radmars );
 		me.event.unsubscribe( this.subscription );
 	}
 });
