@@ -45,7 +45,7 @@ var GameResources = (function() {
 		_Image("intro_radmars2"),
 		_Audio("radmarslogo"),
 
-    /* Less exciting stuff */
+		/* Less exciting stuff */
 		_Image("collision_tiles"),
 		_Image("map_tiles"),
 		_Level("test-level"),
