@@ -1,10 +1,11 @@
 "use strict";
+
 var GameResources = (function() {
 	/**
 	 * @param {String} name file name relative to data/ without extension.
 	 */
 	function _Image( name ) {
-		return { name: name, type: "image", src: "data/" + name + ".png" };
+		return { name: name, type: "image", src: "data/image/" + name + ".png" };
 	}
 
 	/**
@@ -33,6 +34,18 @@ var GameResources = (function() {
 	}
 
 	var GameResources = [
+		/* Radmars Logo */
+		_Image("intro_bg"),
+		_Image("intro_glasses1"),
+		_Image("intro_glasses2"),
+		_Image("intro_glasses3"),
+		_Image("intro_glasses4"),
+		_Image("intro_mars"),
+		_Image("intro_radmars1"),
+		_Image("intro_radmars2"),
+		_Audio("radmarslogo"),
+
+    /* Less exciting stuff */
 		_Image("collision_tiles"),
 		_Image("map_tiles"),
 		_Level("test-level"),

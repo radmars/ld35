@@ -29,7 +29,7 @@ LD35.prototype.onload = function() {
 	}
 
 	// Initialize the audio.
-	me.audio.init("mp3,ogg");
+  me.audio.init("m4a,ogg");
 
 	// Set a callback to run when loading is complete.
 	me.loader.onload = this.loaded.bind(this);
@@ -43,6 +43,7 @@ LD35.prototype.onload = function() {
 
 LD35.prototype.loaded = function() {
 	// TODO: me.state.set(me.state.MENU, new TitleScreen());
+  me.state.set(me.state.INTRO, new RadmarsScreen(this));
 	me.state.set(me.state.PLAY, new PlayScreen(this));
 
 	// add our player entity in the entity pool
@@ -50,5 +51,6 @@ LD35.prototype.loaded = function() {
 
 	// Start the game.
 	// TODO This should go to title screeeen
-	me.state.change(me.state.PLAY);
+  me.state.change(me.state.INTRO);
+	//me.state.change(me.state.PLAY);
 }
