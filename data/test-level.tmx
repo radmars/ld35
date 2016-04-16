@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="13">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="18">
  <tileset firstgid="1" name="map_tiles" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="map_tiles.png" width="256" height="256"/>
  </tileset>
@@ -11,8 +11,19 @@
  <objectgroup color="#fa3c32" name="collision layer">
   <object id="1" x="32" y="64" width="1056" height="32"/>
   <object id="4" x="32" y="864" width="1056" height="32"/>
-  <object id="5" x="32" y="96" width="32" height="768"/>
+  <object id="5" x="32" y="96" width="32" height="768">
+   <properties>
+    <property name="rate" value="1000"/>
+    <property name="type" value="shooter"/>
+   </properties>
+  </object>
   <object id="6" x="1056" y="96" width="32" height="768"/>
+  <object id="16" name="enemySpawn" x="512" y="128" width="32" height="32">
+   <properties>
+    <property name="rate" type="int" value="1000"/>
+    <property name="type" value="shooter"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Entities">
   <object id="7" name="mainPlayer" x="352" y="352" width="64" height="64"/>

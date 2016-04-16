@@ -39,7 +39,8 @@ LD35.prototype.loaded = function() {
 	me.state.set(me.state.PLAY, new PlayScreen(this));
 
 	me.pool.register("mainPlayer", PlayerEntity);
-	me.pool.register("shooter", EnemyShooter);
+	me.pool.register("shooter", EnemyShooter, true);
+	me.pool.register("enemySpawn", EnemySpawnPoint, true);
 
 	var keys = {
 		left:  [me.input.KEY.LEFT, me.input.KEY.A],

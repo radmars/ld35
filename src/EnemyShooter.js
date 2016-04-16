@@ -3,6 +3,8 @@
 var EnemyShooter = me.Entity.extend({
 	init : function (x, y, settings) {
 		settings = settings || {};
+		settings.height = 64;
+		settings.width = 64;
 		settings.image = "shooter";
 
 		this._super(me.Entity, 'init', [x, y, settings]);
