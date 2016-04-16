@@ -36,6 +36,8 @@ var GameResources = (function() {
 		_Image("collision_tiles"),
 		_Image("map_tiles"),
 		_Level("test-level"),
+
+		_Image("player"),
 	];
 
 	return GameResources;

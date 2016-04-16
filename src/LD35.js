@@ -46,7 +46,7 @@ LD35.prototype.loaded = function() {
 	me.state.set(me.state.PLAY, new PlayScreen(this));
 
 	// add our player entity in the entity pool
-	//me.pool.register("mainPlayer", game.PlayerEntity);
+	me.pool.register("mainPlayer", PlayerEntity);
 
 	// Start the game.
 	// TODO This should go to title screeeen
