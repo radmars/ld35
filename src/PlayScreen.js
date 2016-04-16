@@ -7,7 +7,12 @@ var PlayScreen = me.ScreenObject.extend({
 	},
 
 	onResetEvent: function() {
-		me.levelDirector.loadLevel("test-level");
+		me.levelDirector.loadLevel("test-level", {
+			onLoaded: (function() {
+				console.log("loaded level");
+				me.game.viewport.fadeOut( '#000000', 1000, function() {});
+			}).bind(this),
+		});
 	},
 
 	onDestroyEvent: function() {

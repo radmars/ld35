@@ -21,7 +21,6 @@ LD35.prototype.onload = function() {
 		return;
 	}
 
-
 	// add "#debug" to the URL to enable the debug Panel
 	if (this.options.debug) {
 		window.onReady(function () {
@@ -44,7 +43,7 @@ LD35.prototype.onload = function() {
 
 LD35.prototype.loaded = function() {
 	// TODO: me.state.set(me.state.MENU, new TitleScreen());
-	me.state.set(me.state.PLAY, new PlayScreen());
+	me.state.set(me.state.PLAY, new PlayScreen(this));
 
 	// add our player entity in the entity pool
 	//me.pool.register("mainPlayer", game.PlayerEntity);
