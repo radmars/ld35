@@ -31,14 +31,4 @@ var EnemySpawnPoint = me.Entity.extend({
 
 		return false;
 	},
-
-	onCollision : function (response, other) {
-		if(other.body.collisionType == me.collision.types.ENEMY_OBJECT){
-			return false;
-		}
-		if(other.body.collisionType == me.collision.types.PLAYER_OBJECT){
-			return false;
-		}
-		return true;
-	}
 });

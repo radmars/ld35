@@ -11,7 +11,8 @@ var PlayerEntity = me.Entity.extend({
 
 		this.alwaysUpdate = true;
 		this.body.collisionType = me.collision.types.PLAYER_OBJECT;
-		this.body.setVelocity(3, 3);
+		this.body.setVelocity(0, 0);
+		this.body.setMaxVelocity(3, 3);
 		this.body.setFriction(.1, .1);
 		this.body.gravity = 0;
 
@@ -21,19 +22,19 @@ var PlayerEntity = me.Entity.extend({
 
 	update : function (dt) {
 		if (me.input.isKeyPressed('left')) {
-			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			this.body.vel.x -= 3 * me.timer.tick;
 
 		}
 		if (me.input.isKeyPressed('right')) {
-			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			this.body.vel.x += 3 * me.timer.tick;
 		}
 
 		if(me.input.isKeyPressed('up')) {
-			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+			this.body.vel.y -= 3 * me.timer.tick;
 		}
 
 		if(me.input.isKeyPressed('down')) {
-			this.body.vel.y += this.body.accel.y * me.timer.tick;
+			this.body.vel.y += 3 * me.timer.tick;
 		}
 
 		this.body.update(dt);
