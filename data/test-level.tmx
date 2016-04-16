@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="10">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="13">
  <tileset firstgid="1" name="map_tiles" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="map_tiles.png" width="256" height="256"/>
  </tileset>
@@ -16,5 +16,7 @@
  </objectgroup>
  <objectgroup name="Entities">
   <object id="7" name="mainPlayer" x="352" y="352" width="64" height="64"/>
+  <object id="10" name="shooter" x="128" y="128" width="64" height="64"/>
+  <object id="11" x="-8" y="1102"/>
  </objectgroup>
 </map>

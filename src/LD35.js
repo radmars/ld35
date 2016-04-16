@@ -21,23 +21,16 @@ LD35.prototype.onload = function() {
 		return;
 	}
 
-	// add "#debug" to the URL to enable the debug Panel
+	// add "?debug" to the URL to enable the debug Panel
 	if (this.options.debug) {
 		window.onReady(function () {
 			me.plugin.register.defer(this, me.debug.Panel, "debug", me.input.KEY.V);
 		});
 	}
 
-	// Initialize the audio.
 	me.audio.init("mp3,ogg");
-
-	// Set a callback to run when loading is complete.
 	me.loader.onload = this.loaded.bind(this);
-
-	// Load the resources.
 	me.loader.preload(GameResources);
-
-	// Initialize melonJS and display a loading screen.
 	me.state.change(me.state.LOADING);
 }
 
@@ -45,8 +38,8 @@ LD35.prototype.loaded = function() {
 	// TODO: me.state.set(me.state.MENU, new TitleScreen());
 	me.state.set(me.state.PLAY, new PlayScreen(this));
 
-	// add our player entity in the entity pool
 	me.pool.register("mainPlayer", PlayerEntity);
+	me.pool.register("shooter", EnemyShooter);
 
 	var keys = {
 		left:  [me.input.KEY.LEFT, me.input.KEY.A],
@@ -61,7 +54,6 @@ LD35.prototype.loaded = function() {
 		})
 	})
 
-	// Start the game.
 	// TODO This should go to title screeeen
 	me.state.change(me.state.PLAY);
 }

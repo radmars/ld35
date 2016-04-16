@@ -38,6 +38,7 @@ var GameResources = (function() {
 		_Level("test-level"),
 
 		_Image("player"),
+		_Image("shooter"),
 	];
 
 	return GameResources;

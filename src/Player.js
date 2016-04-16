@@ -10,6 +10,7 @@ var PlayerEntity = me.Entity.extend({
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
 		this.alwaysUpdate = true;
+		this.body.collisionType = me.collision.types.PLAYER_OBJECT;
 		this.body.setVelocity(3, 3);
 		this.body.setFriction(.1, .1);
 		this.body.gravity = 0;
@@ -36,6 +37,7 @@ var PlayerEntity = me.Entity.extend({
 		}
 
 		this.body.update(dt);
+
 		me.collision.check(this);
 
 		return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
