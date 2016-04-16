@@ -43,12 +43,13 @@ LD35.prototype.onload = function() {
 }
 
 LD35.prototype.loaded = function() {
-	me.state.set(me.state.MENU, new TitleScreen());
+	// TODO: me.state.set(me.state.MENU, new TitleScreen());
 	me.state.set(me.state.PLAY, new PlayScreen());
 
 	// add our player entity in the entity pool
 	//me.pool.register("mainPlayer", game.PlayerEntity);
 
 	// Start the game.
+	// TODO This should go to title screeeen
 	me.state.change(me.state.PLAY);
 }
