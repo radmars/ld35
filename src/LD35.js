@@ -28,7 +28,7 @@ LD35.prototype.onload = function() {
 		});
 	}
 
-	me.audio.init("mp3,ogg");
+  me.audio.init("m4a,ogg");
 	me.loader.onload = this.loaded.bind(this);
 	me.loader.preload(GameResources);
 	me.state.change(me.state.LOADING);
@@ -36,6 +36,7 @@ LD35.prototype.onload = function() {
 
 LD35.prototype.loaded = function() {
 	// TODO: me.state.set(me.state.MENU, new TitleScreen());
+  me.state.set(me.state.INTRO, new RadmarsScreen(this));
 	me.state.set(me.state.PLAY, new PlayScreen(this));
 
 	me.pool.register("mainPlayer", PlayerEntity);
@@ -56,5 +57,6 @@ LD35.prototype.loaded = function() {
 	})
 
 	// TODO This should go to title screeeen
-	me.state.change(me.state.PLAY);
+  me.state.change(me.state.INTRO);
+	//me.state.change(me.state.PLAY);
 }
