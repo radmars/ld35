@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>LD35</title>
+	<style type='text/css'>
+	
+	</style>
+
+	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!--
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="apple-touch-icon" href="icons/touch-icon-iphone-60x60.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="icons/touch-icon-ipad-76x76.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="icons/touch-icon-iphone-retina-120x120.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="icons/touch-icon-ipad-retina-152x152.png">
+	<link rel="manifest" href="manifest.json">
+-->
+</head>
+<body>
+	<div id="screen"></div>
+	LD35!!!!!!!!!!!
+	<script type="text/javascript" src="lib/melonJS-3.0.1.js"></script>
+	<script type="text/javascript" src="lib/melonJS-debugPanel-3.0.1.js"></script>
+	<script type="text/javascript" src="src/LD34.js"></script>
+
+	<script type="text/javascript">
+	window.onReady(function onReady() {
+		var game = new LD35();
+		game.onload();
+
+		// Mobile browser hacks
+		if (me.device.isMobile && !navigator.isCocoonJS) {
+			// Prevent the webview from moving on a swipe
+			window.document.addEventListener("touchmove", function (e) {
+				e.preventDefault();
+				window.scroll(0, 0);
+				return false;
+			}, false);
+		}
+	});
+	</script>
+</body>
+</html>
