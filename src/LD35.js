@@ -48,6 +48,19 @@ LD35.prototype.loaded = function() {
 	// add our player entity in the entity pool
 	me.pool.register("mainPlayer", PlayerEntity);
 
+	var keys = {
+		left:  [me.input.KEY.LEFT, me.input.KEY.A],
+		right: [me.input.KEY.RIGHT, me.input.KEY.D],
+		up:    [me.input.KEY.UP, me.input.KEY.W],
+		down:  [me.input.KEY.DOWN, me.input.KEY.S],
+	};
+
+	Object.keys(keys).forEach(function(k) {
+		keys[k].forEach(function(code) {
+			me.input.bindKey(code, k);
+		})
+	})
+
 	// Start the game.
 	// TODO This should go to title screeeen
 	me.state.change(me.state.PLAY);

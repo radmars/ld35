@@ -7,11 +7,12 @@ var PlayerEntity = me.Entity.extend({
 
 		this._super(me.Entity, 'init', [x, y, settings]);
 
-		this.body.setVelocity(3, 15);
-
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
 		this.alwaysUpdate = true;
+		this.body.setVelocity(3, 3);
+		this.body.setFriction(.1, .1);
+		this.body.gravity = 0;
 
 		this.renderable.addAnimation("stand",  [0]);
 		this.renderable.setCurrentAnimation("stand");
@@ -22,11 +23,16 @@ var PlayerEntity = me.Entity.extend({
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
 		}
-		else if (me.input.isKeyPressed('right')) {
+		if (me.input.isKeyPressed('right')) {
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
 		}
-		else {
-			this.body.vel.x = 0;
+
+		if(me.input.isKeyPressed('up')) {
+			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+		}
+
+		if(me.input.isKeyPressed('down')) {
+			this.body.vel.y += this.body.accel.y * me.timer.tick;
 		}
 
 		this.body.update(dt);
