@@ -5,7 +5,7 @@ var GameResources = (function() {
 	 * @param {String} name file name relative to data/ without extension.
 	 */
 	function _Image( name ) {
-		return { name: name, type: "image", src: "data/image/" + name + ".png" };
+		return { name: name, type: "image", src: "data/" + name + ".png" };
 	}
 
 	/**

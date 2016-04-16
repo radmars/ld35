@@ -23,8 +23,8 @@ var EnemyShooter = me.Entity.extend({
 	},
 
 	update : function (dt) {
-		this.body.vel.x += this.dir.x * me.timer.tick;
-		this.body.vel.y -= this.dir.y * me.timer.tick;
+		this.body.accel.x = this.dir.x * me.timer.tick;
+		this.body.accel.y -= this.dir.y * me.timer.tick;
 
 		this.body.update(dt);
 
@@ -34,6 +34,10 @@ var EnemyShooter = me.Entity.extend({
 	},
 
 	onCollision : function (response, other) {
+		if(other.body.collisionType == me.collision.types.ENEMY_OBJECT){
+			this.pos.sub(response.overlapV);
+			return false;
+		}
 		if(other.body.collisionType == me.collision.types.PLAYER_OBJECT){
 			return false;
 		}
