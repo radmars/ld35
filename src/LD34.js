@@ -1,3 +1,5 @@
+"use strict";
+
 function LD35() {
 	this.screenHeight = 640;
 	this.screenWidth = 960;
@@ -34,15 +36,15 @@ LD35.prototype.onload = function() {
 	me.loader.onload = this.loaded.bind(this);
 
 	// Load the resources.
-	//me.loader.preload(game.resources);
+	me.loader.preload(GameResources);
 
 	// Initialize melonJS and display a loading screen.
 	me.state.change(me.state.LOADING);
 }
 
 LD35.prototype.loaded = function() {
-	me.state.set(me.state.MENU, new game.TitleScreen());
-	me.state.set(me.state.PLAY, new game.PlayScreen());
+	me.state.set(me.state.MENU, new TitleScreen());
+	me.state.set(me.state.PLAY, new PlayScreen());
 
 	// add our player entity in the entity pool
 	//me.pool.register("mainPlayer", game.PlayerEntity);
