@@ -5,7 +5,7 @@ var GameResources = (function() {
 	 * @param {String} name file name relative to data/ without extension.
 	 */
 	function _Image( name ) {
-		return { name: name, type: "image", src: "data/image/" + name + ".png" };
+		return { name: name, type: "image", src: "data/" + name + ".png" };
 	}
 
 	/**
@@ -45,7 +45,7 @@ var GameResources = (function() {
 		_Image("intro_radmars2"),
 		_Audio("radmarslogo"),
 
-    /* Less exciting stuff */
+		/* Less exciting stuff */
 		_Image("collision_tiles"),
 		_Image("map_tiles"),
 		_Level("test-level"),
