@@ -4,10 +4,10 @@ var PlayerEntity = me.Entity.extend({
 	init : function (x, y, settings) {
 		settings = settings || {};
 		settings.image = "player";
-		settings.width = 64;
-		settings.height = 64;
-		settings.frameheight = 64;
-		settings.framewidth = 64;
+		settings.width = 196;
+		settings.height = 196;
+		settings.frameheight = 180;
+		settings.framewidth = 130;
 
 		this._super(me.Entity, 'init', [x, y, settings]);
 
@@ -21,7 +21,7 @@ var PlayerEntity = me.Entity.extend({
 		this.body.setFriction(.1, .1);
 		this.body.gravity = 0;
 
-		this.renderable.addAnimation("stand",  [0, 1, 2], 100);
+		this.renderable.addAnimation("stand",  [0], 100);
 		this.renderable.setCurrentAnimation("stand");
 
 		this.shootSub = me.event.subscribe(me.event.KEYDOWN, this.tryToShoot.bind(this));
