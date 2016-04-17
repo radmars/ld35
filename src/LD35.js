@@ -21,7 +21,8 @@ LD35.prototype.onload = function() {
 		return;
 	}
 
-	// add "?debug" to the URL to enable the debug Panel
+	// add "?skipintro=1" to skip the radmars animation
+	// add "?debug=1" to the URL to enable the debug Panel
 	if (this.options.debug) {
 		window.onReady(function () {
 			me.plugin.register.defer(this, me.debug.Panel, "debug", me.input.KEY.V);
@@ -65,5 +66,10 @@ LD35.prototype.loaded = function() {
 	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.LEFT, me.input.KEY.LEFT);
 	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.RIGHT, me.input.KEY.RIGHT);
 
-  me.state.change(me.state.INTRO);
+	if (this.options.skipintro) {
+		me.state.change(me.state.PLAY);
+	}
+	else {
+		me.state.change(me.state.INTRO);
+	}
 }
