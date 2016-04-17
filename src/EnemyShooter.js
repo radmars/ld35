@@ -156,5 +156,4 @@ var EnemyShooter = Enemy.extend({
 
 		return this._super(Enemy, 'update', [dt]);
 	},
-
 });
