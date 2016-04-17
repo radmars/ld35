@@ -4,10 +4,10 @@ var PlayerEntity = me.Entity.extend({
 	init : function (x, y, settings) {
 		settings = settings || {};
 		settings.image = "player";
-		settings.width = 196;
-		settings.height = 196;
-		settings.frameheight = 180;
-		settings.framewidth = 130;
+		settings.width = 64;
+		settings.height = 64;
+		settings.frameheight = 128;
+		settings.framewidth = 128;
 
 		this._super(me.Entity, 'init', [x, y, settings]);
 		this.pos.z = 5;
@@ -22,14 +22,37 @@ var PlayerEntity = me.Entity.extend({
 		this.body.setFriction(.1, .1);
 		this.body.gravity = 0;
 
-		this.renderable.addAnimation("stand",  [0], 100);
-		this.renderable.setCurrentAnimation("stand");
+		this.animationMap = {
+			idle: 'idle_up',
+			run: 'run_up',
+			shoot: 'shoot_up',
+		};
+		this.facingUp = false;
+
+		this.renderable.addAnimation("idle",         [0, 1, 2], 200);
+		this.renderable.addAnimation("idle_up",      [48, 49, 50], 200);
+		this.renderable.addAnimation("dash",         [3, 4], 100); // TODO Need "end of dash" support
+		this.renderable.addAnimation("dash_finish",  [5, 6, 7, 8, 9], 100); // TODO Need "end of dash" support
+		this.renderable.addAnimation("shoot",        [10, 11, 12, 13, 12], 200);
+		this.renderable.addAnimation("shoot_up",     [44, 45, 46, 47, 46], 200);
+		this.renderable.addAnimation("run",          [14, 15, 16, 17 ], 200);
+		this.renderable.addAnimation("run_up",       [51, 52, 53, 54 ], 200);
+		this.renderable.addAnimation("die",          [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43], 100);
+
+		this.changeAnimation("idle");
 
 		this.shootSub = me.event.subscribe(me.event.KEYDOWN, this.tryToShoot.bind(this));
 		this.dashSub = me.event.subscribe(me.event.KEYDOWN, this.tryToDash.bind(this));
 		this.shootTimer = 0;
 		this.dashing = false;
 		this.globs = 0;
+	},
+
+	getAnimationName: function(name) {
+		if(this.facingUp) {
+			return this.animationMap[name] || name;
+		}
+		return name;
 	},
 
 	getMode: function() {
@@ -74,19 +97,28 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	tryToDash: function(action, keycode, edge) {
-		if (action === "dash" && this.shootTimer > 1000) {
+		if (action === "dash" && !this.dashing) {
+			var dashAnimCount = 3;
 			this.dashing = true;
 			var dir = this.getControlDirection();
 			this.body.setMaxVelocity(10, 10);
 			this.body.vel.x = dir.x * 10;
 			this.body.vel.y = dir.y * 10;
-			this.dashTimer = 0;
+			var cb = function() {
+				if(dashAnimCount > 0) {
+					dashAnimCount--;
+					this.changeAnimation("dash", cb)
+				}
+				else {
+					this.changeAnimation("dash_finish", function() {
+						this.body.setMaxVelocity(3, 3);
+						this.dashing = false;
+						this.changeAnimation("idle");
+					})
+				}
+			};
+			this.changeAnimation("dash", cb);
 		}
-	},
-
-	finishDash: function() {
-		this.body.setMaxVelocity(3, 3);
-		this.dashing = false;
 	},
 
 	tryToShoot: function(action, keyCode, edge) {
@@ -100,6 +132,9 @@ var PlayerEntity = me.Entity.extend({
 			var dir = this.getControlDirection();
 
 			if( dir.y != 0 || dir.x != 0) {
+				this.changeAnimation("shoot", function(){
+					this.changeAnimation("idle");
+				})
 				var bullet = me.pool.pull(
 					'boneProjectile',
 					this.pos.x,
@@ -113,6 +148,15 @@ var PlayerEntity = me.Entity.extend({
 		}
 	},
 
+	changeAnimation: function(dest, next) {
+		if(!this.renderable.isCurrentAnimation(this.getAnimationName(dest))) {
+			if(next) {
+				next = next.bind(this);
+			}
+			this.renderable.setCurrentAnimation(this.getAnimationName(dest), next);
+		}
+	},
+
 	onDeactivateEvent: function() {
 		me.event.unsubscribe(this.shootSub);
 		me.event.unsubscribe(this.dashSub);
@@ -120,31 +164,47 @@ var PlayerEntity = me.Entity.extend({
 
 	update : function (dt) {
 		this.shootTimer += dt;
-		this.dashTimer += dt;
 
-		if(this.dashing) {
-			if(this.dashTimer > 500) {
-				this.finishDash();
-			}
-		}
-
-		// Could stop dashing in finishDash()...
 		if(!this.dashing) {
+			var run = false;
 			if (me.input.isKeyPressed('left')) {
 				this.body.vel.x -= 3 * me.timer.tick;
-
+				run = true;
 			}
 			if (me.input.isKeyPressed('right')) {
 				this.body.vel.x += 3 * me.timer.tick;
+				run = true;
 			}
 
 			if(me.input.isKeyPressed('up')) {
 				this.body.vel.y -= 3 * me.timer.tick;
+				run = true;
 			}
 
 			if(me.input.isKeyPressed('down')) {
 				this.body.vel.y += 3 * me.timer.tick;
+				run = true;
 			}
+			if(run){
+				if(this.body.vel.x != 0) {
+					this.renderable.flipX(this.body.vel.x < 0);
+				}
+
+				if(this.body.vel.y != 0) {
+					this.facingUp = this.body.vel.y < 0;
+				}
+				this.changeAnimation("run", function() {
+					this.changeAnimation("idle");
+				})
+			}
+		}
+
+		if(this.body.vel.x != 0) {
+			this.renderable.flipX(this.body.vel.x < 0);
+		}
+
+		if(this.body.vel.y != 0) {
+			this.facingUp = this.body.vel.y < 0;
 		}
 
 		this.body.update(dt);

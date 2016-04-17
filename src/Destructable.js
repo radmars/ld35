@@ -22,6 +22,7 @@ var Destructable = me.Entity.extend({
 		this.body.setFriction(.1, .1);
 		this.body.gravity = 0;
 		this.bullets = settings.bullets;
+		this.facingUp = false;
 	},
 
 	onDeactivateEvent: function() {
