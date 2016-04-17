@@ -57,7 +57,6 @@ var PlayerEntity = me.Entity.extend({
 					this.pos.y,
 					{
 						dir:(new me.Vector2d(x, y)).normalize(),
-						mask: me.collision.types.ENEMY_OBJECT,
 					}
 				);
 				me.game.world.addChild(bullet);
