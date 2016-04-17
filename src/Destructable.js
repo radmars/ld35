@@ -27,6 +27,10 @@ var Destructable = me.Entity.extend({
 	onDeactivateEvent: function() {
 	},
 
+	collect: function(player) {
+		// place holder
+	},
+
 	update : function (dt) {
 		this.body.update(dt);
 		me.collision.check(this);

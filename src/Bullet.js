@@ -43,12 +43,8 @@ var Bullet = me.Entity.extend({
 	},
 
 	onCollision : function (response, other) {
-
 		if(other.body.collisionType == me.collision.types.ENEMY_OBJECT) {
-			// We need to disable additional collisions so we don't attempt to remove objects multiple times.
-			other.body.setCollisionMask(me.collision.types.NO_OBJECT);
-
-			me.game.world.removeChild(other);
+			other.kill();
 		}
 
 		// Bullets never respond to collisions other than with destruction.

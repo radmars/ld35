@@ -29,6 +29,28 @@ var PlayerEntity = me.Entity.extend({
 		this.dashSub = me.event.subscribe(me.event.KEYDOWN, this.tryToDash.bind(this));
 		this.shootTimer = 0;
 		this.dashing = false;
+		this.globs = 0;
+	},
+
+	getMode: function() {
+		if(this.globs < 5) {
+			return 'skeleton';
+		}
+		else if (this.globs < 10) {
+			return 'mess';
+		}
+		else {
+			return 'behemoth';
+		}
+	},
+
+	addMeat: function() {
+		var mode = this.getMode();
+		this.globs++;
+		var newMode = this.getMode();
+		if(mode != newMode){
+			console.log("LEVELED UP BRO????");
+		}
 	},
 
 	getControlDirection: function() {
@@ -136,6 +158,12 @@ var PlayerEntity = me.Entity.extend({
 		if(other.body.collisionType == me.collision.types.PROJECTILE_OBJECT) {
 			return false;
 		}
+
+		if(other.body.collisionType == me.collision.types.COLLECTABLE_OBJECT) {
+			other.collect(this);
+			return false;
+		}
+
 		return true;
 	}
 });
