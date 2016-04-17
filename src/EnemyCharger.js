@@ -1,24 +1,15 @@
 "use strict";
 
-var EnemyCharger = me.Entity.extend({
+var EnemyCharger = Enemy.extend({
 	init : function (x, y, settings) {
 		settings = settings || {};
 		settings.height = 64;
 		settings.width = 64;
 		settings.image = "charger";
 
-		this._super(me.Entity, 'init', [x, y, settings]);
+		this._super(Enemy, 'init', [x, y, settings]);
 
-		this.alwaysUpdate = true;
-		this.body.setVelocity(0, 0);
 		this.body.setMaxVelocity(10, 10);
-		this.body.setFriction(.1, .1);
-		this.body.gravity = 0;
-		this.pos.z = 5;
-
-		this.renderable.addAnimation("stand",  [0]);
-		this.renderable.setCurrentAnimation("stand");
-
 		// Behaviors:
 		//  rest     - Catching breath after moving.
 		//  meander  - Player far away.  Slow, random movement.
@@ -36,7 +27,6 @@ var EnemyCharger = me.Entity.extend({
 			charge: 60,
 		};
 
-		this.playerTarget = me.state.current().player;
 		this.rest();
 	},
 
@@ -55,7 +45,7 @@ var EnemyCharger = me.Entity.extend({
 	},
 	excited : function () {
 		this.timeInState = 0;
-		this.chargeAngle = this.angleTo(this.playerTarget);
+		this.chargeAngle = this.angleTo(this.getPlayer());
 		this.dir = new me.Vector2d(0, 0);
 		this.behavior = 'excited';
 	},
@@ -100,7 +90,7 @@ var EnemyCharger = me.Entity.extend({
 			else {
 				this.timeInState++;
 			}
-			if(this.distanceTo(this.playerTarget) <= this.detectDistance){
+			if(this.distanceTo(this.getPlayer()) <= this.detectDistance){
 				this.excited();
 			}
 		}
@@ -122,15 +112,7 @@ var EnemyCharger = me.Entity.extend({
 			}
 		}
 
-		// Apply physics
-		this.body.vel.x = this.dir.x * me.timer.tick;
-		this.body.vel.y = this.dir.y * me.timer.tick;
-
-		this.body.update(dt);
-
-		me.collision.check(this);
-
-		return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
+		return this._super(Enemy, 'update', [dt]);
 	},
 
 	onCollision : function (response, other) {
