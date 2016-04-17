@@ -3,9 +3,8 @@
 var Destructable = me.Entity.extend({
 	init: function (x, y, settings) {
 		settings = settings || {};
-		if(!settings.image) {
-			throw "Missing image setting on destructable object!";
-		}
+
+		settings.image = settings.image || 'box';
 		settings.width = 64;
 		settings.height = 64;
 

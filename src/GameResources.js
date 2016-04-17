@@ -71,10 +71,11 @@ var GameResources = (function() {
 		_Image("shooter"),
 		_Image("pouncer"),
 		_Image("bomber"),
-		_Image("box"),
 		_Image("bone_projectile"),
 		_Image('healthbar'),
 		_Image('dog'),
+		_Image("box"),
+		_Image('rock'),
 	];
 
 	return GameResources;
