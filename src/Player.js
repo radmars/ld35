@@ -103,23 +103,25 @@ var PlayerEntity = me.Entity.extend({
 			var dashAnimCount = 3;
 			this.dashing = true;
 			var dir = this.getControlDirection();
-			this.body.setMaxVelocity(10, 10);
-			this.body.vel.x = dir.x * 10;
-			this.body.vel.y = dir.y * 10;
-			var cb = function() {
-				if(dashAnimCount > 0) {
-					dashAnimCount--;
-					this.changeAnimation("dash", cb)
-				}
-				else {
-					this.body.setMaxVelocity(3, 3);
-					this.changeAnimation("dash_finish", function() {
-						this.dashing = false;
-						this.changeAnimation("idle");
-					})
-				}
-			};
-			this.changeAnimation("dash", cb);
+			if( dir.y != 0 || dir.x != 0) {
+				this.body.setMaxVelocity(10, 10);
+				this.body.vel.x = dir.x * 10;
+				this.body.vel.y = dir.y * 10;
+				var cb = function() {
+					if(dashAnimCount > 0) {
+						dashAnimCount--;
+						this.changeAnimation("dash", cb)
+					}
+					else {
+						this.body.setMaxVelocity(3, 3);
+						this.changeAnimation("dash_finish", function() {
+							this.dashing = false;
+							this.changeAnimation("idle");
+						})
+					}
+				};
+				this.changeAnimation("dash", cb);
+			}
 		}
 	},
 
@@ -167,7 +169,7 @@ var PlayerEntity = me.Entity.extend({
 	update : function (dt) {
 		this.shootTimer += dt;
 
-		if(!this.dashing) {
+		if(!this.dashing && !this.takingDamage) {
 			var run = false;
 			if (me.input.isKeyPressed('left')) {
 				this.body.vel.x -= 3 * me.timer.tick;
@@ -214,6 +216,24 @@ var PlayerEntity = me.Entity.extend({
 		me.collision.check(this);
 
 		return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
+	},
+
+	damage: function(dir) {
+		if(!this.takingDamage) {
+			this.takingDamage = true;
+			this.hp--;
+			console.log(this.hp);
+			if(this.hp <= 0) {
+				this.changeAnimation("die", function() {
+					console.log("Go to game over screen");
+				})
+			}
+			else {
+				this.renderable.flicker(500, (function () {
+					this.takingDamage = false;
+				}).bind(this));
+			}
+		}
 	},
 
 	onCollision : function (response, other) {

@@ -77,6 +77,7 @@ var Enemy = me.Entity.extend({
 			return true;
 		}
 		if(other.body.collisionType == me.collision.types.PLAYER_OBJECT){
+			other.damage();
 			return false;
 		}
 
