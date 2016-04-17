@@ -51,9 +51,15 @@ var PlayerEntity = me.Entity.extend({
 			}
 
 			if( y != 0 || x != 0) {
-				var bullet = me.pool.pull('boneProjectile', this.pos.x, this.pos.y);
-				bullet.setDirection((new me.Vector2d(x, y)).normalize());
-				bullet.setMask(me.collision.types.ENEMY_OBJECT);
+				var bullet = me.pool.pull(
+					'boneProjectile',
+					this.pos.x,
+					this.pos.y,
+					{
+						dir:(new me.Vector2d(x, y)).normalize(),
+						mask: me.collision.types.ENEMY_OBJECT,
+					}
+				);
 				me.game.world.addChild(bullet);
 			}
 		}

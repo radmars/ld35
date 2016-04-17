@@ -41,15 +41,21 @@ var Destructable = me.Entity.extend({
 					var ca = Math.cos(angle);
 					var sa = Math.sin(angle);
 
-					var bullet = me.pool.pull('boneProjectile', this.pos.x, this.pos.y);
-					bullet.pos.add((new me.Vector2d(ca, sa)).scale(20, 20));
-					bullet.setDirection(new me.Vector2d(ca, sa).normalize());
-					// TODO WHAT MASK TO USE???????
-					bullet.setMask(me.collision.types.ENEMY_OBJECT);
+					var bullet = me.pool.pull(
+						'boneProjectile',
+						this.pos.x + ca * 20,
+						this.pos.y + sa * 20,
+						{
+							dir: (new me.Vector2d(ca, sa)).normalize(),
+							// TODO: Whats the right mask?
+							mask: me.collision.types.ENEMY_OBJECT,
+						}
+					);
 					me.game.world.addChild(bullet);
 				}
 			}
 		}
+		this.body.setCollisionMask(me.collision.types.NO_OBJECT);
 		me.game.world.removeChild(this);
 		return false;
 	}

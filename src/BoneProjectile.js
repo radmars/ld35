@@ -11,6 +11,7 @@ var BoneProjectile = me.Entity.extend({
 
 		this._super(me.Entity, 'init', [x, y, settings]);
 		this.z = 1;
+		this.speed = 5;
 
 		this.alwaysUpdate = true;
 		this.body.collisionType = me.collision.types.PROJECTILE_OBJECT;
@@ -18,8 +19,9 @@ var BoneProjectile = me.Entity.extend({
 		this.body.setMaxVelocity(5, 5);
 		this.body.setFriction(0, 0);
 		this.body.gravity = 0;
+		this.setDirection(settings.dir);
+		this.setMask(settings.mask);
 
-		this.speed = 5;
 
 		this.renderable.addAnimation("stand",  [0, 1], 100);
 		this.renderable.setCurrentAnimation("stand");
@@ -53,7 +55,6 @@ var BoneProjectile = me.Entity.extend({
 
 		if(other.body.collisionType == me.collision.types.ENEMY_OBJECT) {
 			// We need to disable additional collisions so we don't attempt to remove objects multiple times.
-			this.body.setCollisionMask(me.collision.types.NO_OBJECT);
 			other.body.setCollisionMask(me.collision.types.NO_OBJECT);
 
 			me.game.world.removeChild(other);
