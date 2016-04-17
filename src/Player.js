@@ -12,6 +12,7 @@ var PlayerEntity = me.Entity.extend({
 		this._super(me.Entity, 'init', [x, y, settings]);
 
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+		me.state.current().player = this;
 
 		this.alwaysUpdate = true;
 		this.body.collisionType = me.collision.types.PLAYER_OBJECT;
@@ -25,7 +26,6 @@ var PlayerEntity = me.Entity.extend({
 
 		this.shootSub = me.event.subscribe(me.event.KEYDOWN, this.tryToShoot.bind(this));
 		this.shootTimer = 0;
-
 	},
 
 	tryToShoot: function(action, keyCode, edge) {
