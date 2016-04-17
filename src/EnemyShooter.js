@@ -41,10 +41,12 @@ var EnemyShooter = Enemy.extend({
 		// Up or down?
 		var skew = 3; // Likelihood of moving toward the player.  skew out of skew + 1 times we will do so.
 		var away = (Math.floor(Math.random() * (skew + 1))) === 0;
+		console.log("away:" + away);
 		var up = this.playerAbove() != away;
+		console.log("up:" + up);
 		
 		// Oh boy, vector time!
-		this.dir = new me.Vector2d(this.speed.x, this.speed.y); // Initially up and to the right
+		this.dir = new me.Vector2d(this.speed.x, -this.speed.y); // Initially up and to the right
 		this.dir.scale(
 			right ? 1 : -1,
 			up ? 1 : -1
