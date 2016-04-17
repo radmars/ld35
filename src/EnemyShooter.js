@@ -24,7 +24,7 @@ var EnemyShooter = me.Entity.extend({
 
 	update : function (dt) {
 		this.body.vel.x = this.dir.x * me.timer.tick;
-		this.body.vel.y -= this.dir.y * me.timer.tick;
+		this.body.vel.y = this.dir.y * me.timer.tick;
 
 		this.body.update(dt);
 

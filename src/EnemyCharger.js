@@ -11,7 +11,7 @@ var EnemyCharger = me.Entity.extend({
 
 		this.alwaysUpdate = true;
 		this.body.setVelocity(0, 0);
-		this.body.setMaxVelocity(2, 2);
+		this.body.setMaxVelocity(10, 10);
 		this.body.setFriction(.1, .1);
 		this.body.gravity = 0;
 
@@ -25,8 +25,8 @@ var EnemyCharger = me.Entity.extend({
 		this.behavior = 'meander';
 		this.detectDistance = 100;
 		this.speed = {
-			meander: 0.1,
-			charge: 2,
+			meander: 0.5,
+			charge: 10,
 		};
 		this.cooldown = {
 			meander: 10,
@@ -75,7 +75,7 @@ var EnemyCharger = me.Entity.extend({
 
 		// Apply physics
 		this.body.vel.x = this.dir.x * me.timer.tick;
-		this.body.vel.y -= this.dir.y * me.timer.tick;
+		this.body.vel.y = this.dir.y * me.timer.tick;
 
 		this.body.update(dt);
 
