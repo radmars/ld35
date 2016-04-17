@@ -58,6 +58,19 @@ var Enemy = me.Entity.extend({
 		return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
 	},
 
+	kill: function() {
+		var meat = me.pool.pull(
+			'meatGlob',
+			this.pos.x,
+			this.pos.y
+		);
+		me.game.world.addChild(meat, meat.pos.z);
+
+		// We need to disable additional collisions so we don't attempt to remove objects multiple times.
+		this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+		this.ancestor.removeChild(this);
+	},
+
 	onCollision : function (response, other) {
 		if(other.body.collisionType == me.collision.types.ENEMY_OBJECT){
 			this.pos.sub(response.overlapV);
