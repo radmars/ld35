@@ -101,7 +101,7 @@ var RadmarsRenderable = me.Renderable.extend({
 			this.counter++;
 		}
 		else{
-			me.state.change(me.state.PLAY);
+			me.state.change(me.state.TITLE);
 		}
 		// Have to force redraw for the flashing of the shades and text.
 		me.game.repaint();

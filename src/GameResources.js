@@ -43,6 +43,7 @@ var GameResources = (function() {
 		_Image("intro_mars"),
 		_Image("intro_radmars1"),
 		_Image("intro_radmars2"),
+		_Image("title_screen"),
 		_Audio("radmarslogo"),
 
 		/* Less exciting stuff */

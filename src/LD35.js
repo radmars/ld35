@@ -37,7 +37,8 @@ LD35.prototype.onload = function() {
 
 LD35.prototype.loaded = function() {
 	// TODO: me.state.set(me.state.MENU, new TitleScreen());
-  me.state.set(me.state.INTRO, new RadmarsScreen(this));
+	me.state.set(me.state.INTRO, new RadmarsScreen(this));
+	me.state.set(me.state.TITLE, new TitleScreen(this));
 	me.state.set(me.state.PLAY, new PlayScreen(this));
 
 	me.pool.register("mainPlayer", PlayerEntity);
@@ -62,11 +63,11 @@ LD35.prototype.loaded = function() {
 		})
 	})
 
-	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.FACE_1, me.input.KEY.SPACE);
-	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.UP, me.input.KEY.UP);
-	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.DOWN, me.input.KEY.DOWN);
-	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.LEFT, me.input.KEY.LEFT);
-	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.RIGHT, me.input.KEY.RIGHT);
+	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.FACE_1, keys.shoot[0]);
+	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.UP, keys.up[0]);
+	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.DOWN, keys.down[0]);
+	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.LEFT, keys.left[0]);
+	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.RIGHT, keys.right[0]);
 
 	if (this.options.skipintro) {
 		me.state.change(me.state.PLAY);
