@@ -8,6 +8,7 @@ var EnemyShooter = me.Entity.extend({
 		settings.image = "shooter";
 
 		this._super(me.Entity, 'init', [x, y, settings]);
+		this.z = 0;
 
 		this.alwaysUpdate = true;
 		this.body.setVelocity(0, 0);

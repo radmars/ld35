@@ -10,6 +10,7 @@ var PlayerEntity = me.Entity.extend({
 		settings.framewidth = 130;
 
 		this._super(me.Entity, 'init', [x, y, settings]);
+		this.z = 0;
 
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		me.state.current().player = this;

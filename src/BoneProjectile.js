@@ -10,6 +10,7 @@ var BoneProjectile = me.Entity.extend({
 		settings.framewidth = 64;
 
 		this._super(me.Entity, 'init', [x, y, settings]);
+		this.z = 1;
 
 		this.alwaysUpdate = true;
 		this.body.collisionType = me.collision.types.PROJECTILE_OBJECT;

@@ -14,6 +14,7 @@ var EnemyCharger = me.Entity.extend({
 		this.body.setMaxVelocity(10, 10);
 		this.body.setFriction(.1, .1);
 		this.body.gravity = 0;
+		this.z = 0;
 
 		this.renderable.addAnimation("stand",  [0]);
 		this.renderable.setCurrentAnimation("stand");

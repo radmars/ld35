@@ -55,6 +55,7 @@ var GameResources = (function() {
 		_Image("charger"),
 		_Image("box"),
 		_Image("bone_projectile"),
+		_Image('healthbar'),
 	];
 
 	return GameResources;

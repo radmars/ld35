@@ -10,7 +10,7 @@ var Destructable = me.Entity.extend({
 		settings.height = 64;
 
 		this._super(me.Entity, 'init', [x, y, settings]);
-
+		this.z = 0;
 		this.alwaysUpdate = true;
 		this.body.collisionType = me.collision.types.COLLECTABLE_OBJECT;
 		this.body.setCollisionMask(
