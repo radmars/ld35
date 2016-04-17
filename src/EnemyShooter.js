@@ -14,14 +14,16 @@ var EnemyShooter = Enemy.extend({
 			x: 3,
 			y: 1,
 		};
+		this.timers = {
+			idle: 40,
+			wander: 100,
+			shootspread: 50,
+			shootburst: 30,
+		};
+		this.bulletSpread = Math.PI;
 
 		this.body.setMaxVelocity(this.speed.x, this.speed.y);
-
-		this.chooseDirection();
-
-		this.behavior = {
-			current : 'rest',
-		};
+		this.detectDistance = 300;
 	},
 
 	// Is the player above us?
@@ -34,22 +36,125 @@ var EnemyShooter = Enemy.extend({
 	},
 
 	// Move mostly left and right, so reduced magnitude up and down.  Favor moving toward the player on the vertical axis, but do not do so all the time.
-	chooseDirection : function () {
+	wanderDirection : function () {
 		// Left or right?
-		var right = Math.floor(Math.random() * 2) === 0;
+		var right = this.chanceInN(2);
 
 		// Up or down?
-		var skew = 3; // Likelihood of moving toward the player.  skew out of skew + 1 times we will do so.
-		var away = (Math.floor(Math.random() * (skew + 1))) === 0;
-		console.log("away:" + away);
+		var away = this.chanceInN(4);
 		var up = this.playerAbove() != away;
-		console.log("up:" + up);
 		
 		// Oh boy, vector time!
-		this.dir = new me.Vector2d(this.speed.x, -this.speed.y); // Initially up and to the right
-		this.dir.scale(
+		var direction = new me.Vector2d(this.speed.x, -this.speed.y); // Initially up and to the right
+		direction.scale(
 			right ? 1 : -1,
 			up ? 1 : -1
 		);
+
+		return direction;
 	},
+
+	behaviorShootSpread : function () {
+		this.timeInState = 0;
+		this.dir = new me.Vector2d(0, 0);
+		this.bulletAngle = -this.bulletSpread / 2;
+		this.state = 'shootspread';
+	},
+	behaviorShootBurst : function () {
+		this.timeInState = 0;
+		this.dir = new me.Vector2d(0, 0);
+		this.state = 'shootburst';
+	},
+
+	shoot : function (angle) {
+		var speed = 1;
+		var bullet = me.pool.pull(
+			'bulletShooter',
+			this.pos.x,
+			this.pos.y,
+			{
+				dir:(new me.Vector2d(speed, 0)).rotate(angle),
+			}
+		);
+		me.game.world.addChild(bullet, bullet.pos.z);
+	},
+
+	// melonJS built-in handlers
+	update : function (dt) {
+		var bulletTime = function(args) {
+			if(args.time % Math.floor(args.totalTime / args.count) === 0){
+				return true;
+			}
+
+			return false;
+		};
+
+		if(this.state === 'idle'){
+			if(this.timeInState > this.timers.idle) {
+				this.behaviorWander();
+			}
+			else {
+				this.timeInState++;
+			}
+		}
+		else if(this.state === 'wander'){
+			if(this.playerInRange()){
+				var spray = this.chanceInN(4);
+				if(spray){
+					this.behaviorShootSpread();
+				}
+				else{
+					this.behaviorShootBurst();
+				}
+			}
+			if(this.timeInState > this.timers.wander) {
+				this.behaviorIdle();
+			}
+			else{
+				this.timeInState++;
+			}
+		}
+		else if(this.state === 'shootspread'){
+			var bulletCount = 5;
+
+			if(bulletTime({
+					count : bulletCount,
+					time : this.timeInState,
+					totalTime: this.timers.shootspread
+			})){
+
+				this.shoot(this.angleToPlayer() + this.bulletAngle);
+				this.bulletAngle += (this.bulletSpread / bulletCount);
+			}
+
+			if(this.timeInState > this.timers.shootspread) {
+				this.behaviorIdle();
+			}
+			else {
+				this.timeInState++;
+			}
+		}
+		else if(this.state === 'shootburst'){
+			var bulletCount = 3;
+
+			if(bulletTime({
+					count : bulletCount,
+					time : this.timeInState,
+					totalTime: this.timers.shootburst
+			})){
+
+				this.shoot(this.angleToPlayer());
+			}
+
+			if(this.timeInState > this.timers.shootburst) {
+				this.behaviorIdle();
+			}
+			else {
+				this.timeInState++;
+			}
+		}
+
+		return this._super(Enemy, 'update', [dt]);
+	},
+
 });

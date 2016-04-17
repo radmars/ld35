@@ -9,53 +9,48 @@ var EnemyPouncer = Enemy.extend({
 
 		this._super(Enemy, 'init', [x, y, settings]);
 
+		// Properties of this nefarious creature.
 		this.body.setMaxVelocity(10, 10);
-		// Behaviors:
-		//  rest     - Catching breath after moving.
-		//  meander  - Player far away.  Slow, random movement.
-		//  excited  - Player just entered range.  Doge intensifies.
-		//  charging - Full steam ahead, toward the player.
 		this.detectDistance = 200;
 		this.speed = {
-			meander: 1,
+			wander: 1,
 			charge: 10,
 		};
 		this.timers = {
-			rest: 20,
-			meander: 100,
+			idle: 20,
+			wander: 100,
 			excited: 30,
 			charge: 60,
 		};
-
-		this.rest();
 	},
+
+	// Behaviors:
+	//  idle     - Catching breath after moving.
+	//  wander   - Player far away.  Slow, random movement.
+	//  excited  - Player just entered range.  Doge intensifies.
+	//  charging - Full steam ahead, toward the player.
 
 	// Behavioral methods
-	rest : function () {
+	wanderDirection : function () {
+		var direction = new me.Vector2d(Math.random() - .5, Math.random() - .5);
+		direction.normalize();
+		direction.scale(this.speed.wander);
+
+		return direction;
+	},
+	behaviorExcited : function () {
 		this.timeInState = 0;
+		this.chargeAngle = this.angleToPlayer();
 		this.dir = new me.Vector2d(0, 0);
-		this.behavior = 'rest';
+		this.state = 'excited';
 	},
-	meander : function () {
-		this.timeInState = 0;
-		this.dir = new me.Vector2d(Math.random() - .5, Math.random() - .5);
-		this.dir.normalize();
-		this.dir.scale(this.speed.meander);
-		this.behavior = 'meander';
-	},
-	excited : function () {
-		this.timeInState = 0;
-		this.chargeAngle = this.angleTo(this.getPlayer());
-		this.dir = new me.Vector2d(0, 0);
-		this.behavior = 'excited';
-	},
-	charge : function () {
+	behaviorCharge : function () {
 		this.timeInState = 0;
 		// Unwiggle
 		this.anchorPoint = new me.Vector2d(0.5, 0.5);
 		this.dir = new me.Vector2d(this.speed.charge, 0);
 		this.dir.rotate(this.chargeAngle);
-		this.behavior = 'charge';
+		this.state = 'charge';
 	},
 
 	// cosmetic behavior
@@ -75,37 +70,37 @@ var EnemyPouncer = Enemy.extend({
 	// melonJS built-in handlers
 	update : function (dt) {
 		// Handle charger behavior.
-		if(this.behavior === 'rest'){
-			if(this.timeInState > this.timers.rest) {
-				this.meander();
+		if(this.state === 'idle'){
+			if(this.timeInState > this.timers.idle) {
+				this.behaviorWander();
 			}
 			else {
 				this.timeInState++;
 			}
 		}
-		if(this.behavior === 'meander'){
-			if(this.timeInState > this.timers.meander) {
-				this.rest();
+		if(this.state === 'wander'){
+			if(this.timeInState > this.timers.wander) {
+				this.behaviorIdle();
 			}
 			else {
 				this.timeInState++;
 			}
-			if(this.distanceTo(this.getPlayer()) <= this.detectDistance){
-				this.excited();
+			if(this.playerInRange()){
+				this.behaviorExcited();
 			}
 		}
-		else if (this.behavior === 'excited'){
+		else if (this.state === 'excited'){
 			if(this.timeInState > this.timers.excited) {
-				this.charge();
+				this.behaviorCharge();
 			}
 			else {
 				this.timeInState++;
 				this.wiggle();
 			}
 		}
-		else if (this.behavior === 'charge'){
+		else if (this.state === 'charge'){
 			if(this.timeInState > this.timers.charge) {
-				this.rest();
+				this.behaviorIdle();
 			}
 			else {
 				this.timeInState++;
