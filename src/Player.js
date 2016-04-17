@@ -15,6 +15,8 @@ var PlayerEntity = me.Entity.extend({
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		me.state.current().player = this;
 
+		this.hp = 7;
+
 		this.alwaysUpdate = true;
 		this.body.collisionType = me.collision.types.PLAYER_OBJECT;
 		this.body.setVelocity(0, 0);
@@ -110,8 +112,8 @@ var PlayerEntity = me.Entity.extend({
 					this.changeAnimation("dash", cb)
 				}
 				else {
+					this.body.setMaxVelocity(3, 3);
 					this.changeAnimation("dash_finish", function() {
-						this.body.setMaxVelocity(3, 3);
 						this.dashing = false;
 						this.changeAnimation("idle");
 					})
