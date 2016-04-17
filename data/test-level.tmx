@@ -27,7 +27,7 @@
  </objectgroup>
  <objectgroup name="Entities">
   <object id="7" name="mainPlayer" x="352" y="352" width="64" height="64"/>
-  <object id="10" name="shooter" x="128" y="128" width="64" height="64"/>
+  <object id="10" name="charger" x="128" y="128" width="64" height="64"/>
   <object id="11" x="-8" y="1102"/>
  </objectgroup>
 </map>

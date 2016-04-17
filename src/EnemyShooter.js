@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 var EnemyShooter = me.Entity.extend({
 	init : function (x, y, settings) {
@@ -23,8 +23,8 @@ var EnemyShooter = me.Entity.extend({
 	},
 
 	update : function (dt) {
-		this.body.accel.x = this.dir.x * me.timer.tick;
-		this.body.accel.y -= this.dir.y * me.timer.tick;
+		this.body.vel.x = this.dir.x * me.timer.tick;
+		this.body.vel.y -= this.dir.y * me.timer.tick;
 
 		this.body.update(dt);
 

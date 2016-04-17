@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 var EnemySpawnPoint = me.Entity.extend({
 	init : function (x, y, settings) {

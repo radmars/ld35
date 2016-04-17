@@ -41,6 +41,7 @@ LD35.prototype.loaded = function() {
 
 	me.pool.register("mainPlayer", PlayerEntity);
 	me.pool.register("shooter", EnemyShooter, true);
+	me.pool.register("charger", EnemyCharger, true);
 	me.pool.register("enemySpawn", EnemySpawnPoint, true);
 
 	var keys = {
@@ -56,7 +57,5 @@ LD35.prototype.loaded = function() {
 		})
 	})
 
-	// TODO This should go to title screeeen
   me.state.change(me.state.INTRO);
-	//me.state.change(me.state.PLAY);
 }
