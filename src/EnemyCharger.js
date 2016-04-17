@@ -70,10 +70,15 @@ var EnemyCharger = me.Entity.extend({
 
 	// cosmetic behavior
 	wiggle : function () {
-		var range = 0.15;
+		// Sprite will be displaced up to this much from center when wiggling.
+		var range = 0.1;
+		var randomize = function () {
+			return Math.random() * 2 * range + (0.5 - range);
+		};
+
 		this.anchorPoint = new me.Vector2d(
-			Math.random() * range + (0.5 + range / 2),
-			Math.random() * range + (0.5 + range / 2)
+			randomize(),
+			randomize()
 		);
 	},
 
