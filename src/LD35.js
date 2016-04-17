@@ -48,7 +48,8 @@ LD35.prototype.loaded = function() {
 
 	me.pool.register("mainPlayer", PlayerEntity);
 	me.pool.register("shooter", EnemyShooter, true);
-	me.pool.register("charger", EnemyCharger, true);
+	me.pool.register("pouncer", EnemyPouncer, true);
+	me.pool.register("bomber", EnemyBomber, true);
 	me.pool.register("enemySpawn", EnemySpawnPoint, true);
 	me.pool.register("boneProjectile", BoneProjectile, true);
 	me.pool.register("destructable", Destructable, true);

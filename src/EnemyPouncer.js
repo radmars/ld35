@@ -1,11 +1,11 @@
 "use strict";
 
-var EnemyCharger = me.Entity.extend({
+var EnemyPouncer = me.Entity.extend({
 	init : function (x, y, settings) {
 		settings = settings || {};
 		settings.height = 64;
 		settings.width = 64;
-		settings.image = "charger";
+		settings.image = "pouncer";
 
 		this._super(me.Entity, 'init', [x, y, settings]);
 
