@@ -53,6 +53,7 @@ var GameResources = (function() {
 		_Image("player"),
 		_Image("shooter"),
 		_Image("charger"),
+		_Image("bone_projectile"),
 	];
 
 	return GameResources;

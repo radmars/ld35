@@ -22,9 +22,49 @@ var PlayerEntity = me.Entity.extend({
 
 		this.renderable.addAnimation("stand",  [0, 1, 2], 100);
 		this.renderable.setCurrentAnimation("stand");
+
+		this.shootSub = me.event.subscribe(me.event.KEYDOWN, this.tryToShoot.bind(this));
+		this.shootTimer = 0;
+
+	},
+
+	tryToShoot: function(action, keyCode, edge) {
+		// TODO: shoot timersssss!
+		if (action === "shoot" && this.shootTimer > 0) {
+			this.shootTimer = 0;
+			var x = 0;
+			var y = 0;
+
+			if (me.input.isKeyPressed('left')) {
+				x = -1
+			}
+			else if (me.input.isKeyPressed('right')) {
+				x = 1;
+			}
+
+			if(me.input.isKeyPressed('up')) {
+				y = -1;
+			}
+			else if (me.input.isKeyPressed('down')) {
+				y = 1;
+			}
+
+			if( y != 0 || x != 0) {
+				var bullet = me.pool.pull('boneProjectile', this.pos.x, this.pos.y);
+				bullet.setDirection((new me.Vector2d(x, y)).normalize());
+				bullet.setMask(me.collision.types.ENEMY_OBJECT);
+				me.game.world.addChild(bullet);
+			}
+		}
+	},
+
+	onDeactivateEvent: function() {
+		me.event.unsubscribe(this.shootSub);
 	},
 
 	update : function (dt) {
+		this.shootTimer += dt;
+
 		if (me.input.isKeyPressed('left')) {
 			this.body.vel.x -= 3 * me.timer.tick;
 
@@ -49,6 +89,9 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	onCollision : function (response, other) {
+		if(other.body.collisionType == me.collision.types.PROJECTILE_OBJECT) {
+			return false;
+		}
 		return true;
 	}
 });

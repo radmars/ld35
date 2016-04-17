@@ -43,12 +43,14 @@ LD35.prototype.loaded = function() {
 	me.pool.register("shooter", EnemyShooter, true);
 	me.pool.register("charger", EnemyCharger, true);
 	me.pool.register("enemySpawn", EnemySpawnPoint, true);
+	me.pool.register("boneProjectile", BoneProjectile, true);
 
 	var keys = {
 		left:  [me.input.KEY.LEFT, me.input.KEY.A],
 		right: [me.input.KEY.RIGHT, me.input.KEY.D],
 		up:    [me.input.KEY.UP, me.input.KEY.W],
 		down:  [me.input.KEY.DOWN, me.input.KEY.S],
+		shoot: [me.input.KEY.SPACE],
 	};
 
 	Object.keys(keys).forEach(function(k) {
@@ -56,6 +58,12 @@ LD35.prototype.loaded = function() {
 			me.input.bindKey(code, k);
 		})
 	})
+
+	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.FACE_1, me.input.KEY.SPACE);
+	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.UP, me.input.KEY.UP);
+	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.DOWN, me.input.KEY.DOWN);
+	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.LEFT, me.input.KEY.LEFT);
+	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.RIGHT, me.input.KEY.RIGHT);
 
   me.state.change(me.state.INTRO);
 }
