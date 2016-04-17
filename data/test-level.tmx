@@ -23,7 +23,7 @@
   <object id="2" x="960" y="64" width="64" height="832"/>
   <object id="3" name="enemySpawn" x="512" y="128" width="32" height="32">
    <properties>
-    <property name="rate" value="1000"/>
+    <property name="rate" value="2000"/>
     <property name="type" value="shooter"/>
    </properties>
   </object>

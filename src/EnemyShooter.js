@@ -38,9 +38,10 @@ var EnemyShooter = me.Entity.extend({
 			this.pos.sub(response.overlapV);
 			return false;
 		}
-		if(other.body.collisionType == me.collision.types.PLAYER_OBJECT){
+		else if(other.body.collisionType == me.collision.types.PLAYER_OBJECT){
 			return false;
 		}
+
 		return true;
 	}
 });
