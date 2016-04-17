@@ -55,28 +55,6 @@ LD35.prototype.loaded = function() {
 	me.pool.register("destructable", Destructable, true);
 	me.pool.register("dog", Dog, true);
 
-	var keys = {
-		left:  [me.input.KEY.LEFT, me.input.KEY.A],
-		right: [me.input.KEY.RIGHT, me.input.KEY.D],
-		up:    [me.input.KEY.UP, me.input.KEY.W],
-		down:  [me.input.KEY.DOWN, me.input.KEY.S],
-		shoot: [me.input.KEY.SPACE],
-	};
-
-	Object.keys(keys).forEach(function(k) {
-		keys[k].forEach(function(code) {
-			me.input.bindKey(code, k);
-		})
-	})
-
-	if(me.input.GAMEPAD) {
-		me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.FACE_1, keys.shoot[0]);
-		me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.UP, keys.up[0]);
-		me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.DOWN, keys.down[0]);
-		me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.LEFT, keys.left[0]);
-		me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.RIGHT, keys.right[0]);
-	}
-
 	if (this.options.skipintro) {
 		me.state.change(me.state.PLAY);
 	}
