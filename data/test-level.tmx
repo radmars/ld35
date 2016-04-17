@@ -29,8 +29,8 @@
   </object>
  </objectgroup>
  <objectgroup name="Entities">
-  <object id="4" name="mainPlayer" x="352" y="352" width="64" height="64"/>
-  <object id="5" name="charger" x="128" y="128" width="64" height="64"/>
+  <object id="4" name="mainPlayer" x="448" y="384" width="64" height="64"/>
+  <object id="5" name="charger" x="256" y="384" width="64" height="64"/>
   <object id="6" x="-8" y="1102"/>
   <object id="5" name="shooter" x="512" y="512" width="64" height="64"/>
   <object id="7" name="destructable" x="242.667" y="533.333" width="65.3333" height="58.6667">
