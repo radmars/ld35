@@ -24,10 +24,10 @@ var BoneProjectile = me.Entity.extend({
 
 	setMask: function(add) {
 		this.body.setCollisionMask( 0
-			//| me.collision.types.PROJECTILE_OBJECT
 			| me.collision.types.WORLD_SHAPE
 			| me.collision.types.COLLECTABLE_OBJECT
-			| add)
+			| add
+		)
 	},
 
 	setDirection: function(dir) {
@@ -50,12 +50,19 @@ var BoneProjectile = me.Entity.extend({
 	},
 
 	onCollision : function (response, other) {
+
 		if(other.body.collisionType == me.collision.types.ENEMY_OBJECT) {
+			// We need to disable additional collisions so we don't attempt to remove objects multiple times.
+			this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+			other.body.setCollisionMask(me.collision.types.NO_OBJECT);
+
 			me.game.world.removeChild(other);
-			me.game.world.removeChild(this);
 		}
 
 		// Bullets never respond to collisions other than with destruction.
+		this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+		me.game.world.removeChild(this);
+
 		return false;
 	}
 });
