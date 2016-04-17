@@ -1,11 +1,11 @@
 "use strict";
 
-var EnemyCharger = Enemy.extend({
+var EnemyPouncer = Enemy.extend({
 	init : function (x, y, settings) {
 		settings = settings || {};
 		settings.height = 64;
 		settings.width = 64;
-		settings.image = "charger";
+		settings.image = "pouncer";
 
 		this._super(Enemy, 'init', [x, y, settings]);
 

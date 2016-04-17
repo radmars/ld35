@@ -36,14 +36,20 @@ LD35.prototype.onload = function() {
 }
 
 LD35.prototype.loaded = function() {
+	this.playState = new PlayScreen(this);
 	// TODO: me.state.set(me.state.MENU, new TitleScreen());
 	me.state.set(me.state.INTRO, new RadmarsScreen(this));
 	me.state.set(me.state.TITLE, new TitleScreen(this));
-	me.state.set(me.state.PLAY, new PlayScreen(this));
+	me.state.set(me.state.PLAY, this.playState);
+
+	if(this.options.level) {
+		this.playState.setNextLevel(this.options.level);
+	}
 
 	me.pool.register("mainPlayer", PlayerEntity);
 	me.pool.register("shooter", EnemyShooter, true);
-	me.pool.register("charger", EnemyCharger, true);
+	me.pool.register("pouncer", EnemyPouncer, true);
+	me.pool.register("bomber", EnemyBomber, true);
 	me.pool.register("enemySpawn", EnemySpawnPoint, true);
 	me.pool.register("boneProjectile", BoneProjectile, true);
 	me.pool.register("destructable", Destructable, true);
