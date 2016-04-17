@@ -56,6 +56,7 @@ var GameResources = (function() {
 		_Image("box"),
 		_Image("bone_projectile"),
 		_Image('healthbar'),
+		_Image('dog'),
 	];
 
 	return GameResources;
