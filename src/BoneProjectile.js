@@ -48,10 +48,10 @@ var BoneProjectile = me.Entity.extend({
 	onCollision : function (response, other) {
 		if(other.body.collisionType == me.collision.types.ENEMY_OBJECT) {
 			me.game.world.removeChild(other);
+			me.game.world.removeChild(this);
 		}
 
-		me.game.world.removeChild(this);
-
+		// Bullets never respond to collisions other than with destruction.
 		return false;
 	}
 });
