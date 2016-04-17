@@ -19,59 +19,102 @@ var EnemyCharger = me.Entity.extend({
 		this.renderable.setCurrentAnimation("stand");
 
 		// Behaviors:
+		//  rest     - Catching breath after moving.
 		//  meander  - Player far away.  Slow, random movement.
 		//  excited  - Player just entered range.  Doge intensifies.
 		//  charging - Full steam ahead, toward the player.
-		this.behavior = 'meander';
-		this.detectDistance = 100;
+		this.detectDistance = 200;
 		this.speed = {
-			meander: 0.5,
+			meander: 1,
 			charge: 10,
 		};
-		this.cooldown = {
-			meander: 10,
-			excited: 10,
-			charge: 10,
+		this.timers = {
+			rest: 20,
+			meander: 100,
+			excited: 30,
+			charge: 60,
 		};
 
-		this.randomDirection(this.speed.meander);
+		this.playerTarget = me.state.current().player;
+		this.rest();
 	},
 
-	randomDirection : function (magnitude) {
+	// Behavioral methods
+	rest : function () {
+		this.timeInState = 0;
+		this.dir = new me.Vector2d(0, 0);
+		this.behavior = 'rest';
+	},
+	meander : function () {
+		this.timeInState = 0;
 		this.dir = new me.Vector2d(Math.random() - .5, Math.random() - .5);
 		this.dir.normalize();
-		this.dir.scale(magnitude);
+		this.dir.scale(this.speed.meander);
+		this.behavior = 'meander';
+	},
+	excited : function () {
+		this.timeInState = 0;
+		this.chargeAngle = this.angleTo(this.playerTarget);
+		this.dir = new me.Vector2d(0, 0);
+		this.behavior = 'excited';
+	},
+	charge : function () {
+		this.timeInState = 0;
+		// Unwiggle
+		this.anchorPoint = new me.Vector2d(0.5, 0.5);
+		this.dir = new me.Vector2d(this.speed.charge, 0);
+		this.dir.rotate(this.chargeAngle);
+		this.behavior = 'charge';
 	},
 
+	// cosmetic behavior
+	wiggle : function () {
+		var range = 0.15;
+		this.anchorPoint = new me.Vector2d(
+			Math.random() * range + (0.5 + range / 2),
+			Math.random() * range + (0.5 + range / 2)
+		);
+	},
+
+	// melonJS built-in handlers
 	update : function (dt) {
-		/*
 		// Handle charger behavior.
+		if(this.behavior === 'rest'){
+			if(this.timeInState > this.timers.rest) {
+				this.meander();
+			}
+			else {
+				this.timeInState++;
+			}
+		}
 		if(this.behavior === 'meander'){
-			if(this.distanceTo(PlayerEntity) <= this.detectDistance){
-				this.behavior = 'excited';
-				this.chargeAngle = this.angleTo(PlayerEntity);
-				this.chargeDelay = this.cooldown.excited;
+			if(this.timeInState > this.timers.meander) {
+				this.rest();
+			}
+			else {
+				this.timeInState++;
+			}
+			if(this.distanceTo(this.playerTarget) <= this.detectDistance){
+				this.excited();
 			}
 		}
 		else if (this.behavior === 'excited'){
-			if(this.chargeDelay <= 0){
-				this.behavior = 'charging';
-				this.dir = this.chargeAngle;
-				this.chargeTime = this.cooldown.charge;
+			if(this.timeInState > this.timers.excited) {
+				this.charge();
 			}
 			else {
-				this.chargeDelay--;
+				this.timeInState++;
+				this.wiggle();
 			}
 		}
-		else if (this.behavior === 'charging'){
-			if(this.chargeTime <= 0){
-				this.behavior = 'meander';
+		else if (this.behavior === 'charge'){
+			if(this.timeInState > this.timers.charge) {
+				this.rest();
 			}
 			else {
-				this.chargeTime--;
+				this.timeInState++;
 			}
 		}
-		*/
 
 		// Apply physics
 		this.body.vel.x = this.dir.x * me.timer.tick;
@@ -92,6 +135,7 @@ var EnemyCharger = me.Entity.extend({
 		if(other.body.collisionType == me.collision.types.PLAYER_OBJECT){
 			return false;
 		}
+
 		return true;
 	}
 });

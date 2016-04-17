@@ -30,7 +30,7 @@
  </objectgroup>
  <objectgroup name="Entities">
   <object id="4" name="mainPlayer" x="448" y="384" width="64" height="64"/>
-  <object id="5" name="charger" x="256" y="384" width="64" height="64"/>
+  <object id="5" name="charger" x="128" y="384" width="64" height="64"/>
   <object id="6" x="-8" y="1102"/>
  </objectgroup>
 </map>
