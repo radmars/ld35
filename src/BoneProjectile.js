@@ -18,6 +18,8 @@ var BoneProjectile = me.Entity.extend({
 		this.body.setFriction(0, 0);
 		this.body.gravity = 0;
 
+		this.speed = 5;
+
 		this.renderable.addAnimation("stand",  [0, 1], 100);
 		this.renderable.setCurrentAnimation("stand");
 	},
@@ -31,17 +33,14 @@ var BoneProjectile = me.Entity.extend({
 	},
 
 	setDirection: function(dir) {
-		this.direction = dir;
+		this.body.vel.x = dir.x * this.speed;
+		this.body.vel.y = dir.y * this.speed;
 	},
 
 	onDeactivateEvent: function() {
-		this.direction = null;
 	},
 
 	update : function (dt) {
-		this.body.vel.x += this.direction.x * 3 * me.timer.tick;
-		this.body.vel.y += this.direction.y * 3 * me.timer.tick;
-
 		this.body.update(dt);
 
 		me.collision.check(this);

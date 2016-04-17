@@ -38,9 +38,13 @@ var Destructable = me.Entity.extend({
 			if(this.bullets) {
 				for(var i = 0; i < 8; i++ ) {
 					var angle = Math.PI / 4 * i
+					var ca = Math.cos(angle);
+					var sa = Math.sin(angle);
+
 					var bullet = me.pool.pull('boneProjectile', this.pos.x, this.pos.y);
-					bullet.setDirection((new me.Vector2d(Math.cos(angle), Math.sin(angle))).normalize());
-					// TODO WHAT MASK????
+					bullet.pos.add((new me.Vector2d(ca, sa)).scale(20, 20));
+					bullet.setDirection(new me.Vector2d(ca, sa).normalize());
+					// TODO WHAT MASK TO USE???????
 					bullet.setMask(me.collision.types.ENEMY_OBJECT);
 					me.game.world.addChild(bullet);
 				}
