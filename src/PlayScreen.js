@@ -7,6 +7,8 @@ var PlayScreen = me.ScreenObject.extend({
 	},
 
 	onResetEvent: function() {
+		me.game.world.addChild(new BGColor(this.game));
+
 		me.levelDirector.loadLevel("test-level", {
 			onLoaded: (function() {
 				console.log("loaded level");

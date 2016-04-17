@@ -4,9 +4,9 @@ var BoneProjectile = me.Entity.extend({
 	init : function (x, y, settings) {
 		settings = settings || {};
 		settings.image = "bone_projectile";
-		settings.width = 64;
-		settings.height = 64;
-		settings.frameheight = 64;
+		settings.width = 48;
+		settings.height = 48;
+		settings.frameheight = 96;
 		settings.framewidth = 64;
 
 		this._super(me.Entity, 'init', [x, y, settings]);
@@ -18,12 +18,16 @@ var BoneProjectile = me.Entity.extend({
 		this.body.setFriction(0, 0);
 		this.body.gravity = 0;
 
-		this.renderable.addAnimation("stand",  [0], 100);
+		this.renderable.addAnimation("stand",  [0, 1], 100);
 		this.renderable.setCurrentAnimation("stand");
 	},
 
 	setMask: function(add) {
-		this.body.setCollisionMask(me.collision.types.PROJECTILE_OBJECT | me.collision.types.WORLD_SHAPE | add)
+		this.body.setCollisionMask( 0
+			//| me.collision.types.PROJECTILE_OBJECT
+			| me.collision.types.WORLD_SHAPE
+			| me.collision.types.COLLECTABLE_OBJECT
+			| add)
 	},
 
 	setDirection: function(dir) {

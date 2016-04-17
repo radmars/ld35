@@ -45,6 +45,7 @@ LD35.prototype.loaded = function() {
 	me.pool.register("charger", EnemyCharger, true);
 	me.pool.register("enemySpawn", EnemySpawnPoint, true);
 	me.pool.register("boneProjectile", BoneProjectile, true);
+	me.pool.register("destructable", Destructable, true);
 
 	var keys = {
 		left:  [me.input.KEY.LEFT, me.input.KEY.A],
