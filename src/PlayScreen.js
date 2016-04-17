@@ -9,12 +9,11 @@ var PlayScreen = me.ScreenObject.extend({
 	onResetEvent: function() {
 		this.hud = new PlayHUD();
 		me.game.world.autoSort = true;
-		me.game.world.addChild(new BGColor(this.game));
+		me.game.world.autoDepth = false;
 
 		me.levelDirector.loadLevel("test-level", {
 			onLoaded: (function() {
-				console.log("loaded level");
-				me.game.world.addChild(this.hud);
+				me.game.world.addChild(this.hud, this.hud.pos.z);
 				me.game.viewport.fadeOut( '#000000', 1000, function() {});
 			}).bind(this),
 		});

@@ -23,7 +23,7 @@ var EnemySpawnPoint = me.Entity.extend({
 		this.lastSpawn = this.lastSpawn + dt;
 		if(this.lastSpawn > this.spawnTime) {
 			var enemy = me.pool.pull(this.enemyType, this.pos.x, this.pos.y);
-			me.game.world.addChild(enemy);
+			me.game.world.addChild(enemy, enemy.pos.z);
 			this.lastSpawn = 0;
 		}
 

@@ -10,7 +10,7 @@ var PlayerEntity = me.Entity.extend({
 		settings.framewidth = 130;
 
 		this._super(me.Entity, 'init', [x, y, settings]);
-		this.z = 0;
+		this.pos.z = 5;
 
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		me.state.current().player = this;
@@ -59,7 +59,7 @@ var PlayerEntity = me.Entity.extend({
 						dir:(new me.Vector2d(x, y)).normalize(),
 					}
 				);
-				me.game.world.addChild(bullet);
+				me.game.world.addChild(bullet, bullet.pos.z);
 			}
 		}
 	},

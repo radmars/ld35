@@ -10,7 +10,7 @@ var RadmarsScreen = me.ScreenObject.extend({
 		this.radmars = new RadmarsRenderable(this.game);
 		me.game.world.addChild( new BGColor(this.game) );
 		me.game.world.addChild( this.radmars );
-		this.z = 4;
+		this.pos.z = 4;
 
 		this.subscription = me.event.subscribe( me.event.KEYDOWN, this.keyHandler.bind(this));
 

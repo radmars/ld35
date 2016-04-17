@@ -63,11 +63,13 @@ LD35.prototype.loaded = function() {
 		})
 	})
 
-	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.FACE_1, keys.shoot[0]);
-	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.UP, keys.up[0]);
-	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.DOWN, keys.down[0]);
-	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.LEFT, keys.left[0]);
-	me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.RIGHT, keys.right[0]);
+	if(me.input.GAMEPAD) {
+		me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.FACE_1, keys.shoot[0]);
+		me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.UP, keys.up[0]);
+		me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.DOWN, keys.down[0]);
+		me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.LEFT, keys.left[0]);
+		me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.RIGHT, keys.right[0]);
+	}
 
 	if (this.options.skipintro) {
 		me.state.change(me.state.PLAY);

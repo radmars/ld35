@@ -15,7 +15,7 @@ var Dog = me.Entity.extend({
 		this.body.setFriction(.1, .1);
 		this.body.setCollisionMask(me.collision.types.WORLD_SHAPE);
 		this.body.gravity = 0;
-		this.z = 0;
+		this.pos.z = 5;
 
 		this.renderable.addAnimation("stand",  [0]);
 		this.renderable.setCurrentAnimation("stand");

@@ -9,7 +9,7 @@ var TitleScreen = me.ScreenObject.extend({
 			image: "title_screen",
 		});
 
-		me.game.world.addChild( this.bg );
+		me.game.world.addChild( this.bg, this.bg.pos.z);
 
 		me.audio.stopTrack();
 		//me.audio.playTrack( "ld33-title", 0.7 );

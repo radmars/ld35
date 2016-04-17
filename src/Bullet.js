@@ -5,7 +5,7 @@ var Bullet = me.Entity.extend({
 		settings = settings || {};
 		this._super(me.Entity, 'init', [x, y, settings]);
 
-		this.z = 1;
+		this.pos.z = 10;
 		this.speed = settings.speed || 5;
 
 		this.alwaysUpdate = true;

@@ -6,28 +6,13 @@ var PlayHUD = me.Container.extend({
 
 		this.isPersistent = true;
 		this.floating = true;
-		this.z = 10;
+		this.pos.z = Infinity;
 
 		this.name = "HUD";
-
-		this.addChild(new HPBar());
-	},
-});
-
-var HPBar = me.Renderable.extend({
-	init: function(x, y) {
-		this._super(me.Renderable, 'init', [0,0,100,100]);
-		this.barImage = new me.Sprite(195, 90, {
+		var hpbar = new me.Sprite(195, 90, {
 			image: 'healthbar',
 		});
-		this.z = 10;
+		this.addChild(hpbar, hpbar.pos.z);
+		this.sort();
 	},
-
-	update: function(dt) {
-		return true;
-	},
-
-	draw: function(renderer) {
-		this.barImage.draw(renderer);
-	}
-})
+});
