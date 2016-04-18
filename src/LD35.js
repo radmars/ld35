@@ -60,6 +60,7 @@ LD35.prototype.loaded = function() {
 	me.pool.register("boneProjectile", BoneProjectile, true);
 	me.pool.register("bulletBomber", BulletBomber, true);
 	me.pool.register("bulletShooter", BulletShooter, true);
+	me.pool.register("bulletBoss", BulletBoss, true);
 	me.pool.register("destructable", Destructable, true);
 	me.pool.register("levelChanger", LevelChanger, true);
 	me.pool.register("dog", Dog, true);
