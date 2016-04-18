@@ -37,9 +37,8 @@ LD35.prototype.onload = function() {
 
 LD35.prototype.loaded = function() {
 	this.playState = new PlayScreen(this);
-	// TODO: me.state.set(me.state.MENU, new TitleScreen());
 	me.state.set(me.state.INTRO, new RadmarsScreen(this));
-	me.state.set(me.state.TITLE, new TitleScreen(this));
+	me.state.set(me.state.MENU, new TitleScreen(this));
 	me.state.set(me.state.GAMEOVER, new GameOverScreen(this));
 	me.state.set(me.state.PLAY, this.playState);
 

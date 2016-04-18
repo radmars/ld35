@@ -10,7 +10,6 @@ var RadmarsScreen = me.ScreenObject.extend({
 		this.radmars = new RadmarsRenderable(this.game);
 		me.game.world.addChild( new BGColor(this.game) );
 		me.game.world.addChild( this.radmars );
-		this.pos.z = 4;
 
 		this.subscription = me.event.subscribe( me.event.KEYDOWN, this.keyHandler.bind(this));
 
@@ -101,7 +100,7 @@ var RadmarsRenderable = me.Renderable.extend({
 			this.counter++;
 		}
 		else{
-			me.state.change(me.state.TITLE);
+			me.state.change(me.state.MENU);
 		}
 		// Have to force redraw for the flashing of the shades and text.
 		me.game.repaint();

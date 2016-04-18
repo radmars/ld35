@@ -4,7 +4,7 @@ var PlayScreen = me.ScreenObject.extend({
 	init: function(game) {
 		this._super(me.ScreenObject, 'init', []);
 		this.game = game;
-		this.setNextLevel("test-level");
+		this.setNextLevel("level1");
 	},
 
 	setNextLevel: function(name) {
