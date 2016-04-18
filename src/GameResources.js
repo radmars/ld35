@@ -71,6 +71,8 @@ var GameResources = (function() {
 		_Image("shooter"),
 		_Image("pouncer"),
 		_Image("bomber"),
+		_Image("bullet_shooter"),
+		_Image("bullet_bomber"),
 		_Image("bone_projectile"),
 		_Image("meat_glob"),
 		_Image('healthbar'),

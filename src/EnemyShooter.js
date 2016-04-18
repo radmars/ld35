@@ -21,6 +21,8 @@ var EnemyShooter = Enemy.extend({
 			shootburst: 30,
 		};
 		this.bulletSpread = Math.PI;
+		this.bulletSpeed = 1;
+		this.bulletType = 'bulletShooter';
 
 		this.body.setMaxVelocity(this.speed.x, this.speed.y);
 		this.detectDistance = 300;
@@ -66,19 +68,6 @@ var EnemyShooter = Enemy.extend({
 		this.state = 'shootburst';
 	},
 
-	shoot : function (angle) {
-		var speed = 1;
-		var bullet = me.pool.pull(
-			'bulletShooter',
-			this.pos.x,
-			this.pos.y,
-			{
-				dir:(new me.Vector2d(speed, 0)).rotate(angle),
-			}
-		);
-		me.game.world.addChild(bullet, bullet.pos.z);
-	},
-
 	// melonJS built-in handlers
 	update : function (dt) {
 		var bulletTime = function(args) {
@@ -107,7 +96,7 @@ var EnemyShooter = Enemy.extend({
 					this.behaviorShootBurst();
 				}
 			}
-			if(this.timeInState > this.timers.wander) {
+			else if(this.timeInState > this.timers.wander) {
 				this.behaviorIdle();
 			}
 			else{

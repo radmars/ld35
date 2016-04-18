@@ -30,6 +30,19 @@ var Enemy = me.Entity.extend({
 		this.state = 'wander';
 	},
 
+	// Depends on having bulletType and bulletSpeed set.
+	shoot : function (angle) {
+		var bullet = me.pool.pull(
+			this.bulletType,
+			this.pos.x,
+			this.pos.y,
+			{
+				dir:(new me.Vector2d(this.bulletSpeed, 0)).rotate(angle),
+			}
+		);
+		me.game.world.addChild(bullet, bullet.pos.z);
+	},
+
 	// Cuz I'm probably doing this wrong and will need to change this later.  This way, I only have to do so in a single location!
 	getPlayer : function () {
 		return me.state.current().player;

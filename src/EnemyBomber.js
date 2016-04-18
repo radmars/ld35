@@ -9,14 +9,68 @@ var EnemyBomber = Enemy.extend({
 
 		this._super(Enemy, 'init', [x, y, settings]);
 
-		this.alwaysUpdate = true;
-		this.body.setVelocity(0, 0);
-		this.body.setMaxVelocity(10, 10);
-		this.body.setFriction(.1, .1);
-		this.body.gravity = 0;
-		this.pos.z = 5;
+		this.body.setMaxVelocity(1, 1);
+		// Properties of this nefarious creature.
+		this.speed = 1;
+		this.timers = {
+			idle: 40,
+			wander: 100,
+			shoot: 100,
+		};
 
-		this.renderable.addAnimation("stand",  [0]);
-		this.renderable.setCurrentAnimation("stand");
+		this.bulletSpeed = 0.5;
+		this.bulletType = 'bulletBomber';
+
+		this.body.setMaxVelocity(this.speed, this.speed);
+		this.detectDistance = 500;
+	},
+
+	wanderDirection : function () {
+		var direction = new me.Vector2d(this.speed, 0);
+		direction.rotate(Math.random() * Math.PI * 2);
+
+		return direction;
+	},
+
+	behaviorShoot : function () {
+		this.timeInState = 0;
+		this.dir = new me.Vector2d(0, 0);
+		this.state = 'shoot';
+	},
+
+	// melonJS built-in handlers
+	update : function (dt) {
+		if(this.state === 'idle'){
+			if(this.timeInState > this.timers.idle) {
+				this.behaviorWander();
+			}
+			else {
+				this.timeInState++;
+			}
+		}
+		else if(this.state === 'wander'){
+			if(this.playerInRange()){
+				this.behaviorShoot();
+			}
+			else if(this.timeInState > this.timers.wander) {
+				this.behaviorIdle();
+			}
+			else{
+				this.timeInState++;
+			}
+		}
+		else if(this.state === 'shoot'){
+			if(this.timeInState === 0){
+				this.shoot(this.angleToPlayer());
+			}
+			if(this.timeInState > this.timers.shoot) {
+				this.behaviorIdle();
+			}
+			else{
+				this.timeInState++;
+			}
+		}
+
+		return this._super(Enemy, 'update', [dt]);
 	},
 });
