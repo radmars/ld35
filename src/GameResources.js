@@ -84,6 +84,7 @@ var GameResources = (function() {
 		_Image("bloody_box"),
 		_Image("totem"),
 		_Image('rock'),
+		_Image('tiles'),
 
         _Image('player_blood_bullet'),
 
