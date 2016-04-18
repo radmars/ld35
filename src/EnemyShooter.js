@@ -13,7 +13,7 @@ var EnemyShooter = Enemy.extend({
 
 		this.renderable.addAnimation("idle",  [0, 1, 2], 200);
 		this.renderable.addAnimation("shoot", [3,4], 200);
-		this.renderable.addAnimation("run", [0,5,0,6], 200);
+		this.renderable.addAnimation("run", [0,5,0,6], 100);
 		this.renderable.addAnimation("hit", [7], 200);
 		this.renderable.setCurrentAnimation("idle");
 
@@ -97,6 +97,12 @@ var EnemyShooter = Enemy.extend({
 		};
 
 		if(this.state === 'idle'){
+			if(this.body.vel.length() == 0){
+				this.changeAnimation("idle");
+			}else{
+				this.changeAnimation("run");
+			}
+
 			if(this.timeInState > this.timers.idle) {
 				this.behaviorWander();
 			}
@@ -105,6 +111,12 @@ var EnemyShooter = Enemy.extend({
 			}
 		}
 		else if(this.state === 'wander'){
+			if(this.body.vel.length() == 0){
+				this.changeAnimation("idle");
+			}else{
+				this.changeAnimation("run");
+			}
+
 			if(this.playerInRange()){
 				var spray = this.chanceInN(4);
 				if(spray){
@@ -122,6 +134,7 @@ var EnemyShooter = Enemy.extend({
 			}
 		}
 		else if(this.state === 'shootspread'){
+			this.changeAnimation("shoot");
 			var bulletCount = 5;
 
 			if(bulletTime({
@@ -142,6 +155,7 @@ var EnemyShooter = Enemy.extend({
 			}
 		}
 		else if(this.state === 'shootburst'){
+			this.changeAnimation("shoot");
 			var bulletCount = 3;
 
 			if(bulletTime({

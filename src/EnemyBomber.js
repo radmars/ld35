@@ -29,8 +29,8 @@ var EnemyBomber = Enemy.extend({
 		this.bulletType = 'bulletBomber';
 
 		this.renderable.addAnimation("idle",  [0, 1, 2], 200);
-		this.renderable.addAnimation("run", [0,3,0,4], 200);
-		this.renderable.addAnimation("shoot" [5], 200);
+		this.renderable.addAnimation("run", [0,3,0,4], 100);
+		this.renderable.addAnimation("shoot" [5,5], 100);
 		this.renderable.addAnimation("hit", [6], 200);
 		this.renderable.setCurrentAnimation("idle");
 		this.body.setMaxVelocity(this.speed, this.speed);
@@ -53,6 +53,12 @@ var EnemyBomber = Enemy.extend({
 	// melonJS built-in handlers
 	update : function (dt) {
 		if(this.state === 'idle'){
+			if(this.body.vel.length() == 0){
+				this.changeAnimation("idle");
+			}else{
+				this.changeAnimation("run");
+			}
+
 			if(this.timeInState > this.timers.idle) {
 				this.behaviorWander();
 			}
@@ -61,6 +67,12 @@ var EnemyBomber = Enemy.extend({
 			}
 		}
 		else if(this.state === 'wander'){
+			if(this.body.vel.length() == 0){
+				this.changeAnimation("idle");
+			}else{
+				this.changeAnimation("run");
+			}
+
 			if(this.playerInRange()){
 				this.behaviorShoot();
 			}
@@ -72,6 +84,7 @@ var EnemyBomber = Enemy.extend({
 			}
 		}
 		else if(this.state === 'shoot'){
+			//this.changeAnimation("shoot");
 			if(this.timeInState === 0){
 				this.shoot(this.angleToPlayer());
 			}

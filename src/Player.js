@@ -12,6 +12,7 @@ var PlayerEntity = me.Entity.extend({
 
 		this._super(me.Entity, 'init', [x, y, settings]);
 		this.pos.z = 6;
+		this.shootDelay = 0;
 
 		this.renderable.anchorPoint.y = .75
 		//me.game.viewport.setBounds(0,0,960,640);
@@ -83,7 +84,7 @@ var PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation("big_mess_run",          [80, 81, 82, 83, 84, 85], 100);
 		this.renderable.addAnimation("big_mess_shoot",        [86, 87, 88, 89, 90, 91, 92, 93, 94, 95], 100);
 		this.renderable.addAnimation("big_mess_idle_up",    [96, 97, 98], 200);
-		this.renderable.addAnimation("big_mess_run_up",     [99,100,101,102,103,104], 200);
+		this.renderable.addAnimation("big_mess_run_up",     [99,100,101,102,103,104], 100);
 		this.renderable.addAnimation("big_mess_shoot_up",   [86, 87, 88, 89, 90, 91, 92, 93, 94, 95], 100);
 		// Just stealing the skelly dash animation for the short term to resolve bug.
 		this.renderable.addAnimation("big_mess_dash",         [80, 81, 82], 100);
@@ -118,7 +119,7 @@ var PlayerEntity = me.Entity.extend({
 			return 'skel';
 		}
 		// TODO FIX THIS MAGIC NUMBER TO BE A BETTER ONE
-		else if (this.hp < 4) {
+		else if (this.hp < 5) {
 			return 'mess';
 		}
 		else {
@@ -205,10 +206,13 @@ var PlayerEntity = me.Entity.extend({
 			this.dashing
 			|| this.takingDamage
 			|| action != "shoot"
+			|| this.shootDelay > 0
 		) { //|| this.shooting
 
 			return;
 		}
+
+
 
 		var initialX = this.fireDirection.x;
 		var initialY = this.fireDirection.y;
@@ -222,7 +226,7 @@ var PlayerEntity = me.Entity.extend({
 			})
 
 			if( this.getMode() == "skel"){
-
+				this.shootDelay = 175;
 				var bullet = me.pool.pull(
 					'boneProjectile',
 					this.pos.x,
@@ -234,6 +238,7 @@ var PlayerEntity = me.Entity.extend({
 				me.game.world.addChild(bullet, bullet.pos.z);
 
 			}else{
+				this.shootDelay = 100;
 				var angle = Math.PI*0.15;
 				dir.rotate(angle*-1);
 				for(var i=0; i<3; i++){
@@ -298,6 +303,10 @@ var PlayerEntity = me.Entity.extend({
 	update : function (dt) {
 		this.cameraTargetPos.x = this.pos.x;
 		this.cameraTargetPos.y = this.pos.y + this.cameraTargetOffsetY;
+
+		if(this.shootDelay >=0){
+			this.shootDelay-=dt;
+		}
 
 		var mode = this.getMode();
 		if(mode == "big_mess"){

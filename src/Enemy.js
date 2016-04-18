@@ -81,6 +81,10 @@ var Enemy = me.Entity.extend({
 
 		me.collision.check(this);
 
+		if(this.body.vel.x != 0) {
+			this.renderable.flipX(this.body.vel.x > 0);
+		}
+
 		return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
 	},
 
@@ -97,6 +101,7 @@ var Enemy = me.Entity.extend({
 		this.hp--;
 
 		if(this.hp > 0){
+			this.changeAnimation("hit");
 			me.game.viewport.shake(2,250);
 
 			var splode = new me.AnimationSheet(

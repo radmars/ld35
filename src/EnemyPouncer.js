@@ -12,7 +12,7 @@ var EnemyPouncer = Enemy.extend({
 		this._super(Enemy, 'init', [x, y, settings]);
 
 		this.renderable.addAnimation("idle",  [0, 1, 2], 200);
-		this.renderable.addAnimation("run", [0,3,0,4], 200);
+		this.renderable.addAnimation("run", [0,3,0,4], 100);
 		this.renderable.addAnimation("hit", [5], 200);
 		this.renderable.setCurrentAnimation("idle");
 
@@ -78,6 +78,14 @@ var EnemyPouncer = Enemy.extend({
 	// melonJS built-in handlers
 	update : function (dt) {
 		// Handle charger behavior.
+
+		if(this.body.vel.length() == 0){
+			this.changeAnimation("idle");
+		}else{
+			this.changeAnimation("run");
+		}
+
+
 		if(this.state === 'idle'){
 			if(this.timeInState > this.timers.idle) {
 				this.behaviorWander();
