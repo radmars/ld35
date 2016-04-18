@@ -1,4 +1,25 @@
 'use strict';
+
+var PressEnter = me.ImageLayer.extend({
+	init: function(x, y, args) {
+		this._super(me.ImageLayer, 'init', [x, y, args]);
+		this.flicker = 0;
+	},
+	draw: function(context) {
+		this.flicker++;
+
+		if(this.flicker === 20){
+			this.alpha = 0;
+		}
+		if(this.flicker === 40){
+			this.alpha = 1;
+			this.flicker = 0;
+		}
+
+		this._super(me.ImageLayer, 'draw', [context]);
+	},
+});
+
 var TitleScreen = me.ScreenObject.extend({
 	init: function() {
 		this._super(me.ScreenObject, 'init', []);
@@ -7,14 +28,19 @@ var TitleScreen = me.ScreenObject.extend({
 	onResetEvent: function() {
 		this.bg = new me.ImageLayer( 0, 0, {
 			image: "title_screen",
+			z: 1,
+		});
+		this.fg = new PressEnter(0, 0, {
+			image: "press_enter",
+			z: 2,
 		});
 
 		me.game.world.addChild( this.bg, this.bg.pos.z);
+		me.game.world.addChild( this.fg, this.fg.pos.z);
 
 		me.audio.stopTrack();
 		//me.audio.playTrack( "ld33-title", 0.7 );
 		//me.audio.play("micromancer");
-
 
 		var keys = {
 			OK:    [me.input.KEY.ENTER],

@@ -44,6 +44,7 @@ var GameResources = (function() {
 		_Image("intro_radmars1"),
 		_Image("intro_radmars2"),
 		_Image("title_screen"),
+		_Image("press_enter"),
 		_Image("gameover"),
 		_Audio("radmarslogo"),
 
