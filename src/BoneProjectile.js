@@ -9,7 +9,7 @@ var BoneProjectile = Bullet.extend({
 		settings.height = 64;
 		settings.frameheight = 64;
 		settings.framewidth = 64;
-		settings.speed = 5;
+		settings.speed = 10;
 		settings.mask = me.collision.types.ENEMY_OBJECT; // Friendly bullet!
 
 		this._super(Bullet, 'init', [x, y, settings]);

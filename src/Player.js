@@ -28,6 +28,8 @@ var PlayerEntity = me.Entity.extend({
 		this.body.setFriction(.1, .1);
 		this.body.gravity = 0;
 
+		this.fireDirection = new me.Vector2d(0,0);
+
 		this.animationMap = {
 			idle: 'idle_up',
 			run: 'run_up',
@@ -140,11 +142,11 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	tryToShoot: function(action, keyCode, edge) {
-		if(this.dashing || this.takingDamage || this.shooting || action != "shoot") {
+		if(this.dashing || this.takingDamage|| action != "shoot" ) { //|| this.shooting
 			return;
 		}
 
-		var dir = this.getControlDirection();
+		var dir = this.fireDirection; //this.getControlDirection();
 
 		if( dir.y != 0 || dir.x != 0) {
 			this.shooting = true;
@@ -213,6 +215,10 @@ var PlayerEntity = me.Entity.extend({
 					})
 				}
 			}
+		}
+		if(this.body.vel.length() != 0){
+			this.fireDirection.x = this.body.vel.x;
+			this.fireDirection.y = this.body.vel.y;
 		}
 
 		if(this.body.vel.x != 0) {
