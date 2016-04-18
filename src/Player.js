@@ -35,16 +35,22 @@ var PlayerEntity = me.Entity.extend({
 		};
 		this.facingUp = false;
 
-		this.renderable.addAnimation("idle",         [0, 1, 2], 200);
-		this.renderable.addAnimation("idle_up",      [48, 49, 50], 200);
-		this.renderable.addAnimation("dash",         [3, 4], 100); // TODO Need "end of dash" support
-		this.renderable.addAnimation("dash_finish",  [5, 6, 7, 8, 9], 100); // TODO Need "end of dash" support
-		this.renderable.addAnimation("shoot",        [10, 11, 12, 13, 12], 200);
-		this.renderable.addAnimation("shoot_up",     [44, 45, 46, 47, 46], 200);
-		this.renderable.addAnimation("run",          [14, 15, 16, 17 ], 200);
-		this.renderable.addAnimation("run_up",       [51, 52, 53, 54 ], 200);
-		this.renderable.addAnimation("die",          [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43], 100);
-		this.renderable.addAnimation("dead",         [43], 100);
+		this.renderable.addAnimation("skel_idle",         [0, 1, 2], 200);
+		this.renderable.addAnimation("skel_idle_up",      [48, 49, 50], 200);
+		this.renderable.addAnimation("skel_dash",         [3, 4], 100); // TODO Need "end of dash" support
+		this.renderable.addAnimation("skel_dash_finish",  [5, 6, 7, 8, 9], 100); // TODO Need "end of dash" support
+		this.renderable.addAnimation("skel_shoot",        [10, 11, 12, 13, 12], 200);
+		this.renderable.addAnimation("skel_shoot_up",     [44, 45, 46, 47, 46], 200);
+		this.renderable.addAnimation("skel_run",          [14, 15, 16, 17 ], 200);
+		this.renderable.addAnimation("skel_run_up",       [51, 52, 53, 54 ], 200);
+		this.renderable.addAnimation("skel_die",          [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43], 100);
+		this.renderable.addAnimation("skel_dead",         [43], 100);
+		this.renderable.addAnimation("mess_idle",         [55, 56, 57], 200);
+		this.renderable.addAnimation("mess_run",          [58, 59, 60, 61], 200);
+		this.renderable.addAnimation("mess_shoot",        [62, 63, 64, 65], 200);
+		this.renderable.addAnimation("mess_idle_up",    [66, 67, 68], 200);
+		this.renderable.addAnimation("mess_run_up",     [69, 70, 71, 72], 200);
+		this.renderable.addAnimation("mess_shoot_up",   [73, 74, 75, 76], 200);
 
 		this.changeAnimation("idle");
 
@@ -54,17 +60,19 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	getAnimationName: function(name) {
+		var n = name;
 		if(this.facingUp) {
-			return this.animationMap[name] || name;
+			n = this.animationMap[name] || name;
 		}
-		return name;
+		return this.getMode() + "_" + n;
 	},
 
 	getMode: function() {
 		if(this.hp < 2) {
-			return 'skeleton';
+			return 'skel';
 		}
-		else if (this.hp < 6) {
+		// TODO FIX THIS MAGIC NUMBER TO BE A BETTER ONE
+		else if (this.hp < 8) {
 			return 'mess';
 		}
 		else {
