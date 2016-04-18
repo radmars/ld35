@@ -30,12 +30,17 @@ var PlayerEntity = me.Entity.extend({
 
 		this.fireDirection = new me.Vector2d(0,0);
 
+		this.facingUp = false;
 		this.animationMap = {
 			idle: 'idle_up',
 			run: 'run_up',
 			shoot: 'shoot_up',
 		};
-		this.facingUp = false;
+		// For overrides required in particular forms.  Mess doesn't have a dedicated dash animation, for instance.
+		this.modeMap = {
+			mess_dash: 'mess_dash_up',
+			mess_dash_finish: 'mess_dash_finish_up',
+		};
 
 		this.renderable.addAnimation("skel_idle",         [0, 1, 2], 200);
 		this.renderable.addAnimation("skel_idle_up",      [48, 49, 50], 200);
@@ -54,8 +59,10 @@ var PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation("mess_run_up",     [69, 70, 71, 72], 200);
 		this.renderable.addAnimation("mess_shoot_up",   [73, 74, 75, 76], 200);
 		// Just stealing the skelly dash animation for the short term to resolve bug.
-		this.renderable.addAnimation("mess_dash",         [3, 4], 100);
-		this.renderable.addAnimation("mess_dash_finish",  [5, 6, 7, 8, 9], 100);
+		this.renderable.addAnimation("mess_dash",         [58, 58], 100);
+		this.renderable.addAnimation("mess_dash_up",         [69, 69], 100);
+		this.renderable.addAnimation("mess_dash_finish",  [61, 61], 250);
+		this.renderable.addAnimation("mess_dash_finish_up",  [72, 72], 250);
 
 		this.changeAnimation("idle");
 
@@ -67,9 +74,16 @@ var PlayerEntity = me.Entity.extend({
 	getAnimationName: function(name) {
 		var n = name;
 		if(this.facingUp) {
-			n = this.animationMap[name] || name;
+			n = this.animationMap[n] || n;
 		}
-		return this.getMode() + "_" + n;
+		n = this.getMode() + "_" + n;
+
+		// Copy pasta
+		if(this.facingUp) {
+			n = this.modeMap[n] || n;
+		}
+
+		return n;
 	},
 
 	getMode: function() {
