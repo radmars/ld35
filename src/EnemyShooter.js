@@ -19,6 +19,9 @@ var EnemyShooter = Enemy.extend({
 
 		this.hp = 3;
 
+		this.screenShakeIntensity = 5;
+		this.screenShakeDuration = 750;
+
 		// Properties of this nefarious creature.
 		this.speed = {
 			x: 3,
