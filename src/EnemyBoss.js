@@ -25,7 +25,7 @@ var EnemyBoss = Enemy.extend({
 		this.meatChance = 1;
 
 		this.body.setMaxVelocity(this.speed, this.speed);
-		this.detectDistance = 300;
+		this.detectDistance = 500;
 		this.timers = {
 			idle: 20,
 			wander: 100,
@@ -38,15 +38,6 @@ var EnemyBoss = Enemy.extend({
 
 	// Sometimes produces meat when damaged.
 	dropMeat : function () {
-	},
-
-	// Is the player above us?
-	playerAbove : function() {
-		var angle = this.angleTo(this.getPlayer());
-		if(angle < 0){
-			return true;
-		}
-		return false;
 	},
 
 	wanderDirection : function () {
@@ -112,6 +103,8 @@ var EnemyBoss = Enemy.extend({
 	update : function (dt) {
 		if(!this.active){
 			if(this.state === 'idle'){
+				this.facePlayer();
+
 				if(!this.renderable.isCurrentAnimation("idle")) {
 					this.renderable.setCurrentAnimation("idle");
 				}
