@@ -12,6 +12,7 @@ var Enemy = me.Entity.extend({
 		this.body.gravity = 0;
 		this.pos.z = 5;
 
+		this.flippedX = false;
 		this.hp = 1;
 		this.meatChance = 0;
 		this.screenShakeIntensity = 4;
@@ -21,6 +22,44 @@ var Enemy = me.Entity.extend({
 		this.renderable.setCurrentAnimation("stand");
 
 		this.behaviorIdle();
+	},
+
+	// Is the player above us?
+	playerAbove : function() {
+		var angle = this.angleTo(this.getPlayer());
+		if(angle < 0){
+			return true;
+		}
+		return false;
+	},
+	// Is the player to the right of us?
+	playerRight : function() {
+		var angle = this.angleTo(this.getPlayer());
+		if(
+			angle > -Math.PI / 2
+			&& angle < Math.PI / 2
+		){
+
+			return true;
+		}
+		return false;
+	},
+	// When called, flip the sprite to face the player if appropriate.
+	facePlayer : function() {
+		if(
+			this.flippedX
+			&& !this.playerRight()
+		){
+
+			this.renderable.flipX(false)
+		}
+		else if(
+			!this.flippedX
+			&& this.playerRight()
+		){
+
+			this.renderable.flipX(true)
+		}
 	},
 
 	// Behavioral methods
