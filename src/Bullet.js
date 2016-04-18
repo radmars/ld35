@@ -29,6 +29,7 @@ var Bullet = me.Entity.extend({
 	setDirection: function(dir) {
 		this.body.vel.x = dir.x * this.speed;
 		this.body.vel.y = dir.y * this.speed;
+		this.renderable.angle = Math.atan2(dir.y, dir.x);
 	},
 
 	onDeactivateEvent: function() {
