@@ -9,16 +9,15 @@ var BulletBomber = Bullet.extend({
 		settings.height = 64;
 		settings.frameheight = 64;
 		settings.framewidth = 64;
+
 		settings.speed = 5;
 		settings.mask = me.collision.types.PLAYER_OBJECT;
 
 		this._super(Bullet, 'init', [x, y, settings]);
 
-		this.renderable.addAnimation("idle",  [0, 1, 2], 200);
-		this.renderable.addAnimation("run", [0,3,0,4], 200);
-		this.renderable.addAnimation("shoot" [5], 200);
-		this.renderable.addAnimation("hit", [6], 200);
+		this.renderable.addAnimation("idle",  [0, 1], 100);
 		this.renderable.setCurrentAnimation("idle");
+
 		this.height = 10;
 		this.upVelocity = 30;
 		this.age = 0;
