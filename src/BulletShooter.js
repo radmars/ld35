@@ -5,8 +5,8 @@ var BulletShooter = Bullet.extend({
 		settings = settings || {};
 
 		settings.image = "bullet_shooter";
-		settings.width = 64;
-		settings.height = 63;
+		settings.width = 40;
+		settings.height = 40;
 		settings.frameheight = 64;
 		settings.framewidth = 64;
 		settings.speed = 5;
