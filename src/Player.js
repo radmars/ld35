@@ -76,6 +76,9 @@ var PlayerEntity = me.Entity.extend({
 	addMeat: function() {
 		var mode = this.getMode();
 		this.hp++;
+		if(this.hp > 7) {
+			this.hp = 7;
+		}
 		var newMode = this.getMode();
 		if(mode != newMode){
 			console.log("LEVELED UP BRO????");
