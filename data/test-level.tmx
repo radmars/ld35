@@ -37,20 +37,20 @@
  <objectgroup name="Entities">
   <object id="4" name="mainPlayer" x="448" y="384" width="64" height="64"/>
   <object id="6" x="-8" y="1102"/>
-  <object id="7" name="destructable" x="242.667" y="533.333" width="65.3333" height="58.6667">
+  <object id="7" name="destructable" x="750.667" y="133.333" width="65.3333" height="58.6667">
    <properties>
     <property name="bullets" type="bool" value="true"/>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object id="11" name="destructable" x="362" y="608" width="65.3333" height="58.6667">
+  <object id="11" name="destructable" x="316" y="140" width="65.3333" height="58.6667">
    <properties>
     <property name="bullets" type="bool" value="true"/>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object id="14" name="dog" x="676" y="643" width="90" height="72"/>
+  <object id="14" name="dog" x="593" y="515" width="90" height="72"/>
   <object id="21" name="meatGlob" x="640" y="384" width="64" height="64"/>
-  <object id="23" name="boss" x="448" y="704" width="128" height="96"/>
+  <object id="23" name="boss" x="501" y="114" width="128" height="96"/>
  </objectgroup>
 </map>
