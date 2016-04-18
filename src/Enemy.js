@@ -13,6 +13,8 @@ var Enemy = me.Entity.extend({
 		this.pos.z = 5;
 
 		this.hp = 1;
+		this.screenShakeIntensity = 4;
+		this.screenShakeDuration = 500;
 
 		this.renderable.addAnimation("stand", [0]);
 		this.renderable.setCurrentAnimation("stand");
@@ -86,6 +88,8 @@ var Enemy = me.Entity.extend({
 		this.hp--;
 
 		if(this.hp > 0){
+			me.game.viewport.shake(2,250);
+
 			var splode = new me.AnimationSheet(this.pos.x + Math.random()*32, this.pos.y+ Math.random()*32, {
 				image: 'blood_impact_64',
 				framewidth: 64,
@@ -108,6 +112,9 @@ var Enemy = me.Entity.extend({
 	},
 
 	die: function() {
+
+		me.game.viewport.shake(this.screenShakeIntensity, this.screenShakeDuration);
+
 		var meat = me.pool.pull(
 			'meatGlob',
 			this.pos.x,
