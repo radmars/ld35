@@ -8,13 +8,17 @@ var PlayerEntity = me.Entity.extend({
 		settings.height = 64;
 		settings.frameheight = 128;
 		settings.framewidth = 128;
+		settings.shapes = [ new me.Rect(0, 0, 64, 64) ]
 
 		this._super(me.Entity, 'init', [x, y, settings]);
 		this.pos.z = 5;
 
+		this.renderable.anchorPoint.y = .75
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		me.state.current().player = this;
 
+		this.takingDamage = false;
+		console.log("Activate!");
 		this.hp = 1;
 
 		this.alwaysUpdate = true;
@@ -72,6 +76,9 @@ var PlayerEntity = me.Entity.extend({
 	addMeat: function() {
 		var mode = this.getMode();
 		this.hp++;
+		if(this.hp > 7) {
+			this.hp = 7;
+		}
 		var newMode = this.getMode();
 		if(mode != newMode){
 			console.log("LEVELED UP BRO????");
@@ -126,7 +133,7 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	tryToShoot: function(action, keyCode, edge) {
-		if(this.dashing) {
+		if(this.dashing || this.takingDamage) {
 			return;
 		}
 
@@ -256,6 +263,10 @@ var PlayerEntity = me.Entity.extend({
 
 		if(other.body.collisionType == me.collision.types.COLLECTABLE_OBJECT) {
 			other.collect(this);
+			return false;
+		}
+
+		if(other.body.collisionType == me.collision.types.ACTION_OBJECT) {
 			return false;
 		}
 

@@ -79,6 +79,9 @@ var GameResources = (function() {
 		_Image('healthbar'),
 		_Image('dog'),
 		_Image("box"),
+		_Image("flesh_box"),
+		_Image("bloody_box"),
+		_Image("totem"),
 		_Image('rock'),
 	];
 

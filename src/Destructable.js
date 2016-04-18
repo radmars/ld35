@@ -8,6 +8,14 @@ var Destructable = me.Entity.extend({
 		settings.width = 64;
 		settings.height = 64;
 
+		var anims = {
+			box: [0],
+			bloody_box: [0, 1, 2, 3],
+			flesh_box: [0, 1],
+			rock: [0],
+			totem: [0],
+		};
+
 		this._super(me.Entity, 'init', [x, y, settings]);
 		this.pos.z = 10;
 		this.alwaysUpdate = true;
@@ -17,24 +25,19 @@ var Destructable = me.Entity.extend({
 			| me.collision.types.ENEMY_OBJECT
 			| me.collision.types.PLAYER_OBJECT
 		);
+
+		this.renderable.addAnimation("stand",  anims[settings.image], 200);
+		this.renderable.setCurrentAnimation("stand");
+
 		this.body.setVelocity(0, 0);
 		this.body.setMaxVelocity(0, 0);
-		this.body.setFriction(.1, .1);
 		this.body.gravity = 0;
 		this.bullets = settings.bullets;
 		this.facingUp = false;
 	},
 
-	onDeactivateEvent: function() {
-	},
-
 	collect: function(player) {
 		// place holder
-	},
-
-	update : function (dt) {
-		this.body.update(dt);
-		me.collision.check(this);
 	},
 
 	onCollision : function (response, other) {

@@ -33,15 +33,31 @@
  <objectgroup name="Entities">
   <object id="11" name="mainPlayer" x="451" y="2947" width="64" height="64"/>
   <object id="12" name="pouncer" x="448" y="2305" width="64" height="64"/>
-  <object id="13" name="destructable" x="193" y="2432" width="128" height="64"/>
-  <object id="14" name="destructable" x="643" y="2561" width="128" height="64"/>
-  <object id="15" name="destructable" x="320" y="2691" width="128" height="64"/>
+  <object id="13" name="destructable" x="193" y="2432" width="128" height="64">
+   <properties>
+    <property name="image" value="flesh_box"/>
+   </properties>
+  </object>
+  <object id="14" name="destructable" x="643" y="2561" width="128" height="64">
+   <properties>
+    <property name="image" value="bloody_box"/>
+   </properties>
+  </object>
+  <object id="15" name="destructable" x="320" y="2691" width="128" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
   <object id="16" name="shooter" x="192" y="1409" width="64" height="64"/>
   <object id="17" name="bomber" x="385" y="193" width="64" height="64"/>
   <object id="18" name="pouncer" x="257" y="1919" width="64" height="64"/>
   <object id="19" name="pouncer" x="641" y="1792" width="64" height="64"/>
   <object id="20" name="destructable" x="645" y="1920" width="128" height="64"/>
-  <object id="21" name="destructable" x="322" y="2050" width="128" height="64"/>
+  <object id="21" name="destructable" x="322" y="2050" width="128" height="64">
+   <properties>
+    <property name="image" value="totem"/>
+   </properties>
+  </object>
   <object id="22" name="destructable" x="66" y="1600" width="128" height="64"/>
   <object id="23" name="destructable" x="767" y="1601" width="128" height="64"/>
   <object id="24" name="destructable" x="195" y="1600" width="128" height="64"/>
