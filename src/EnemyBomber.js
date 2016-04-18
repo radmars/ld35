@@ -3,9 +3,11 @@
 var EnemyBomber = Enemy.extend({
 	init : function (x, y, settings) {
 		settings = settings || {};
-		settings.height = 64;
-		settings.width = 64;
+		settings.height = 80;
+		settings.width = 80;
 		settings.image = "bomber";
+		settings.frameheight = 80;
+		settings.framewidth = 80;
 
 		this._super(Enemy, 'init', [x, y, settings]);
 
@@ -21,6 +23,11 @@ var EnemyBomber = Enemy.extend({
 		this.bulletSpeed = 0.5;
 		this.bulletType = 'bulletBomber';
 
+		this.renderable.addAnimation("idle",  [0, 1, 2], 200);
+		this.renderable.addAnimation("run", [0,3,0,4], 200);
+		this.renderable.addAnimation("shoot" [5], 200);
+		this.renderable.addAnimation("hit", [6], 200);
+		this.renderable.setCurrentAnimation("idle");
 		this.body.setMaxVelocity(this.speed, this.speed);
 		this.detectDistance = 500;
 	},

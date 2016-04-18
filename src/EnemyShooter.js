@@ -5,9 +5,17 @@ var EnemyShooter = Enemy.extend({
 		settings = settings || {};
 		settings.height = 128;
 		settings.width = 128;
+		settings.framewidth = 92;
+		settings.frameheight = 92;
 		settings.image = "shooter";
 
 		this._super(Enemy, 'init', [x, y, settings]);
+
+		this.renderable.addAnimation("idle",  [0, 1, 2], 200);
+		this.renderable.addAnimation("shoot", [3,4], 200);
+		this.renderable.addAnimation("run", [0,5,0,6], 200);
+		this.renderable.addAnimation("hit", [7], 200);
+		this.renderable.setCurrentAnimation("idle");
 
 		// Properties of this nefarious creature.
 		this.speed = {
@@ -45,7 +53,7 @@ var EnemyShooter = Enemy.extend({
 		// Up or down?
 		var away = this.chanceInN(4);
 		var up = this.playerAbove() != away;
-		
+
 		// Oh boy, vector time!
 		var direction = new me.Vector2d(this.speed.x, -this.speed.y); // Initially up and to the right
 		direction.scale(

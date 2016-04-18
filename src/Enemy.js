@@ -71,6 +71,15 @@ var Enemy = me.Entity.extend({
 		return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
 	},
 
+	changeAnimation: function(dest, next) {
+		if(!this.renderable.isCurrentAnimation(dest)) {
+			if(next) {
+				next = next.bind(this);
+			}
+			this.renderable.setCurrentAnimation(dest, next);
+		}
+	},
+
 	kill: function() {
 		var meat = me.pool.pull(
 			'meatGlob',
@@ -99,6 +108,7 @@ var Enemy = me.Entity.extend({
 		sprite.pos.z = 3;
 		ancestor.addChild(sprite, sprite.pos.z);
 		splode.setCurrentAnimation('splode', (function() {
+			splode.setCurrentAnimation("splode_over");
 			ancestor.removeChild(splode);
 		}).bind(this));
 		ancestor.addChild(splode, splode.pos.z);

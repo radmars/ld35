@@ -5,9 +5,16 @@ var EnemyPouncer = Enemy.extend({
 		settings = settings || {};
 		settings.height = 64;
 		settings.width = 64;
+		settings.framewidth = 64;
+		settings.frameheight = 64;
 		settings.image = "pouncer";
 
 		this._super(Enemy, 'init', [x, y, settings]);
+
+		this.renderable.addAnimation("idle",  [0, 1, 2], 200);
+		this.renderable.addAnimation("run", [0,3,0,4], 200);
+		this.renderable.addAnimation("hit", [5], 200);
+		this.renderable.setCurrentAnimation("idle");
 
 		// Properties of this nefarious creature.
 		this.body.setMaxVelocity(10, 10);

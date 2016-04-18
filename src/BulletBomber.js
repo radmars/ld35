@@ -14,8 +14,11 @@ var BulletBomber = Bullet.extend({
 
 		this._super(Bullet, 'init', [x, y, settings]);
 
-		this.renderable.addAnimation("stand",  [0, 0], 100);
-		this.renderable.setCurrentAnimation("stand");
+		this.renderable.addAnimation("idle",  [0, 1, 2], 200);
+		this.renderable.addAnimation("run", [0,3,0,4], 200);
+		this.renderable.addAnimation("shoot" [5], 200);
+		this.renderable.addAnimation("hit", [6], 200);
+		this.renderable.setCurrentAnimation("idle");
 		this.height = 10;
 		this.upVelocity = 30;
 		this.age = 0;
@@ -45,6 +48,7 @@ var BulletBomber = Bullet.extend({
 		}
 	},
 
+
 	update : function (dt) {
 		// Height logic.  Entirely cosmetic.
 		this.height += this.upVelocity;
@@ -58,6 +62,8 @@ var BulletBomber = Bullet.extend({
 		this.upVelocity--;
 
 		this.body.update(dt);
+		if(this.body.vel.length() > 0) {
+		}
 
 		if(this.age > this.lifetime){
 			this.explode();
