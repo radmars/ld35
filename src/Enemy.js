@@ -104,11 +104,9 @@ var Enemy = me.Entity.extend({
 			this.changeAnimation("hit");
 			me.game.viewport.shake(2,250);
 
-
 		}else{
 			this.die();
 		}
-
 
 	},
 

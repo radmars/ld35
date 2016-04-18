@@ -122,7 +122,7 @@ var PlayerEntity = me.Entity.extend({
 			return 'skel';
 		}
 		// TODO FIX THIS MAGIC NUMBER TO BE A BETTER ONE
-		else if (this.hp < 5) {
+		else if (this.hp < 7) {
 			return 'mess';
 		}
 		else {
@@ -419,7 +419,7 @@ var PlayerEntity = me.Entity.extend({
 					this.changeAnimation("dead");
 					me.timer.setTimeout(function(){
 						me.state.change( me.state.GAMEOVER);
-					}, 3000);
+					}, 1000);
 				})
 			}
 			else {
