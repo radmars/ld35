@@ -14,7 +14,7 @@ var BulletShooter = Bullet.extend({
 
 		this._super(Bullet, 'init', [x, y, settings]);
 
-		this.renderable.addAnimation("idle",  [0, 1, 2, 4], 200);
+		this.renderable.addAnimation("idle",  [0, 1, 2, 4], 100);
 		this.renderable.setCurrentAnimation("idle");
 	},
 });

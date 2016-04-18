@@ -24,7 +24,9 @@ var PlayerEntity = me.Entity.extend({
 		me.state.current().player = this;
 
 		this.takingDamage = false;
-		this.hp = 1;
+		this.hp = 7;
+
+		this.aoeTriggered = false;
 
 		this.alwaysUpdate = true;
 		this.body.collisionType = me.collision.types.PLAYER_OBJECT;
@@ -47,7 +49,12 @@ var PlayerEntity = me.Entity.extend({
 			mess_dash_finish: 'mess_dash_finish_up',
 		};
 
-		var dashRecovery = 500;
+		this.modeMap = {
+			big_mess_dash: 'big_mess_dash_up',
+			big_mess_dash_finish: 'big_mess_dash_finish_up',
+		};
+
+		var dashRecovery = 250;
 
 		this.renderable.addAnimation("skel_idle",         [0, 1, 2], 200);
 		this.renderable.addAnimation("skel_idle_up",      [48, 49, 50], 200);
@@ -70,6 +77,19 @@ var PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation("mess_dash_up",         [69, 69], 100);
 		this.renderable.addAnimation("mess_dash_finish",  [61, 61], dashRecovery / 2);
 		this.renderable.addAnimation("mess_dash_finish_up",  [72, 72], dashRecovery / 2);
+
+
+		this.renderable.addAnimation("big_mess_idle",         [77, 78, 79], 200);
+		this.renderable.addAnimation("big_mess_run",          [80, 81, 82, 83, 84, 85], 100);
+		this.renderable.addAnimation("big_mess_shoot",        [86, 87, 88, 89, 90, 91, 92, 93, 94, 95], 100);
+		this.renderable.addAnimation("big_mess_idle_up",    [96, 97, 98], 200);
+		this.renderable.addAnimation("big_mess_run_up",     [99,100,101,102,103,104], 200);
+		this.renderable.addAnimation("big_mess_shoot_up",   [86, 87, 88, 89, 90, 91, 92, 93, 94, 95], 100);
+		// Just stealing the skelly dash animation for the short term to resolve bug.
+		this.renderable.addAnimation("big_mess_dash",         [80, 81, 82], 100);
+		this.renderable.addAnimation("big_mess_dash_up",         [99,100,101], 100);
+		this.renderable.addAnimation("big_mess_dash_finish",  [84, 85], dashRecovery / 2);
+		this.renderable.addAnimation("big_mess_dash_finish_up",  [102,103], dashRecovery / 2);
 
 		this.changeAnimation("idle");
 
@@ -98,11 +118,11 @@ var PlayerEntity = me.Entity.extend({
 			return 'skel';
 		}
 		// TODO FIX THIS MAGIC NUMBER TO BE A BETTER ONE
-		else if (this.hp < 8) {
+		else if (this.hp < 4) {
 			return 'mess';
 		}
 		else {
-			return 'behemoth';
+			return 'big_mess';
 		}
 	},
 
@@ -190,6 +210,8 @@ var PlayerEntity = me.Entity.extend({
 			return;
 		}
 
+		var initialX = this.fireDirection.x;
+		var initialY = this.fireDirection.y;
 		var dir = this.fireDirection; //this.getControlDirection();
 
 		if( dir.y != 0 || dir.x != 0) {
@@ -198,6 +220,54 @@ var PlayerEntity = me.Entity.extend({
 				this.changeAnimation("idle");
 				this.shooting = false;
 			})
+
+			if( this.getMode() == "skel"){
+
+				var bullet = me.pool.pull(
+					'boneProjectile',
+					this.pos.x,
+					this.pos.y,
+					{
+						dir: dir.normalize(),
+					}
+				);
+				me.game.world.addChild(bullet, bullet.pos.z);
+
+			}else{
+				var angle = Math.PI*0.15;
+				dir.rotate(angle*-1);
+				for(var i=0; i<3; i++){
+					//tri shot.
+					var bullet = me.pool.pull(
+						'playerBloodProjectile',
+						this.pos.x,
+						this.pos.y,
+						{
+							dir: dir.normalize(),
+						}
+					);
+					me.game.world.addChild(bullet, bullet.pos.z);
+					dir.rotate(angle);
+				}
+			}
+
+		}
+
+		this.fireDirection.x = initialX;
+		this.fireDirection.y = initialY;
+	},
+
+
+	fireAoe: function() {
+		me.game.viewport.shake(3,500);
+
+		var dir = new me.Vector2d(0,0);
+		var num = 10;
+
+		for(var i =0; i<num; i++){
+			dir.x = Math.cos( Math.PI*2*(i/num) );
+			dir.y = Math.sin( Math.PI*2*(i/num) );
+
 			var bullet = me.pool.pull(
 				'boneProjectile',
 				this.pos.x,
@@ -224,9 +294,26 @@ var PlayerEntity = me.Entity.extend({
 		me.event.unsubscribe(this.dashSub);
 	},
 
+
 	update : function (dt) {
 		this.cameraTargetPos.x = this.pos.x;
 		this.cameraTargetPos.y = this.pos.y + this.cameraTargetOffsetY;
+
+		var mode = this.getMode();
+		if(mode == "big_mess"){
+			if(this.renderable.isCurrentAnimation(this.getAnimationName("shoot"))){
+				var frame = this.renderable.getCurrentAnimationFrame();
+				if(frame == 6 && !this.aoeTriggered){
+					this.aoeTriggered = true;
+					this.fireAoe();
+				}
+
+				if( frame >= 8){
+					this.aoeTriggered = false;
+				}
+			}
+		}
+
 
 		if(
 			!this.dashing

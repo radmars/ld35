@@ -58,6 +58,7 @@ LD35.prototype.loaded = function() {
 	me.pool.register("meatGlob", MeatGlob, true);
 	me.pool.register("enemySpawn", EnemySpawnPoint, true);
 	me.pool.register("boneProjectile", BoneProjectile, true);
+	me.pool.register("playerBloodProjectile", PlayerBloodProjectile, true);
 	me.pool.register("bulletBomber", BulletBomber, true);
 	me.pool.register("bulletShooter", BulletShooter, true);
 	me.pool.register("bulletBoss", BulletBoss, true);

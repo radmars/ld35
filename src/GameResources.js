@@ -84,6 +84,9 @@ var GameResources = (function() {
 		_Image("bloody_box"),
 		_Image("totem"),
 		_Image('rock'),
+
+        _Image('player_blood_bullet'),
+
 	];
 
 	return GameResources;
