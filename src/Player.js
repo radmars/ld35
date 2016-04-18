@@ -55,6 +55,9 @@ var PlayerEntity = me.Entity.extend({
 			big_mess_dash_finish: 'big_mess_dash_finish_up',
 		};
 
+		this.highestY = this.pos.y;
+		this.yBuffer = 200;
+
 		var dashRecovery = 250;
 
 		this.renderable.addAnimation("skel_idle",         [0, 1, 2], 200);
@@ -302,8 +305,7 @@ var PlayerEntity = me.Entity.extend({
 
 
 	update : function (dt) {
-		this.cameraTargetPos.x = this.pos.x;
-		this.cameraTargetPos.y = this.pos.y + this.cameraTargetOffsetY;
+
 
 		if(this.shootDelay >=0){
 			this.shootDelay-=dt;
@@ -379,6 +381,18 @@ var PlayerEntity = me.Entity.extend({
 
 		this.body.update(dt);
 
+		if(this.pos.y < this.highestY){
+			this.highestY = this.pos.y;
+		}
+		if(this.pos.y > this.highestY + this.yBuffer){
+			this.pos.y = this.highestY + this.yBuffer;
+		}
+
+		this.cameraTargetPos.x = this.pos.x;
+		this.cameraTargetPos.y = this.highestY + this.cameraTargetOffsetY;
+
+
+
 		me.collision.check(this);
 
 		return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
@@ -386,6 +400,7 @@ var PlayerEntity = me.Entity.extend({
 
 	damage: function(dir) {
 		if(!this.takingDamage) {
+			me.game.viewport.shake(5,1000);
 			this.takingDamage = true;
 			this.hp--;
 
