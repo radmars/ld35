@@ -230,7 +230,17 @@ var PlayerEntity = me.Entity.extend({
 			this.takingDamage = true;
 			this.hp--;
 			console.log(this.hp);
-			if(this.hp <= 0) {
+
+			// Cheat to win!
+			if(
+				me.state.current().nodie
+				&& this.hp <= 0
+			) {
+
+				this.hp = 1;
+			}
+
+			if(this.hp <= 0){ 
 				this.changeAnimation("die", function() {
 					this.changeAnimation("dead");
 					me.timer.setTimeout(function(){
