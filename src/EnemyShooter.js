@@ -42,15 +42,6 @@ var EnemyShooter = Enemy.extend({
 		this.detectDistance = 300;
 	},
 
-	// Is the player above us?
-	playerAbove : function() {
-		var angle = this.angleTo(this.getPlayer());
-		if(angle < 0){
-			return true;
-		}
-		return false;
-	},
-
 	// Move mostly left and right, so reduced magnitude up and down.  Favor moving toward the player on the vertical axis, but do not do so all the time.
 	wanderDirection : function () {
 		// Left or right?
