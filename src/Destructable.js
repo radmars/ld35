@@ -19,7 +19,7 @@ var Destructable = me.Entity.extend({
 		this._super(me.Entity, 'init', [x, y, settings]);
 		this.pos.z = 10;
 		this.alwaysUpdate = true;
-		this.body.collisionType = me.collision.types.COLLECTABLE_OBJECT;
+		this.body.collisionType = me.collision.types.ACTION_OBJECT;
 		this.body.setCollisionMask(
 			me.collision.types.PROJECTILE_OBJECT
 			| me.collision.types.ENEMY_OBJECT
@@ -61,9 +61,10 @@ var Destructable = me.Entity.extend({
 					me.game.world.addChild(bullet, bullet.pos.z);
 				}
 			}
+
+			this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+			me.game.world.removeChild(this);
 		}
-		this.body.setCollisionMask(me.collision.types.NO_OBJECT);
-		me.game.world.removeChild(this);
 		return false;
 	}
 });

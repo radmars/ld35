@@ -22,6 +22,7 @@ var Bullet = me.Entity.extend({
 		this.body.setCollisionMask( 0
 			| me.collision.types.WORLD_SHAPE
 			| me.collision.types.COLLECTABLE_OBJECT
+			| me.collision.types.ACTION_OBJECT
 			| add
 		)
 	},

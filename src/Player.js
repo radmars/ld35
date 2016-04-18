@@ -303,10 +303,6 @@ var PlayerEntity = me.Entity.extend({
 			return false;
 		}
 
-		if(other.body.collisionType == me.collision.types.ACTION_OBJECT) {
-			return false;
-		}
-
 		return true;
 	}
 });
