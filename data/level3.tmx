@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="14" tilewidth="64" tileheight="64" nextobjectid="18">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="14" tilewidth="64" tileheight="64" nextobjectid="21">
  <tileset firstgid="1" name="map_tiles" tilewidth="64" tileheight="64" tilecount="1024" columns="32">
   <image source="map_tiles.png" width="2048" height="2048"/>
  </tileset>
@@ -61,9 +61,13 @@
  <objectgroup name="Entities">
   <object id="9" name="pouncer" x="454" y="517" width="64" height="64"/>
   <object id="10" name="shooter" x="322" y="129" width="64" height="64"/>
-  <object id="11" name="rock" x="513" y="707" width="128" height="64"/>
+  <object id="11" name="destructable" x="513" y="707" width="128" height="64"/>
   <object id="12" name="shooter" x="579" y="448" width="64" height="64"/>
-  <object id="13" name="rock" x="321" y="324" width="128" height="64"/>
+  <object id="13" name="destructable" x="321" y="324" width="128" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
   <object id="14" name="pouncer" x="575" y="129" width="64" height="64"/>
   <object id="15" name="pouncer" x="321" y="452" width="64" height="64"/>
   <object id="16" name="pouncer" x="448" y="203" width="64" height="64"/>
@@ -72,5 +76,6 @@
     <property name="to" value="level4"/>
    </properties>
   </object>
+  <object id="19" name="mainPlayer" x="425" y="781" width="96" height="96"/>
  </objectgroup>
 </map>

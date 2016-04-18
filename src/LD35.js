@@ -73,11 +73,18 @@ var LevelChanger = me.LevelEntity.extend({
 		settings.fade = "#000";
 		settings.duration = 500;
 		this._super(me.LevelEntity, 'init', [x, y, settings]);
+		this.body.gravity = 0;
+	},
+
+	update: function(dt) {
+		this.body.update(dt);
+		me.collision.check(this);
 	},
 
 	onCollision: function(response, other) {
-		if(other.body == me.state.current().player) {
+		if(other == me.state.current().player) {
 			this.goTo();
 		}
+		return false;
 	},
 })
