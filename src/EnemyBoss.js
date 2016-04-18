@@ -13,16 +13,16 @@ var EnemyBoss = Enemy.extend({
 
 		this.renderable.addAnimation("idle",  [0, 1, 2], 200);
 		this.renderable.addAnimation("run", [3,4,5,6], 200);
-		this.renderable.addAnimation("shoot_bullet", [7,8,9,10,11], 200);
-		this.renderable.addAnimation("shoot_bomb", [7,8,12,13,14,15], 200);
+		this.renderable.addAnimation("wind_up", [7,8], 200);
+		this.renderable.addAnimation("shoot_bullet", [9,10,11], 200);
+		this.renderable.addAnimation("shoot_bomb", [12,13,14,15], 200);
 		this.renderable.addAnimation("hit", [16], 200);
 		this.renderable.setCurrentAnimation("idle");
 
-		this.hp = 10;
-		this.meatChance = 1;
-
 		// Properties of this nefarious creature.
 		this.speed = 2;
+		this.hp = 10;
+		this.meatChance = 1;
 
 		this.body.setMaxVelocity(this.speed, this.speed);
 		this.detectDistance = 300;
@@ -32,6 +32,8 @@ var EnemyBoss = Enemy.extend({
 			shoot_bullet: 20,
 			shoot_bomb: 20,
 		};
+
+		this.active = false;
 	},
 
 	// Sometimes produces meat when damaged.
@@ -66,79 +68,84 @@ var EnemyBoss = Enemy.extend({
 		return direction;
 	},
 
-	getAnimation : function (state) {
-		return state;
+	makeShots : function (args) {
+		var angleDiff = args.spread / args.count;
+		var angle = this.angleToPlayer() - args.spread / 2;
+
+		for(var i = 0; i < args.count; i++) {
+			this.shoot(angle, {
+				type : args.type,
+				speed : args.speed,
+			});
+
+			angle += angleDiff;
+		}
 	},
 
-	behaviorShootBullet : function () {
-		this.timeInState = 0;
+	shootBullet : function () {
+		this.active = true;
 		this.dir = new me.Vector2d(0, 0);
-		this.bulletAngle = -this.bulletSpread / 2;
-		this.state = 'shoot_bullet';
-		this.renderable.setCurrentAnimation(this.getAnimation(this.state));
+
+		this.renderable.setCurrentAnimation("wind_up", (function() {
+			this.makeShots({
+				count : 5,
+				type : 'bulletBoss',
+				speed : 1,
+				spread : Math.PI * 3/4,
+			});
+
+			this.renderable.setCurrentAnimation("shoot_bullet", (function() {
+				this.active = false;
+				this.renderable.setCurrentAnimation("idle");
+			}).bind(this));
+		}).bind(this));
 	},
-	behaviorShootBomb : function () {
-		this.timeInState = 0;
+	shootBomb : function () {
+		this.active = true;
 		this.dir = new me.Vector2d(0, 0);
-		this.state = 'shoot_bomb';
-		this.renderable.setCurrentAnimation(this.getAnimation(this.state));
+
+		this.renderable.setCurrentAnimation("wind_up", (function() {
+			this.makeShots({
+				count : 3,
+				type : 'bulletBomber',
+				speed : 1,
+				spread : Math.PI * 3/4,
+			});
+
+			this.renderable.setCurrentAnimation("shoot_bomb", (function() {
+				this.active = false;
+				this.renderable.setCurrentAnimation("idle");
+			}).bind(this));
+		}).bind(this));
 	},
 
 	// melonJS built-in handlers
 	update : function (dt) {
-		if(this.state === 'idle'){
-			if(this.timeInState > this.timers.idle) {
-				this.behaviorWander();
+		if(!this.active){
+			if(this.state === 'idle'){
+				if(this.timeInState > this.timers.idle) {
+					this.behaviorWander();
+				}
+				else {
+					this.timeInState++;
+				}
 			}
-			else {
-				this.timeInState++;
-			}
-		}
-		else if(this.state === 'wander'){
-			if(this.playerInRange()){
-				var bomb = this.chanceInN(4);
-				if(bomb){
-					this.behaviorShootBomb();
+			else if(this.state === 'wander'){
+				if(this.playerInRange()){
+					var bomb = this.chanceInN(4);
+					if(bomb){
+						this.shootBomb();
+					}
+					else{
+						this.shootBullet();
+					}
+				}
+				else if(this.timeInState > this.timers.wander) {
+					this.behaviorIdle();
 				}
 				else{
-					this.behaviorShootBullet();
+					this.timeInState++;
 				}
-			}
-			else if(this.timeInState > this.timers.wander) {
-				this.behaviorIdle();
-			}
-			else{
-				this.timeInState++;
-			}
-		}
-		else if(this.state === 'shoot_bomb'){
-			if(this.timeInState === 0){
-				this.shoot(this.angleToPlayer(), {
-					type : 'bulletBomber',
-					speed : 1
-				});
-			}
-
-			if(this.timeInState > this.timers.shoot_bomb) {
-				this.behaviorIdle();
-			}
-			else {
-				this.timeInState++;
-			}
-		}
-		else if(this.state === 'shoot_bullet'){
-			if(this.timeInState === 0){
-				this.shoot(this.angleToPlayer(), {
-					type : 'bulletBoss',
-					speed : 2
-				});
-			}
-
-			if(this.timeInState > this.timers.shoot_bullet) {
-				this.behaviorIdle();
-			}
-			else {
-				this.timeInState++;
 			}
 		}
 
