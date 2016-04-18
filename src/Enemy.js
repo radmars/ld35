@@ -36,13 +36,17 @@ var Enemy = me.Entity.extend({
 	},
 
 	// Depends on having bulletType and bulletSpeed set.
-	shoot : function (angle) {
+	shoot : function (angle, args) {
+		args = args || {};
+		var speed = args.speed || this.bulletSpeed;
+		var type = args.type || this.bulletType;
+
 		var bullet = me.pool.pull(
-			this.bulletType,
+			type,
 			this.pos.x,
 			this.pos.y,
 			{
-				dir:(new me.Vector2d(this.bulletSpeed, 0)).rotate(angle),
+				dir:(new me.Vector2d(speed, 0)).rotate(angle),
 			}
 		);
 		me.game.world.addChild(bullet, bullet.pos.z);
