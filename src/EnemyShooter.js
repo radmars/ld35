@@ -17,6 +17,8 @@ var EnemyShooter = Enemy.extend({
 		this.renderable.addAnimation("hit", [7], 200);
 		this.renderable.setCurrentAnimation("idle");
 
+		this.hp = 3;
+
 		// Properties of this nefarious creature.
 		this.speed = {
 			x: 3,

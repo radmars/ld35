@@ -70,6 +70,7 @@ var GameResources = (function() {
 
 		_Image("player"),
 		_Image("blood_explode_128"),
+		_Image("blood_impact_64"),
 		_Image("splat1"),
 		_Image("splat2"),
 		_Image("splat3"),

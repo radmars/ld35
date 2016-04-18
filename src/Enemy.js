@@ -12,6 +12,8 @@ var Enemy = me.Entity.extend({
 		this.body.gravity = 0;
 		this.pos.z = 5;
 
+		this.hp = 1;
+
 		this.renderable.addAnimation("stand", [0]);
 		this.renderable.setCurrentAnimation("stand");
 
@@ -80,7 +82,32 @@ var Enemy = me.Entity.extend({
 		}
 	},
 
-	kill: function() {
+	damage: function() {
+		this.hp--;
+
+		if(this.hp > 0){
+			var splode = new me.AnimationSheet(this.pos.x + Math.random()*32, this.pos.y+ Math.random()*32, {
+				image: 'blood_impact_64',
+				framewidth: 64,
+				frameheight: 64,
+			});
+			splode.pos.z = 3;
+			splode.addAnimation('splode', [0, 1, 2, 3, 4], 100);
+			splode.addAnimation('splode_over', [4], 100);
+			var ancestor = this.ancestor;
+			splode.setCurrentAnimation('splode', (function() {
+				splode.setCurrentAnimation("splode_over");
+				ancestor.removeChild(splode);
+			}).bind(this));
+			ancestor.addChild(splode, splode.pos.z);
+		}else{
+			this.die();
+		}
+
+
+	},
+
+	die: function() {
 		var meat = me.pool.pull(
 			'meatGlob',
 			this.pos.x,
