@@ -53,6 +53,9 @@ var PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation("mess_idle_up",    [66, 67, 68], 200);
 		this.renderable.addAnimation("mess_run_up",     [69, 70, 71, 72], 200);
 		this.renderable.addAnimation("mess_shoot_up",   [73, 74, 75, 76], 200);
+		// Just stealing the skelly dash animation for the short term to resolve bug.
+		this.renderable.addAnimation("mess_dash",         [3, 4], 100);
+		this.renderable.addAnimation("mess_dash_finish",  [5, 6, 7, 8, 9], 100);
 
 		this.changeAnimation("idle");
 
