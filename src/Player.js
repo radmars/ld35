@@ -24,7 +24,7 @@ var PlayerEntity = me.Entity.extend({
 		me.state.current().player = this;
 
 		this.takingDamage = false;
-		this.hp = 7;
+		this.hp = 1;
 
 		this.aoeTriggered = false;
 
