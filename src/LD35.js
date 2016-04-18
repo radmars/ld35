@@ -56,6 +56,7 @@ LD35.prototype.loaded = function() {
 	me.pool.register("bulletBomber", BulletBomber, true);
 	me.pool.register("bulletShooter", BulletShooter, true);
 	me.pool.register("destructable", Destructable, true);
+	me.pool.register("levelChanger", LevelChanger, true);
 	me.pool.register("dog", Dog, true);
 
 	if (this.options.skipintro) {
@@ -65,3 +66,11 @@ LD35.prototype.loaded = function() {
 		me.state.change(me.state.INTRO);
 	}
 }
+
+var LevelChanger = me.LevelEntity.extend({
+	init: function(x, y, settings) {
+		settings.fade = "#000";
+		settings.duration = 500;
+		this._super(me.LevelEntity, 'init', [x, y, settings]);
+	},
+})

@@ -109,16 +109,4 @@ var EnemyPouncer = Enemy.extend({
 
 		return this._super(Enemy, 'update', [dt]);
 	},
-
-	onCollision : function (response, other) {
-		if(other.body.collisionType == me.collision.types.ENEMY_OBJECT){
-			this.pos.sub(response.overlapV);
-			return false;
-		}
-		if(other.body.collisionType == me.collision.types.PLAYER_OBJECT){
-			return false;
-		}
-
-		return true;
-	}
 });

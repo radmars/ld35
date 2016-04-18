@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="15" height="14" tilewidth="64" tileheight="64">
- <tileset firstgid="1" name="map_tiles" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="14" tilewidth="64" tileheight="64" nextobjectid="20">
+ <tileset firstgid="1" name="map_tiles" tilewidth="64" tileheight="64" tilecount="1024" columns="32">
   <image source="map_tiles.png" width="2048" height="2048"/>
  </tileset>
  <layer name="background" width="15" height="14">
@@ -13,31 +13,36 @@
    IgAAAGIAAABiAAAAYgAAAGIAAABiAAAAYgAAAGIAAABiAAAAYgAAAGIAAABiAAAAYgAAACIAAAAiAAAAJQAAAGIAAABiAAAAYgAAAGIAAABjAAAAYwAAAGMAAABjAAAAYwAAAGIAAABiAAAAYgAAACEAAAAlAAAAIwAAAGIAAABiAAAAYgAAAGIAAABjAAAAZAAAAGIAAABiAAAAYgAAAGIAAABiAAAAYgAAACEAAAAjAAAAIwAAAIIAAACDAAAAYgAAAGIAAABiAAAAYgAAAIIAAACDAAAAhAAAAIIAAACDAAAAhAAAACEAAAAjAAAAIwAAAKIAAACjAAAApAAAAKIAAACjAAAApAAAAKIAAACjAAAApAAAAKIAAACjAAAApAAAACEAAAAjAAAAIwAAAGIAAABjAAAAZAAAAGIAAABjAAAAZAAAAGIAAABjAAAAZAAAAGIAAABjAAAAZAAAACEAAAAjAAAAIwAAAIIAAACDAAAAhAAAAIIAAACDAAAAhAAAAIIAAACDAAAAhAAAAIIAAACDAAAAhAAAACEAAAAjAAAAIwAAAKIAAACjAAAApAAAAKIAAACjAAAApAAAAKIAAACjAAAApAAAAKIAAACjAAAApAAAACEAAAAjAAAAIwAAAGIAAABjAAAAZAAAAGIAAABjAAAAZAAAAGIAAABjAAAAZAAAAGIAAABjAAAAZAAAACEAAAAjAAAAIwAAAIIAAACDAAAAhAAAAIIAAACDAAAAhAAAAIIAAACDAAAAhAAAAIIAAACDAAAAhAAAACEAAAAjAAAAIwAAAKIAAACjAAAApAAAAGIAAACjAAAApAAAAKIAAACjAAAApAAAAGIAAABiAAAApAAAACEAAAAjAAAAIwAAAGIAAABiAAAAYgAAAGIAAABjAAAAZAAAAGIAAABiAAAAYgAAAGIAAABiAAAAYgAAACEAAAAjAAAAIwAAAGIAAABiAAAAYgAAAGIAAABiAAAAYgAAAIIAAACDAAAAhAAAAGIAAABiAAAAYgAAACEAAAAjAAAAJQAAAGIAAABiAAAAYgAAAGIAAABiAAAAYgAAAGIAAABiAAAAYgAAAGIAAABiAAAAYgAAACIAAAAlAAAA
   </data>
  </layer>
- <objectgroup color="#fa3c32" name="collision layer" width="15" height="14">
-  <object x="0" y="0" width="64" height="896">
+ <objectgroup color="#fa3c32" name="collision layer">
+  <object id="1" x="0" y="0" width="64" height="896">
    <properties>
     <property name="rate" value="1000"/>
     <property name="type" value="shooter"/>
    </properties>
   </object>
-  <object x="832" y="0" width="128" height="896"/>
+  <object id="2" x="832" y="0" width="128" height="896"/>
  </objectgroup>
- <objectgroup name="Entities" width="15" height="14">
-  <object name="bomber" x="545" y="228" width="64" height="64"/>
-  <object name="shooter" x="546" y="614" width="64" height="64"/>
-  <object name="rock" x="128" y="130" width="128" height="64"/>
-  <object name="rock" x="640" y="129" width="128" height="64"/>
-  <object name="rock" x="129" y="322" width="128" height="64"/>
-  <object name="rock" x="641" y="321" width="128" height="64"/>
-  <object name="rock" x="130" y="514" width="128" height="64"/>
-  <object name="rock" x="131" y="706" width="128" height="64"/>
-  <object name="rock" x="642" y="705" width="128" height="64"/>
-  <object name="rock" x="641" y="513" width="128" height="64"/>
-  <object name="shooter" x="285" y="417" width="64" height="64"/>
-  <object name="rock" x="386" y="705" width="128" height="64"/>
-  <object name="rock" x="385" y="513" width="128" height="64"/>
-  <object name="rock" x="385" y="321" width="128" height="64"/>
-  <object name="rock" x="384" y="129" width="128" height="64"/>
-  <object name="shooter" x="672" y="419" width="64" height="64"/>
+ <objectgroup name="Entities">
+  <object id="3" name="bomber" x="545" y="228" width="64" height="64"/>
+  <object id="4" name="shooter" x="546" y="614" width="64" height="64"/>
+  <object id="5" name="rock" x="128" y="130" width="128" height="64"/>
+  <object id="6" name="rock" x="640" y="129" width="128" height="64"/>
+  <object id="7" name="rock" x="129" y="322" width="128" height="64"/>
+  <object id="8" name="rock" x="641" y="321" width="128" height="64"/>
+  <object id="9" name="rock" x="130" y="514" width="128" height="64"/>
+  <object id="10" name="rock" x="131" y="706" width="128" height="64"/>
+  <object id="11" name="rock" x="642" y="705" width="128" height="64"/>
+  <object id="12" name="rock" x="641" y="513" width="128" height="64"/>
+  <object id="13" name="shooter" x="285" y="417" width="64" height="64"/>
+  <object id="14" name="rock" x="386" y="705" width="128" height="64"/>
+  <object id="15" name="rock" x="385" y="513" width="128" height="64"/>
+  <object id="16" name="rock" x="385" y="321" width="128" height="64"/>
+  <object id="17" name="rock" x="384" y="129" width="128" height="64"/>
+  <object id="18" name="shooter" x="672" y="419" width="64" height="64"/>
+  <object id="19" name="levelChanger" x="46.6667" y="-24" width="798.667" height="88">
+   <properties>
+    <property name="to" value="level6"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

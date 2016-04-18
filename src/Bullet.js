@@ -46,6 +46,9 @@ var Bullet = me.Entity.extend({
 		if(other.body.collisionType == me.collision.types.ENEMY_OBJECT) {
 			other.kill();
 		}
+		if(other.body.collisionType == me.collision.types.PLAYER_OBJECT) {
+			other.damage();
+		}
 
 		// Bullets never respond to collisions other than with destruction.
 		this.body.setCollisionMask(me.collision.types.NO_OBJECT);
