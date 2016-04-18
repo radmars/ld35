@@ -107,9 +107,9 @@ var PlayerEntity = me.Entity.extend({
 	tryToDash: function(action, keycode, edge) {
 		if (action === "dash" && !this.dashing) {
 			var dashAnimCount = 3;
-			this.dashing = true;
 			var dir = this.getControlDirection();
 			if( dir.y != 0 || dir.x != 0) {
+				this.dashing = true;
 				this.body.setMaxVelocity(10, 10);
 				this.body.vel.x = dir.x * 10;
 				this.body.vel.y = dir.y * 10;
