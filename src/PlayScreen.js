@@ -55,6 +55,6 @@ var PlayScreen = me.ScreenObject.extend({
 	},
 
 	onDestroyEvent: function() {
-		me.game.world.removeChild(this.HUD);
+		me.game.world.removeChild(this.hud);
 	}
 });

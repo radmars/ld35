@@ -40,6 +40,7 @@ LD35.prototype.loaded = function() {
 	// TODO: me.state.set(me.state.MENU, new TitleScreen());
 	me.state.set(me.state.INTRO, new RadmarsScreen(this));
 	me.state.set(me.state.TITLE, new TitleScreen(this));
+	me.state.set(me.state.GAMEOVER, new GameOverScreen(this));
 	me.state.set(me.state.PLAY, this.playState);
 
 	if(this.options.level) {
@@ -72,5 +73,11 @@ var LevelChanger = me.LevelEntity.extend({
 		settings.fade = "#000";
 		settings.duration = 500;
 		this._super(me.LevelEntity, 'init', [x, y, settings]);
+	},
+
+	onCollision: function(response, other) {
+		if(other.body == me.state.current().player) {
+			this.goTo();
+		}
 	},
 })
