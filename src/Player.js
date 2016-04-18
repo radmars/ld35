@@ -15,7 +15,7 @@ var PlayerEntity = me.Entity.extend({
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		me.state.current().player = this;
 
-		this.hp = 7;
+		this.hp = 1;
 
 		this.alwaysUpdate = true;
 		this.body.collisionType = me.collision.types.PLAYER_OBJECT;
@@ -40,6 +40,7 @@ var PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation("run",          [14, 15, 16, 17 ], 200);
 		this.renderable.addAnimation("run_up",       [51, 52, 53, 54 ], 200);
 		this.renderable.addAnimation("die",          [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43], 100);
+		this.renderable.addAnimation("dead",         [43], 100);
 
 		this.changeAnimation("idle");
 
@@ -47,7 +48,6 @@ var PlayerEntity = me.Entity.extend({
 		this.dashSub = me.event.subscribe(me.event.KEYDOWN, this.tryToDash.bind(this));
 		this.shootTimer = 0;
 		this.dashing = false;
-		this.globs = 0;
 	},
 
 	getAnimationName: function(name) {
@@ -58,10 +58,10 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	getMode: function() {
-		if(this.globs < 5) {
+		if(this.hp < 2) {
 			return 'skeleton';
 		}
-		else if (this.globs < 10) {
+		else if (this.hp < 6) {
 			return 'mess';
 		}
 		else {
@@ -71,7 +71,7 @@ var PlayerEntity = me.Entity.extend({
 
 	addMeat: function() {
 		var mode = this.getMode();
-		this.globs++;
+		this.hp++;
 		var newMode = this.getMode();
 		if(mode != newMode){
 			console.log("LEVELED UP BRO????");
@@ -225,7 +225,10 @@ var PlayerEntity = me.Entity.extend({
 			console.log(this.hp);
 			if(this.hp <= 0) {
 				this.changeAnimation("die", function() {
-					console.log("Go to game over screen");
+					this.changeAnimation("dead");
+					me.timer.setTimeout(function(){
+						me.state.change( me.state.GAMEOVER);
+					}, 3000);
 				})
 			}
 			else {
