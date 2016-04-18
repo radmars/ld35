@@ -45,7 +45,7 @@ var Bullet = me.Entity.extend({
 
 	onCollision : function (response, other) {
 		if(other.body.collisionType == me.collision.types.ENEMY_OBJECT) {
-			other.kill();
+			other.damage();
 		}
 		if(other.body.collisionType == me.collision.types.PLAYER_OBJECT) {
 			other.damage();

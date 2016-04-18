@@ -20,6 +20,8 @@ var EnemyBomber = Enemy.extend({
 			shoot: 100,
 		};
 
+		this.hp = 5;
+
 		this.bulletSpeed = 0.5;
 		this.bulletType = 'bulletBomber';
 
