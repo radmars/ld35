@@ -18,6 +18,7 @@ var EnemyShooter = Enemy.extend({
 		this.renderable.setCurrentAnimation("idle");
 
 		this.hp = 3;
+		this.meatChance = 3;
 
 		// Properties of this nefarious creature.
 		this.speed = {

@@ -13,6 +13,7 @@ var Enemy = me.Entity.extend({
 		this.pos.z = 5;
 
 		this.hp = 1;
+		this.meatChance = 0;
 		this.screenShakeIntensity = 4;
 		this.screenShakeDuration = 500;
 
@@ -60,6 +61,10 @@ var Enemy = me.Entity.extend({
 
 	// Lots of random behavior.  Simple wrapper to facilitate this.  Has a 1 in n chance of returning true.
 	chanceInN : function (n) {
+		if(n===0){
+			// Special case.
+			return false;
+		}
 		var result = Math.floor(Math.random() * n);
 		return result === 0;
 	},
@@ -111,16 +116,21 @@ var Enemy = me.Entity.extend({
 
 	},
 
-	die: function() {
-
-		me.game.viewport.shake(this.screenShakeIntensity, this.screenShakeDuration);
-
+	addMeat: function() {
 		var meat = me.pool.pull(
 			'meatGlob',
 			this.pos.x,
 			this.pos.y
 		);
 		me.game.world.addChild(meat, meat.pos.z);
+	},
+
+	die: function() {
+		me.game.viewport.shake(this.screenShakeIntensity, this.screenShakeDuration);
+
+		if(this.chanceInN(this.meatChance)){
+			this.addMeat();
+		}
 
 		// We need to disable additional collisions so we don't attempt to remove objects multiple times.
 		this.body.setCollisionMask(me.collision.types.NO_OBJECT);

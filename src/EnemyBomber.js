@@ -21,6 +21,7 @@ var EnemyBomber = Enemy.extend({
 		};
 
 		this.hp = 5;
+		this.meatChance = 1;
 
 		this.bulletSpeed = 0.5;
 		this.bulletType = 'bulletBomber';

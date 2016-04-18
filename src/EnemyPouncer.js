@@ -29,6 +29,7 @@ var EnemyPouncer = Enemy.extend({
 			excited: 30,
 			charge: 60,
 		};
+		this.meatChance = 4;
 	},
 
 	// Behaviors:
