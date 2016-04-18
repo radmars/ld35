@@ -80,6 +80,7 @@ var GameResources = (function() {
 		_Image("shooter"),
 		_Image("pouncer"),
 		_Image("bomber"),
+		_Image("boss"),
 		_Image("bullet_shooter"),
 		_Image("bullet_bomber"),
 		_Image("bone_projectile"),
