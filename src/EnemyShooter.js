@@ -79,7 +79,11 @@ var EnemyShooter = Enemy.extend({
 	// melonJS built-in handlers
 	update : function (dt) {
 		var bulletTime = function(args) {
-			if(args.time % Math.floor(args.totalTime / args.count) === 0){
+			if(
+				args.time % Math.floor(args.totalTime / args.count) === 0
+				&& args.time < args.totalTime
+			){
+
 				return true;
 			}
 
