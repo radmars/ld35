@@ -125,7 +125,7 @@ var PlayerEntity = me.Entity.extend({
 
 	tryToDash: function(action, keycode, edge) {
 		if (action === "dash" && !this.dashing) {
-			var dashAnimCount = 3;
+			var dashAnimCount = 0; // Goodbye recursion
 			var dir = this.getControlDirection();
 			if( dir.y != 0 || dir.x != 0) {
 				this.dashing = true;
