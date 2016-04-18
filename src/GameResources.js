@@ -69,6 +69,13 @@ var GameResources = (function() {
 		_Level("level16"),
 
 		_Image("player"),
+		_Image("blood_explode_128"),
+		_Image("splat1"),
+		_Image("splat2"),
+		_Image("splat3"),
+		_Image("splat4"),
+		_Image("splat5"),
+		_Image("player"),
 		_Image("shooter"),
 		_Image("pouncer"),
 		_Image("bomber"),

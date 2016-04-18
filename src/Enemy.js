@@ -82,6 +82,26 @@ var Enemy = me.Entity.extend({
 		// We need to disable additional collisions so we don't attempt to remove objects multiple times.
 		this.body.setCollisionMask(me.collision.types.NO_OBJECT);
 		this.ancestor.removeChild(this);
+
+		var splode = new me.AnimationSheet(this.pos.x, this.pos.y, {
+			image: 'blood_explode_128',
+			framewidth: 128,
+			frameheight: 128,
+		});
+		splode.pos.z = 3;
+		splode.addAnimation('splode', [0, 1, 2, 3, 4, 5], 100);
+		splode.addAnimation('splode_over', [5], 100);
+		var ancestor = this.ancestor;
+
+		var sprite = new me.Sprite(this.pos.x, this.pos.y, {
+			image: "splat" + (Number.prototype.random(0, 3) + 1),
+		});
+		sprite.pos.z = 3;
+		ancestor.addChild(sprite, sprite.pos.z);
+		splode.setCurrentAnimation('splode', (function() {
+			ancestor.removeChild(splode);
+		}).bind(this));
+		ancestor.addChild(splode, splode.pos.z);
 	},
 
 	onCollision : function (response, other) {

@@ -48,6 +48,7 @@ var PlayScreen = me.ScreenObject.extend({
 	loadNextLevel: function() {
 		me.levelDirector.loadLevel(this.nextLevel, {
 			onLoaded: (function() {
+				me.game.world.addChild(new BGColor(this.game));
 				me.game.world.addChild(this.hud, this.hud.pos.z);
 				me.game.viewport.fadeOut( '#000000', 1000, function() {});
 			}).bind(this),

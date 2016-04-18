@@ -11,7 +11,7 @@ var PlayerEntity = me.Entity.extend({
 		settings.shapes = [ new me.Rect(0, 0, 64, 64) ]
 
 		this._super(me.Entity, 'init', [x, y, settings]);
-		this.pos.z = 5;
+		this.pos.z = 6;
 
 		this.renderable.anchorPoint.y = .75
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -50,7 +50,6 @@ var PlayerEntity = me.Entity.extend({
 
 		this.shootSub = me.event.subscribe(me.event.KEYDOWN, this.tryToShoot.bind(this));
 		this.dashSub = me.event.subscribe(me.event.KEYDOWN, this.tryToDash.bind(this));
-		this.shootTimer = 0;
 		this.dashing = false;
 	},
 
@@ -133,29 +132,27 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	tryToShoot: function(action, keyCode, edge) {
-		if(this.dashing || this.takingDamage) {
+		if(this.dashing || this.takingDamage || this.shooting || action != "shoot") {
 			return;
 		}
 
-		// TODO: shoot timersssss!
-		if (action === "shoot" && this.shootTimer > 500) {
-			this.shootTimer = 0;
-			var dir = this.getControlDirection();
+		var dir = this.getControlDirection();
 
-			if( dir.y != 0 || dir.x != 0) {
-				this.changeAnimation("shoot", function(){
-					this.changeAnimation("idle");
-				})
-				var bullet = me.pool.pull(
-					'boneProjectile',
-					this.pos.x,
-					this.pos.y,
-					{
-						dir: dir.normalize(),
-					}
-				);
-				me.game.world.addChild(bullet, bullet.pos.z);
-			}
+		if( dir.y != 0 || dir.x != 0) {
+			this.shooting = true;
+			this.changeAnimation("shoot", function(){
+				this.changeAnimation("idle");
+				this.shooting = false;
+			})
+			var bullet = me.pool.pull(
+				'boneProjectile',
+				this.pos.x,
+				this.pos.y,
+				{
+					dir: dir.normalize(),
+				}
+			);
+			me.game.world.addChild(bullet, bullet.pos.z);
 		}
 	},
 
@@ -174,8 +171,6 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	update : function (dt) {
-		this.shootTimer += dt;
-
 		if(!this.dashing && !this.takingDamage) {
 			var run = false;
 			if (me.input.isKeyPressed('left')) {
@@ -204,9 +199,11 @@ var PlayerEntity = me.Entity.extend({
 				if(this.body.vel.y != 0) {
 					this.facingUp = this.body.vel.y < 0;
 				}
-				this.changeAnimation("run", function() {
-					this.changeAnimation("idle");
-				})
+				if(!this.shooting) {
+					this.changeAnimation("run", function() {
+						this.changeAnimation("idle");
+					})
+				}
 			}
 		}
 
@@ -240,7 +237,7 @@ var PlayerEntity = me.Entity.extend({
 				this.hp = 1;
 			}
 
-			if(this.hp <= 0){ 
+			if(this.hp <= 0){
 				this.changeAnimation("die", function() {
 					this.changeAnimation("dead");
 					me.timer.setTimeout(function(){

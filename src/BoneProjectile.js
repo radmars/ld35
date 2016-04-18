@@ -5,16 +5,16 @@ var BoneProjectile = Bullet.extend({
 		settings = settings || {};
 
 		settings.image = "bone_projectile";
-		settings.width = 48;
-		settings.height = 48;
-		settings.frameheight = 96;
+		settings.width = 64;
+		settings.height = 64;
+		settings.frameheight = 64;
 		settings.framewidth = 64;
 		settings.speed = 5;
 		settings.mask = me.collision.types.ENEMY_OBJECT; // Friendly bullet!
 
 		this._super(Bullet, 'init', [x, y, settings]);
 
-		this.renderable.addAnimation("stand",  [0, 1], 100);
+		this.renderable.addAnimation("stand",  [0, 1, 2, 3], 100);
 		this.renderable.setCurrentAnimation("stand");
 	},
 });
