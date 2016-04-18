@@ -24,7 +24,6 @@ var PlayerEntity = me.Entity.extend({
 		me.state.current().player = this;
 
 		this.takingDamage = false;
-		console.log("Activate!");
 		this.hp = 1;
 
 		this.alwaysUpdate = true;
@@ -292,7 +291,6 @@ var PlayerEntity = me.Entity.extend({
 		if(!this.takingDamage) {
 			this.takingDamage = true;
 			this.hp--;
-			console.log(this.hp);
 
 			// Cheat to win!
 			if(
