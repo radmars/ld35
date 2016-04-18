@@ -14,7 +14,13 @@ var PlayerEntity = me.Entity.extend({
 		this.pos.z = 6;
 
 		this.renderable.anchorPoint.y = .75
-		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+		//me.game.viewport.setBounds(0,0,960,640);
+		me.game.viewport.setDeadzone(100,50);
+
+		this.cameraTargetOffsetY = -100;
+		this.cameraTargetPos = new me.Vector2d(this.pos.x, this.pos.y - this.cameraTargetOffsetY);
+
+		me.game.viewport.follow(this.cameraTargetPos, me.game.viewport.AXIS.BOTH);
 		me.state.current().player = this;
 
 		this.takingDamage = false;
@@ -184,6 +190,9 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	update : function (dt) {
+		this.cameraTargetPos.x = this.pos.x;
+		this.cameraTargetPos.y = this.pos.y + this.cameraTargetOffsetY;
+
 		if(!this.dashing && !this.takingDamage) {
 			var run = false;
 			if (me.input.isKeyPressed('left')) {
