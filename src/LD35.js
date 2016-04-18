@@ -21,6 +21,7 @@ LD35.prototype.onload = function() {
 		return;
 	}
 
+	// add "?nodie=1" to have an easier time
 	// add "?skipintro=1" to skip the radmars animation
 	// add "?debug=1" to the URL to enable the debug Panel
 	if (this.options.debug) {
@@ -37,7 +38,6 @@ LD35.prototype.onload = function() {
 
 LD35.prototype.loaded = function() {
 	this.playState = new PlayScreen(this);
-	// TODO: me.state.set(me.state.MENU, new TitleScreen());
 	me.state.set(me.state.INTRO, new RadmarsScreen(this));
 	me.state.set(me.state.TITLE, new TitleScreen(this));
 	me.state.set(me.state.GAMEOVER, new GameOverScreen(this));
@@ -45,6 +45,9 @@ LD35.prototype.loaded = function() {
 
 	if(this.options.level) {
 		this.playState.setNextLevel(this.options.level);
+	}
+	if(this.options.nodie) {
+		this.playState.nodie = true;
 	}
 
 	me.pool.register("mainPlayer", PlayerEntity);
