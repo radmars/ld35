@@ -135,6 +135,7 @@ var PlayerEntity = me.Entity.extend({
 		}
 		var newMode = this.getMode();
 		if(mode != newMode){
+			me.game.viewport.shake(5,300);
 			var splode = new me.AnimationSheet(this.pos.x + Math.random()*32, this.pos.y+ Math.random()*32, {
 				image: 'blood_explode_128',
 				framewidth: 128,

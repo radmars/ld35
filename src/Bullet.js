@@ -52,6 +52,25 @@ var Bullet = me.Entity.extend({
 			other.damage();
 		}
 
+		var splode = new me.AnimationSheet(
+			this.pos.x + Math.random()*32,
+			this.pos.y+ Math.random()*32,
+			{
+				image: 'blood_impact_64',
+				framewidth: 64,
+				frameheight: 64,
+			}
+		);
+		splode.pos.z = 3;
+		splode.addAnimation('splode', [0, 1, 2, 3, 4], 100);
+		splode.addAnimation('splode_over', [4], 100);
+		var ancestor = this.ancestor;
+		splode.setCurrentAnimation('splode', (function() {
+			splode.setCurrentAnimation("splode_over");
+			ancestor.removeChild(splode);
+		}).bind(this));
+		ancestor.addChild(splode, splode.pos.z);
+
 		// Bullets never respond to collisions other than with destruction.
 		this.body.setCollisionMask(me.collision.types.NO_OBJECT);
 		me.game.world.removeChild(this);
