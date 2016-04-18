@@ -31,7 +31,7 @@ var PlayerEntity = me.Entity.extend({
 		this.body.collisionType = me.collision.types.PLAYER_OBJECT;
 		this.body.setVelocity(0, 0);
 		this.body.setMaxVelocity(3, 3);
-		this.body.setFriction(.1, .1);
+		this.body.setFriction(1, 1);
 		this.body.gravity = 0;
 
 		this.fireDirection = new me.Vector2d(0,0);
@@ -48,10 +48,12 @@ var PlayerEntity = me.Entity.extend({
 			mess_dash_finish: 'mess_dash_finish_up',
 		};
 
+		var dashRecovery = 500;
+
 		this.renderable.addAnimation("skel_idle",         [0, 1, 2], 200);
 		this.renderable.addAnimation("skel_idle_up",      [48, 49, 50], 200);
 		this.renderable.addAnimation("skel_dash",         [3, 4], 100); // TODO Need "end of dash" support
-		this.renderable.addAnimation("skel_dash_finish",  [5, 6, 7, 8, 9], 100); // TODO Need "end of dash" support
+		this.renderable.addAnimation("skel_dash_finish",  [5, 6, 7, 8, 9], dashRecovery / 5); // TODO Need "end of dash" support
 		this.renderable.addAnimation("skel_shoot",        [10, 11, 12, 13, 12], 200);
 		this.renderable.addAnimation("skel_shoot_up",     [44, 45, 46, 47, 46], 200);
 		this.renderable.addAnimation("skel_run",          [14, 15, 16, 17 ], 200);
@@ -67,8 +69,8 @@ var PlayerEntity = me.Entity.extend({
 		// Just stealing the skelly dash animation for the short term to resolve bug.
 		this.renderable.addAnimation("mess_dash",         [58, 58], 100);
 		this.renderable.addAnimation("mess_dash_up",         [69, 69], 100);
-		this.renderable.addAnimation("mess_dash_finish",  [61, 61], 250);
-		this.renderable.addAnimation("mess_dash_finish_up",  [72, 72], 250);
+		this.renderable.addAnimation("mess_dash_finish",  [61, 61], dashRecovery / 2);
+		this.renderable.addAnimation("mess_dash_finish_up",  [72, 72], dashRecovery / 2);
 
 		this.changeAnimation("idle");
 
@@ -113,7 +115,22 @@ var PlayerEntity = me.Entity.extend({
 		}
 		var newMode = this.getMode();
 		if(mode != newMode){
-			console.log("LEVELED UP BRO????");
+			var splode = new me.AnimationSheet(this.pos.x + Math.random()*32, this.pos.y+ Math.random()*32, {
+				image: 'blood_explode_128',
+				framewidth: 128,
+				frameheight: 128,
+			});
+			splode.pos.z = 3;
+			splode.addAnimation('splode', [0, 1, 2, 3, 4, 5], 100);
+			splode.addAnimation('splode_over', [5], 100);
+
+			var ancestor = this.ancestor;
+			splode.setCurrentAnimation('splode', (function() {
+				splode.setCurrentAnimation("splode_over");
+				ancestor.removeChild(splode);
+			}).bind(this));
+
+			ancestor.addChild(splode, splode.pos.z);
 		}
 	},
 
@@ -143,9 +160,9 @@ var PlayerEntity = me.Entity.extend({
 			var dir = this.getControlDirection();
 			if( dir.y != 0 || dir.x != 0) {
 				this.dashing = true;
-				this.body.setMaxVelocity(10, 10);
-				this.body.vel.x = dir.x * 10;
-				this.body.vel.y = dir.y * 10;
+				this.body.setMaxVelocity(15, 15);
+				this.body.vel.x = dir.x * 15;
+				this.body.vel.y = dir.y * 15;
 				var cb = function() {
 					if(dashAnimCount > 0) {
 						dashAnimCount--;
@@ -165,7 +182,12 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	tryToShoot: function(action, keyCode, edge) {
-		if(this.dashing || this.takingDamage|| action != "shoot" ) { //|| this.shooting
+		if(
+			this.dashing
+			|| this.takingDamage
+			|| action != "shoot"
+		) { //|| this.shooting
+
 			return;
 		}
 
@@ -207,7 +229,11 @@ var PlayerEntity = me.Entity.extend({
 		this.cameraTargetPos.x = this.pos.x;
 		this.cameraTargetPos.y = this.pos.y + this.cameraTargetOffsetY;
 
-		if(!this.dashing && !this.takingDamage) {
+		if(
+			!this.dashing
+			&& !this.dying
+		) {
+
 			var run = false;
 			if (me.input.isKeyPressed('left')) {
 				this.body.vel.x -= 3 * me.timer.tick;
@@ -278,6 +304,7 @@ var PlayerEntity = me.Entity.extend({
 			}
 
 			if(this.hp <= 0){
+				this.dying = true;
 				this.changeAnimation("die", function() {
 					this.changeAnimation("dead");
 					me.timer.setTimeout(function(){

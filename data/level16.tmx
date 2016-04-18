@@ -28,9 +28,9 @@
   <object name="pouncer" x="94" y="354" width="64" height="64"/>
   <object name="bomber" x="673" y="586" width="64" height="64"/>
   <object name="shooter" x="288" y="46" width="64" height="64"/>
-  <object name="rock" x="642" y="706" width="128" height="64"/>
-  <object name="rock" x="641" y="452" width="128" height="64"/>
+  <object name="destructable" x="642" y="706" width="128" height="64"/>
+  <object name="destructable" x="641" y="452" width="128" height="64"/>
   <object name="pouncer" x="161" y="548" width="64" height="64"/>
-  <object name="rock" x="321" y="193" width="128" height="64"/>
+  <object name="destructable" x="321" y="193" width="128" height="64"/>
  </objectgroup>
 </map>

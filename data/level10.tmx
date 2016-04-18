@@ -37,11 +37,11 @@
  <objectgroup name="Entities">
   <object id="5" name="bomber" x="449" y="194" width="64" height="64"/>
   <object id="6" name="shooter" x="192" y="193" width="64" height="64"/>
-  <object id="7" name="rock" x="66" y="450" width="128" height="64"/>
-  <object id="8" name="rock" x="767" y="451" width="128" height="64"/>
+  <object id="7" name="destructable" x="66" y="450" width="128" height="64"/>
+  <object id="8" name="destructable" x="767" y="451" width="128" height="64"/>
   <object id="9" name="shooter" x="707" y="195" width="64" height="64"/>
-  <object id="10" name="rock" x="321" y="385" width="128" height="64"/>
-  <object id="11" name="rock" x="513" y="387" width="128" height="64"/>
+  <object id="10" name="destructable" x="321" y="385" width="128" height="64"/>
+  <object id="11" name="destructable" x="513" y="387" width="128" height="64"/>
   <object id="12" name="pouncer" x="323" y="768" width="64" height="64"/>
   <object id="13" name="pouncer" x="579" y="767" width="64" height="64"/>
   <object id="14" name="levelChanger" x="46" y="7" width="886" height="103">

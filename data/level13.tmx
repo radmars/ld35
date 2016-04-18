@@ -29,13 +29,13 @@
   <object id="6" name="pouncer" x="322" y="771" width="64" height="64"/>
   <object id="7" name="bomber" x="451" y="63" width="64" height="64"/>
   <object id="8" name="shooter" x="128" y="386" width="64" height="64"/>
-  <object id="9" name="rock" x="642" y="257" width="128" height="64"/>
-  <object id="10" name="rock" x="192" y="257" width="128" height="64"/>
+  <object id="9" name="destructable" x="642" y="257" width="128" height="64"/>
+  <object id="10" name="destructable" x="192" y="257" width="128" height="64"/>
   <object id="11" name="shooter" x="704" y="387" width="64" height="64"/>
   <object id="12" name="pouncer" x="451" y="705" width="64" height="64"/>
   <object id="13" name="pouncer" x="579" y="772" width="64" height="64"/>
-  <object id="14" name="rock" x="257" y="579" width="128" height="64"/>
-  <object id="15" name="rock" x="577" y="579" width="128" height="64"/>
+  <object id="14" name="destructable" x="257" y="579" width="128" height="64"/>
+  <object id="15" name="destructable" x="577" y="579" width="128" height="64"/>
   <object id="16" name="levelChanger" x="59" y="3" width="842" height="88">
    <properties>
     <property name="to" value="level14"/>

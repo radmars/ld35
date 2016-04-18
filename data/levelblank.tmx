@@ -26,6 +26,6 @@
   <object name="pouncer" x="383" y="334" width="64" height="64"/>
   <object name="bomber" x="440" y="239" width="64" height="64"/>
   <object name="shooter" x="449" y="453" width="64" height="64"/>
-  <object name="rock" x="485" y="341" width="128" height="64"/>
+  <object name="destructable" x="485" y="341" width="128" height="64"/>
  </objectgroup>
 </map>

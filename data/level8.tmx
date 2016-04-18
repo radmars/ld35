@@ -44,10 +44,10 @@
   <object id="6" name="pouncer" x="511" y="65" width="64" height="64"/>
   <object id="7" name="bomber" x="320" y="259" width="64" height="64"/>
   <object id="8" name="shooter" x="702" y="514" width="64" height="64"/>
-  <object id="9" name="rock" x="513" y="705" width="128" height="64"/>
-  <object id="10" name="rock" x="109" y="315" width="128" height="64"/>
+  <object id="9" name="destructable" x="513" y="705" width="128" height="64"/>
+  <object id="10" name="destructable" x="109" y="315" width="128" height="64"/>
   <object id="11" name="pouncer" x="773" y="769" width="64" height="64"/>
-  <object id="12" name="rock" x="325" y="443" width="128" height="64"/>
+  <object id="12" name="destructable" x="325" y="443" width="128" height="64"/>
   <object id="13" name="pouncer" x="775" y="244" width="64" height="64"/>
   <object id="14" name="levelChanger" x="237" y="6" width="668" height="124">
    <properties>

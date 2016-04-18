@@ -25,9 +25,9 @@
  <objectgroup name="Entities">
   <object id="3" name="bomber" x="289" y="352" width="64" height="64"/>
   <object id="4" name="shooter" x="289" y="38" width="64" height="64"/>
-  <object id="5" name="rock" x="258" y="190" width="128" height="64"/>
-  <object id="6" name="rock" x="257" y="509" width="128" height="64"/>
-  <object id="7" name="rock" x="253" y="831" width="128" height="64"/>
+  <object id="5" name="destructable" x="258" y="190" width="128" height="64"/>
+  <object id="6" name="destructable" x="257" y="509" width="128" height="64"/>
+  <object id="7" name="destructable" x="253" y="831" width="128" height="64"/>
   <object id="8" name="shooter" x="289" y="676" width="64" height="64"/>
   <object id="9" name="levelChanger" x="166" y="9" width="331" height="89">
    <properties>

@@ -33,10 +33,10 @@
  <objectgroup name="Entities">
   <object id="11" name="pouncer" x="479" y="423" width="64" height="64"/>
   <object id="12" name="bomber" x="735" y="356" width="64" height="64"/>
-  <object id="13" name="rock" x="386" y="641" width="128" height="64"/>
-  <object id="14" name="rock" x="324" y="323" width="128" height="64"/>
-  <object id="15" name="rock" x="624" y="492" width="128" height="64"/>
-  <object id="16" name="rock" x="572" y="195" width="128" height="64"/>
+  <object id="13" name="destructable" x="386" y="641" width="128" height="64"/>
+  <object id="14" name="destructable" x="324" y="323" width="128" height="64"/>
+  <object id="15" name="destructable" x="624" y="492" width="128" height="64"/>
+  <object id="16" name="destructable" x="572" y="195" width="128" height="64"/>
   <object id="17" name="pouncer" x="204" y="491" width="64" height="64"/>
   <object id="18" name="pouncer" x="207" y="53" width="64" height="64"/>
   <object id="19" name="pouncer" x="449" y="108" width="64" height="64"/>

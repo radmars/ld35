@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="64" tileheight="64" backgroundcolor="#000000" nextobjectid="21">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="64" tileheight="64" backgroundcolor="#000000" nextobjectid="22">
  <tileset firstgid="1" name="map_tiles" tilewidth="64" tileheight="64" tilecount="1024" columns="32">
   <image source="map_tiles.png" width="2048" height="2048"/>
  </tileset>
@@ -36,7 +36,6 @@
  </objectgroup>
  <objectgroup name="Entities">
   <object id="4" name="mainPlayer" x="448" y="384" width="64" height="64"/>
-  <object id="5" name="bomber" x="320" y="256" width="64" height="64"/>
   <object id="6" x="-8" y="1102"/>
   <object id="7" name="destructable" x="242.667" y="533.333" width="65.3333" height="58.6667">
    <properties>
@@ -53,9 +52,7 @@
   <object id="14" name="dog" x="676" y="643" width="90" height="72"/>
   <object id="15" name="pouncer" x="140" y="379" width="64" height="64"/>
   <object id="16" name="bomber" x="457" y="193" width="64" height="64"/>
-  <object id="17" name="bomber" x="281" y="385" width="64" height="64"/>
-  <object id="18" name="shooter" x="704" y="320" width="64" height="64"/>
   <object id="19" name="shooter" x="640" y="192" width="64" height="64"/>
-  <object id="20" name="shooter" x="640" y="512" width="64" height="64"/>
+  <object id="21" name="meatGlob" x="640" y="384" width="64" height="64"/>
  </objectgroup>
 </map>
