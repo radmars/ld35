@@ -49,21 +49,10 @@ var EnemyBoss = Enemy.extend({
 		return false;
 	},
 
-	// Move mostly left and right, so reduced magnitude up and down.  Favor moving toward the player on the vertical axis, but do not do so all the time.
 	wanderDirection : function () {
-		// Left or right?
-		var right = this.chanceInN(2);
-
-		// Up or down?
-		var away = this.chanceInN(4);
-		var up = this.playerAbove() != away;
-
-		// Oh boy, vector time!
-		var direction = new me.Vector2d(this.speed.x, -this.speed.y); // Initially up and to the right
-		direction.scale(
-			right ? 1 : -1,
-			up ? 1 : -1
-		);
+		// Choose a random, arbitrary direction.
+		var direction = new me.Vector2d(this.speed);
+		direction.rotate(Math.random() * Math.PI * 2);
 
 		return direction;
 	},
@@ -82,6 +71,12 @@ var EnemyBoss = Enemy.extend({
 		}
 	},
 
+	clearBehavior : function () {
+		this.active = false;
+		this.renderable.setCurrentAnimation("idle");
+		this.state = 'idle';
+	},
+
 	shootBullet : function () {
 		this.active = true;
 		this.dir = new me.Vector2d(0, 0);
@@ -94,10 +89,7 @@ var EnemyBoss = Enemy.extend({
 				spread : Math.PI * 3/4,
 			});
 
-			this.renderable.setCurrentAnimation("shoot_bullet", (function() {
-				this.active = false;
-				this.renderable.setCurrentAnimation("idle");
-			}).bind(this));
+			this.renderable.setCurrentAnimation("shoot_bullet", this.clearBehavior.bind(this));
 		}).bind(this));
 	},
 	shootBomb : function () {
@@ -112,10 +104,7 @@ var EnemyBoss = Enemy.extend({
 				spread : Math.PI * 3/4,
 			});
 
-			this.renderable.setCurrentAnimation("shoot_bomb", (function() {
-				this.active = false;
-				this.renderable.setCurrentAnimation("idle");
-			}).bind(this));
+			this.renderable.setCurrentAnimation("shoot_bomb", this.clearBehavior.bind(this));
 		}).bind(this));
 	},
 
@@ -123,6 +112,10 @@ var EnemyBoss = Enemy.extend({
 	update : function (dt) {
 		if(!this.active){
 			if(this.state === 'idle'){
+				if(!this.renderable.isCurrentAnimation("idle")) {
+					this.renderable.setCurrentAnimation("idle");
+				}
+
 				if(this.timeInState > this.timers.idle) {
 					this.behaviorWander();
 				}
@@ -131,8 +124,12 @@ var EnemyBoss = Enemy.extend({
 				}
 			}
 			else if(this.state === 'wander'){
+				if(!this.renderable.isCurrentAnimation("run")) {
+					this.renderable.setCurrentAnimation("run");
+				}
+
 				if(this.playerInRange()){
-					var bomb = this.chanceInN(4);
+					var bomb = this.chanceInN(3);
 					if(bomb){
 						this.shootBomb();
 					}
