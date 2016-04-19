@@ -5,7 +5,7 @@ var PlayScreen = me.ScreenObject.extend({
 		this._super(me.ScreenObject, 'init', []);
 		this.game = game;
 
-		this.musicVolume = 0.7;
+		this.musicVolume = 0.5;
 		this.fadeTime = 100;
 
 		this.setNextLevel(globalSettings.level); //"level1"
@@ -88,7 +88,7 @@ var PlayScreen = me.ScreenObject.extend({
 
 	onModeChange: function(oldMode, newMode) {
 		var song = "ld35-";
-		song += this.nextLevel == "level6" ? "main" : "boss";
+		song += globalSettings.level == "level6" ? "boss" : "main";
 		song += "-";
 		me.audio.fade(song + oldMode, this.musicVolume, 0.0, this.fadeTime);
 		me.audio.fade(song + newMode, 0.0, this.musicVolume, this.fadeTime);
