@@ -185,7 +185,12 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	tryToDash: function(action, keycode, edge) {
-		if (action === "dash" && !this.dashing) {
+		if (
+			action === "dash"
+			&& !this.dashing
+			&& !this.dying
+		) {
+
 			me.audio.play("dash");
 
 			var dashAnimCount = 0; // Goodbye recursion
@@ -317,8 +322,6 @@ var PlayerEntity = me.Entity.extend({
 
 
 	update : function (dt) {
-
-
 		if(this.shootDelay >=0){
 			this.shootDelay-=dt;
 		}
@@ -337,7 +340,6 @@ var PlayerEntity = me.Entity.extend({
 				}
 			}
 		}
-
 
 		if(
 			!this.dashing
@@ -402,8 +404,6 @@ var PlayerEntity = me.Entity.extend({
 
 		this.cameraTargetPos.x = this.pos.x;
 		this.cameraTargetPos.y = this.highestY + this.cameraTargetOffsetY;
-
-
 
 		me.collision.check(this);
 

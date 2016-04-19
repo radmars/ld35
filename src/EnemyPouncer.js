@@ -10,6 +10,7 @@ var EnemyPouncer = Enemy.extend({
 		settings.image = "pouncer";
 
 		this._super(Enemy, 'init', [x, y, settings]);
+		this.meatChance = 6;
 
 		this.renderable.addAnimation("idle",  [0, 1, 2], 200);
 		this.renderable.addAnimation("run", [0,3,0,4], 100);

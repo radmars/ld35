@@ -18,6 +18,7 @@ var EnemyShooter = Enemy.extend({
 		this.renderable.setCurrentAnimation("idle");
 
 		this.hp = 4;
+		this.meatChance = 3;
 
 		this.screenShakeIntensity = 5;
 		this.screenShakeDuration = 750;
