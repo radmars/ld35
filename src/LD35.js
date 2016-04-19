@@ -91,6 +91,7 @@ var LevelChanger = me.LevelEntity.extend({
 		this.level = settings.to;
 		this._super(me.LevelEntity, 'init', [x, y, settings]);
 		this.body.gravity = 0;
+		this.hitForMusic = false;
 	},
 
 	levelChanged: function() {
@@ -108,13 +109,14 @@ var LevelChanger = me.LevelEntity.extend({
 			globalSettings.level = this.level;
 			console.log("levelchanger level!" + this.level);
 
-			if (globalSettings.level == "level6") {
+			if (globalSettings.level == "level6" || !this.hitForMusic) {
 				me.audio.stop("ld35-main-skel");
 				me.audio.stop("ld35-main-mess");
 				me.audio.stop("ld35-main-big_mess");
 				me.audio.play("ld35-boss-skel", true, null, me.state.current().player.getMode() == "skel" ? me.state.current().musicVolume : 0.0);
 				me.audio.play("ld35-boss-mess", true, null, me.state.current().player.getMode() == "mess" ? me.state.current().musicVolume : 0.0);
 				me.audio.play("ld35-boss-big_mess", true, null, me.state.current().player.getMode() == "big_mess" ? me.state.current().musicVolume : 0.0);
+				this.hitForMusic = true;
 			}
 
 			this.goTo();
