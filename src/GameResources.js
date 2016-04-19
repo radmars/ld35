@@ -92,6 +92,7 @@ var GameResources = (function() {
 		_Image('Boss_HP_Back'),
 		_Image('Boss_HP_Full'),
 
+		_Audio('ld35-title'),
 		_Audio('ld35-boss-big_mess'),
 		_Audio('ld35-boss-mess'),
 		_Audio('ld35-boss-skel'),
