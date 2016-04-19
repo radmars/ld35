@@ -20,7 +20,7 @@ var EnemyBomber = Enemy.extend({
 			shoot: 100,
 		};
 
-		this.hp = 5;
+		this.hp = 6;
 		this.screenShakeIntensity = 5;
 		this.screenShakeDuration = 750;
 		this.meatChance = 1;

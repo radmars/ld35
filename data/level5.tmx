@@ -1,69 +1,217 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="15" height="42" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" width="15" height="47" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="tiles" tilewidth="64" tileheight="64">
   <image source="tiles.png" width="1024" height="1024"/>
  </tileset>
- <layer name="foreground" width="15" height="42">
+ <layer name="foreground" width="15" height="47">
   <data encoding="base64">
-   AwAAAAMAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAADAAAAAwAAABMAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAAAxAAAAQwAAAEQAAAADAAAAAwAAACQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAAADAAAAAwAAADMAAAA0AAAAMwAAAEIAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAADAAAAAwAAAEMAAABEAAAAQwAAAEQAAAAxAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAAQAAAADAAAAAwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAABQAAAADAAAAAwAAADMAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAAFIAAAADAAAAAwAAADMAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAAQQAAAEMAAABEAAAAQwAAAEQAAAADAAAAAwAAAAMAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAAADAAAAAwAAABMAAAAzAAAAQQAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAABCAAAAMwAAADQAAAADAAAABwAAACQAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAAADAAAAFwAAADMAAABTAAAANwAAACgAAABWAAAAUwAAAFQAAABTAAAANwAAADYAAABUAAAAVgAAAFQAAAATAAAAHQAAADMAAAA3AAAACgAAAAgAAAAJAAAANgAAADMAAABXAAAACgAAAAgAAAAJAAAACgAAABsAAAAcAAAALQAAABgAAAALAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAACsAAAAsAAAADQAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACsAAAAcAAAALQAAADgAAAA5AAAAOgAAABgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAACsAAAAsAAAAHQAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAAYQAAAAgAAAAJAAAACgAAABsAAAAcAAAALQAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABsAAAAsAAAAHQAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAABsAAAAcAAAALQAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAACsAAAAsAAAADQAAAAgAAAAJAAAACgAAAAgAAAAJAAAAZAAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAABsAAAAcAAAALQAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAACsAAAAsAAAAHQAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAABsAAAAcAAAALQAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAANAAAAOgAAACsAAAAsAAAAHQAAAAgAAAAJAAAAOwAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAABsAAAAcAAAALQAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAACsAAAAsAAAADQAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAABsAAAAcAAAALQAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADsAAAA8AAAAAwAAAAIAAAACAAAAJAAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAAAgAAAAIAAAADAAAAAwAAABMAAAATAAAANAAAABgAAABGAAAAIwAAABgAAAAZAAAAGgAAACYAAAAjAAAAEwAAABMAAAADAAAA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BwAAACQAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAAADAAAAFwAAADMAAABTAAAANwAAACgAAABWAAAAUwAAAFQAAABTAAAANwAAADYAAABUAAAAVgAAAFQAAAATAAAAHQAAADMAAAA3AAAACgAAAAgAAAAJAAAANgAAADMAAABXAAAACgAAAAgAAAAJAAAACgAAABsAAAAcAAAALQAAABgAAAALAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAACsAAAAsAAAADQAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACsAAAAcAAAALQAAADgAAAA5AAAAOgAAABgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAACsAAAAsAAAAHQAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAAYQAAAAgAAAAJAAAACgAAABsAAAAcAAAALQAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABsAAAAsAAAAHQAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAABsAAAAcAAAALQAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAACsAAAAsAAAADQAAAAgAAAAJAAAACgAAAAgAAAAJAAAAZAAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAABsAAAAcAAAALQAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAACsAAAAsAAAAHQAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAABsAAAAcAAAALQAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAANAAAAOgAAACsAAAAsAAAAHQAAAAgAAAAJAAAAOwAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAABsAAAAcAAAALQAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAACsAAAAsAAAADQAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAABsAAAAcAAAALQAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADsAAAA8AAAAAwAAAAIAAAACAAAAJAAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAAAgAAAAIAAAADAAAAAwAAABMAAAATAAAANAAAABgAAABGAAAAIwAAABgAAAAZAAAAGgAAACYAAAAjAAAAEwAAABMAAAADAAAAAwAAAEIAAABDAAAARAAAAEIAAABDAAAAKgAAACgAAABHAAAAKgAAADIAAAAzAAAANAAAADIAAAADAAAAAwAAADgAAAAjAAAAJAAAACIAAABXAAAAOgAAADgAAAAjAAAAOgAAAEIAAABDAAAARAAAAFcAAAADAAAAAwAAAAgAAABWAAAANwAAAAgAAAAJAAAACgAAACYAAAA3AAAACgAAAAgAAABWAAAAJAAAADMAAAADAAAAAwAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAACMAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAADAAAAAwAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAADYAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAADAAAAAwAAADgAAABGAAAAJAAAACIAAABHAAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAARgAAADgAAAADAAAAAwAAADIAAAAzAAAANAAAADIAAAAzAAAACgAAAAgAAAAJAAAAMwAAAEcAAAAyAAAAMwAAADQAAAADAAAAAwAAAAIAAAACAAAARAAAAEIAAAA3AAAAGgAAABgAAABGAAAAQwAAAEQAAABCAAAAAgAAAAIAAAADAAAAEgAAABMAAAATAAAAVgAAACIAAAApAAAAKgAAACgAAAApAAAAVgAAACQAAAAiAAAAEwAAABMAAAASAAAADQAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAALAAAAHQAAABkAAAAZAAAAGQAAABkAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAbAAAALQAAABkAAAAZAAAAGQAAABkAAAAZAAAAGQAAADgAAAAZAAAAGQAAABkAAAAZAAAAOAAAABkAAAArAAAA
   </data>
  </layer>
- <objectgroup color="#fa3c32" name="collision layer" width="15" height="42">
-  <object x="0" y="896" width="64" height="896"/>
-  <object x="832" y="896" width="128" height="896"/>
-  <object x="896" y="0" width="64" height="896"/>
-  <object x="64" y="0" width="64" height="128"/>
-  <object x="0" y="0" width="64" height="896"/>
-  <object x="64" y="512" width="64" height="128"/>
-  <object x="832" y="256" width="64" height="128"/>
-  <object x="832" y="768" width="64" height="128"/>
-  <object x="64" y="2368" width="128" height="128"/>
-  <object x="768" y="2368" width="128" height="128"/>
-  <object x="896" y="1792" width="64" height="896"/>
-  <object x="64" y="1792" width="128" height="128"/>
-  <object x="768" y="1792" width="128" height="128"/>
-  <object x="0" y="1792" width="64" height="896"/>
+ <objectgroup color="#fa3c32" name="collision layer" width="15" height="47">
+  <object x="0" y="1216" width="64" height="896"/>
+  <object x="832" y="1216" width="128" height="896"/>
+  <object x="896" y="0" width="64" height="1216"/>
+  <object x="64" y="320" width="64" height="128"/>
+  <object x="0" y="0" width="64" height="1216"/>
+  <object x="64" y="832" width="64" height="128"/>
+  <object x="832" y="576" width="64" height="128"/>
+  <object x="832" y="1088" width="64" height="128"/>
+  <object x="64" y="2688" width="128" height="128"/>
+  <object x="768" y="2688" width="128" height="128"/>
+  <object x="896" y="2112" width="64" height="896"/>
+  <object x="64" y="2112" width="128" height="128"/>
+  <object x="768" y="2112" width="128" height="128"/>
+  <object x="0" y="2112" width="64" height="896"/>
  </objectgroup>
- <objectgroup name="Entities" width="15" height="42">
-  <object name="bomber" x="545" y="1124" width="64" height="64"/>
-  <object name="shooter" x="546" y="1510" width="64" height="64"/>
-  <object name="destructable" x="128" y="1026" width="128" height="64"/>
-  <object name="destructable" x="640" y="1025" width="128" height="64"/>
-  <object name="destructable" x="129" y="1218" width="128" height="64"/>
-  <object name="destructable" x="641" y="1217" width="128" height="64"/>
-  <object name="destructable" x="130" y="1410" width="128" height="64"/>
-  <object name="destructable" x="131" y="1602" width="128" height="64"/>
-  <object name="destructable" x="642" y="1601" width="128" height="64"/>
-  <object name="destructable" x="641" y="1409" width="128" height="64"/>
-  <object name="shooter" x="285" y="1313" width="64" height="64"/>
-  <object name="destructable" x="386" y="1601" width="128" height="64"/>
-  <object name="destructable" x="385" y="1409" width="128" height="64"/>
-  <object name="destructable" x="385" y="1217" width="128" height="64"/>
-  <object name="destructable" x="384" y="1025" width="128" height="64"/>
-  <object name="shooter" x="672" y="1315" width="64" height="64"/>
-  <object name="destructable" x="577" y="196" width="64" height="64"/>
-  <object name="shooter" x="769" y="449" width="64" height="64"/>
-  <object name="shooter" x="736" y="99" width="64" height="64"/>
-  <object name="destructable" x="195" y="387" width="64" height="64"/>
-  <object name="destructable" x="257" y="577" width="64" height="64"/>
-  <object name="pouncer" x="515" y="389" width="64" height="64"/>
-  <object name="bomber" x="297" y="256" width="64" height="64"/>
-  <object name="destructable" x="641" y="516" width="64" height="64"/>
-  <object name="destructable" x="387" y="389" width="64" height="64"/>
-  <object name="pouncer" x="644" y="771" width="64" height="64"/>
-  <object name="pouncer" x="132" y="771" width="64" height="64"/>
-  <object name="destructable" x="449" y="707" width="64" height="64"/>
-  <object name="destructable" x="577" y="2243" width="128" height="64"/>
-  <object name="shooter" x="451" y="2052" width="64" height="64"/>
-  <object name="destructable" x="66" y="2050" width="128" height="64"/>
-  <object name="destructable" x="765" y="2049" width="128" height="64"/>
-  <object name="destructable" x="259" y="2244" width="128" height="64"/>
-  <object name="shooter" x="641" y="1924" width="64" height="64"/>
-  <object name="shooter" x="257" y="1925" width="64" height="64"/>
-  <object name="mainPlayer" x="432" y="2576" width="64" height="64"/>
-  <object name="levelChanger" x="70" y="1" width="860" height="102">
+ <objectgroup name="Entities" width="15" height="47">
+  <object name="bomber" x="545" y="1444" width="64" height="64"/>
+  <object name="shooter" x="546" y="1830" width="64" height="64"/>
+  <object name="shooter" x="285" y="1633" width="64" height="64"/>
+  <object name="shooter" x="672" y="1635" width="64" height="64"/>
+  <object name="shooter" x="769" y="769" width="64" height="64"/>
+  <object name="shooter" x="736" y="419" width="64" height="64"/>
+  <object name="pouncer" x="515" y="709" width="64" height="64"/>
+  <object name="bomber" x="297" y="576" width="64" height="64"/>
+  <object name="pouncer" x="644" y="1091" width="64" height="64"/>
+  <object name="pouncer" x="132" y="1091" width="64" height="64"/>
+  <object name="shooter" x="451" y="2372" width="64" height="64"/>
+  <object name="shooter" x="641" y="2244" width="64" height="64"/>
+  <object name="shooter" x="257" y="2245" width="64" height="64"/>
+  <object name="mainPlayer" x="432" y="2896" width="64" height="64"/>
+  <object name="levelChanger" x="0" y="0" width="960" height="384">
    <properties>
     <property name="to" value="level6"/>
+   </properties>
+  </object>
+  <object name="destructable" x="258" y="2564" width="64" height="64">
+   <properties>
+    <property name="image" value="flesh_box"/>
+   </properties>
+  </object>
+  <object name="destructable" x="578" y="2562" width="64" height="64">
+   <properties>
+    <property name="image" value="flesh_box"/>
+   </properties>
+  </object>
+  <object name="destructable" x="703" y="2368" width="64" height="64">
+   <properties>
+    <property name="image" value="flesh_box"/>
+   </properties>
+  </object>
+  <object name="destructable" x="194" y="2369" width="64" height="64">
+   <properties>
+    <property name="image" value="flesh_box"/>
+   </properties>
+  </object>
+  <object name="destructable" x="128" y="1920" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="192" y="1920" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="389" y="1920" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="453" y="1920" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="641" y="1921" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="705" y="1921" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="642" y="1731" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="706" y="1731" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="388" y="1731" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="452" y="1731" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="130" y="1726" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="194" y="1726" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="132" y="1538" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="196" y="1538" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="388" y="1535" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="452" y="1535" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="643" y="1538" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="707" y="1538" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="643" y="1347" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="707" y="1347" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="385" y="1344" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="449" y="1344" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="134" y="1346" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="198" y="1346" width="64" height="64">
+   <properties>
+    <property name="image" value="rock"/>
+   </properties>
+  </object>
+  <object name="destructable" x="259" y="897" width="64" height="64">
+   <properties>
+    <property name="image" value="bloody_box"/>
+   </properties>
+  </object>
+  <object name="destructable" x="576" y="511" width="64" height="64">
+   <properties>
+    <property name="image" value="bloody_box"/>
+   </properties>
+  </object>
+  <object name="destructable" x="195" y="707" width="64" height="64">
+   <properties>
+    <property name="image" value="totem"/>
+   </properties>
+  </object>
+  <object name="destructable" x="386" y="705" width="64" height="64">
+   <properties>
+    <property name="image" value="totem"/>
+   </properties>
+  </object>
+  <object name="destructable" x="642" y="836" width="64" height="64">
+   <properties>
+    <property name="image" value="totem"/>
+   </properties>
+  </object>
+  <object name="destructable" x="450" y="1028" width="64" height="64">
+   <properties>
+    <property name="image" value="totem"/>
    </properties>
   </object>
  </objectgroup>

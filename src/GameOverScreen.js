@@ -16,7 +16,6 @@ var GameOverScreen = me.ScreenObject.extend({
 		//me.audio.playTrack( "ld33-title", 0.7 );
 		//me.audio.play("micromancer");
 
-
 		var keys = {
 			OK:    [me.input.KEY.ENTER],
 		};
@@ -34,8 +33,14 @@ var GameOverScreen = me.ScreenObject.extend({
 
 		this.subscription = me.event.subscribe( me.event.KEYDOWN, function (action, keyCode, edge) {
 			if( keyCode === me.input.KEY.ENTER ) {
+				me.state.change( me.state.PLAY );
+			}
+			/*
+			if( keyCode === me.input.KEY.ENTER ) {
+				globalSettings.level = "level1";
 				me.state.change( me.state.MENU);
 			}
+			*/
 		});
 		me.game.viewport.fadeOut( '#000000', 1000, function() {});
 	},

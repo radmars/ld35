@@ -107,7 +107,7 @@ var EnemyBoss = Enemy.extend({
 
 	die : function() {
 		me.audio.play("boss-death");
-		this._super();
+		this._super(Enemy, 'die', []);
 	},
 
 	// melonJS built-in handlers
