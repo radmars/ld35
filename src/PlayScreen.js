@@ -5,7 +5,7 @@ var PlayScreen = me.ScreenObject.extend({
 		this._super(me.ScreenObject, 'init', []);
 		this.game = game;
 
-		this.musicVolume = 0.5;
+		this.musicVolume = 0.7;
 		this.fadeTime = 100;
 
 		this.hitForMusic = false;
@@ -94,9 +94,7 @@ var PlayScreen = me.ScreenObject.extend({
 		var song = "ld35-";
 		song += globalSettings.level == "level6" ? "boss" : "main";
 		song += "-";
-		me.audio.fade(song + oldMode, this.musicVolume, 0.0, this.fadeTime);
-		me.audio.fade(song + newMode, 0.0, this.musicVolume, this.fadeTime);
-
-		console.log(oldMode + " to " + newMode);
+		me.audio.fade(song + oldMode, this.musicVolume * Howler.volume(), 0.0, this.fadeTime);
+		me.audio.fade(song + newMode, 0.0, this.musicVolume * Howler.volume(), this.fadeTime);
 	},
 });

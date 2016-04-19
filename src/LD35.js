@@ -119,7 +119,6 @@ var LevelChanger = me.LevelEntity.extend({
 				me.audio.play("ld35-boss-mess", true, null, me.state.current().player.getMode() == "mess" ? me.state.current().musicVolume : 0.0);
 				me.audio.play("ld35-boss-big_mess", true, null, me.state.current().player.getMode() == "big_mess" ? me.state.current().musicVolume : 0.0);
 				me.state.current().hitForMusic = true;
-				console.log("playing dhat");
 			}
 
 			this.goTo();
