@@ -4,6 +4,10 @@ var PlayScreen = me.ScreenObject.extend({
 	init: function(game) {
 		this._super(me.ScreenObject, 'init', []);
 		this.game = game;
+
+		this.musicVolume = 0.7;
+		this.fadeTime = 100;
+
 		this.setNextLevel(globalSettings.level); //"level1"
 	},
 
@@ -44,6 +48,10 @@ var PlayScreen = me.ScreenObject.extend({
 			me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.RIGHT, keys.right[0]);
 		}
 
+		me.audio.play("ld35-main-skel", true, null, this.musicVolume);
+		me.audio.play("ld35-main-mess", true, null, 0.0);
+		me.audio.play("ld35-main-big_mess", true, null, 0.0);
+
 		this.loadNextLevel();
 	},
 
@@ -57,9 +65,32 @@ var PlayScreen = me.ScreenObject.extend({
 				me.game.viewport.fadeOut( '#000000', 1000, function() {});
 			}).bind(this),
 		});
+
+		if (this.nextLevel == "level6") {
+			me.audio.stop("ld35-main-skel");
+			me.audio.stop("ld35-main-mess");
+			me.audio.stop("ld35-main-big_mess");
+			me.audio.play("ld35-main-skel", true, null, player.getMode() == "skel" ? this.musicVolume : 0.0);
+			me.audio.play("ld35-main-mess", true, null, player.getMode() == "mess" ? this.musicVolume : 0.0);
+			me.audio.play("ld35-main-big_mess", true, null, player.getMode() == "big_mess" ? this.musicVolume : 0.0);
+		}
 	},
 
 	onDestroyEvent: function() {
 		me.game.world.removeChild(this.hud);
-	}
+		me.audio.stop("ld35-main-skel");
+		me.audio.stop("ld35-main-mess");
+		me.audio.stop("ld35-main-big_mess");
+		me.audio.stop("ld35-boss-skel");
+		me.audio.stop("ld35-boss-mess");
+		me.audio.stop("ld35-boss-big_mess");
+	},
+
+	onModeChange: function(oldMode, newMode) {
+		var song = "ld35-";
+		song += this.nextLevel == "level6" ? "main" : "boss";
+		song += "-";
+		me.audio.fade(song + oldMode, this.musicVolume, 0.0, this.fadeTime);
+		me.audio.fade(song + newMode, 0.0, this.musicVolume, this.fadeTime);
+	},
 });

@@ -140,6 +140,8 @@ var PlayerEntity = me.Entity.extend({
 		}
 		var newMode = this.getMode();
 		if(mode != newMode){
+			me.state.current().onModeChange(mode, newMode);
+
 			me.audio.play("transform");
 
 			me.game.viewport.shake(5,300);

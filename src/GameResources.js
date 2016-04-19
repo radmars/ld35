@@ -88,6 +88,12 @@ var GameResources = (function() {
 		_Image('tiles'),
 		_Image('player_blood_bullet'),
 
+		_Audio('ld35-boss-big_mess'),
+		_Audio('ld35-boss-mess'),
+		_Audio('ld35-boss-skel'),
+		_Audio('ld35-main-beast'),
+		_Audio('ld35-main-mess'),
+		_Audio('ld35-main-skel'),
 		_Audio('bomber-shoot'),
 		_Audio('bomb-tick'),
 		_Audio('boss-death'),
