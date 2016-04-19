@@ -108,7 +108,7 @@ var LevelChanger = me.LevelEntity.extend({
 			globalSettings.level = this.level;
 			console.log("levelchanger level!" + this.level);
 
-			if (globalSettings.level == "level6" || !me.state.current().hitForMusic) {
+			if (globalSettings.level == "level6" && !me.state.current().hitForMusic) {
 				me.audio.stop("ld35-main-skel");
 				me.audio.stop("ld35-main-mess");
 				me.audio.stop("ld35-main-big_mess");
