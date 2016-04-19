@@ -8,6 +8,8 @@ var PlayScreen = me.ScreenObject.extend({
 		this.musicVolume = 0.5;
 		this.fadeTime = 100;
 
+		this.hitForMusic = false;
+
 		this.setNextLevel(globalSettings.level); //"level1"
 	},
 
@@ -21,6 +23,8 @@ var PlayScreen = me.ScreenObject.extend({
 		this.hud = new PlayHUD();
 		me.game.world.autoSort = true;
 		me.game.world.autoDepth = false;
+
+		this.hitForMusic = false;
 
 		var keys = {
 			left:  [me.input.KEY.LEFT, me.input.KEY.A],
