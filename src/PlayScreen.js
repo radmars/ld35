@@ -70,9 +70,9 @@ var PlayScreen = me.ScreenObject.extend({
 			me.audio.stop("ld35-main-skel");
 			me.audio.stop("ld35-main-mess");
 			me.audio.stop("ld35-main-big_mess");
-			me.audio.play("ld35-boss-skel", true, null, player.getMode() == "skel" ? this.musicVolume : 0.0);
-			me.audio.play("ld35-boss-mess", true, null, player.getMode() == "mess" ? this.musicVolume : 0.0);
-			me.audio.play("ld35-boss-big_mess", true, null, player.getMode() == "big_mess" ? this.musicVolume : 0.0);
+			me.audio.play("ld35-boss-skel", true, null, this.player.getMode() == "skel" ? this.musicVolume : 0.0);
+			me.audio.play("ld35-boss-mess", true, null, this.player.getMode() == "mess" ? this.musicVolume : 0.0);
+			me.audio.play("ld35-boss-big_mess", true, null, this.player.getMode() == "big_mess" ? this.musicVolume : 0.0);
 		}
 	},
 
