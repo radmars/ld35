@@ -36,8 +36,14 @@ var EnemyBoss = Enemy.extend({
 		this.active = false;
 	},
 
-	// Sometimes produces meat when damaged.
-	dropMeat : function () {
+	damage: function() {
+		this.hp--;
+
+		if(this.hp > 0){
+			me.game.viewport.shake(2,250);
+		}else{
+			this.die();
+		}
 	},
 
 	wanderDirection : function () {
@@ -97,6 +103,11 @@ var EnemyBoss = Enemy.extend({
 
 			this.renderable.setCurrentAnimation("shoot_bomb", this.clearBehavior.bind(this));
 		}).bind(this));
+	},
+
+	die : function() {
+		me.audio.play("boss-death");
+		this._super();
 	},
 
 	// melonJS built-in handlers

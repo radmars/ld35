@@ -25,6 +25,8 @@ var BulletBomber = Bullet.extend({
 	},
 
 	explode : function () {
+		me.audio.play("explosion");
+
 		var fragments = 8;
 		var bulletType = 'bulletShooter';
 		var bulletSpeed = 1;
@@ -55,6 +57,7 @@ var BulletBomber = Bullet.extend({
 
 		// BOUNCE
 		if(this.height < 0){
+			me.audio.play("bomb-tick");
 			this.height *= -1;
 			this.upVelocity *= -0.5;
 		}

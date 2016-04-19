@@ -86,6 +86,7 @@ var EnemyBomber = Enemy.extend({
 		else if(this.state === 'shoot'){
 			//this.changeAnimation("shoot");
 			if(this.timeInState === 0){
+				me.audio.play("bomber-shoot");
 				this.shoot(this.angleToPlayer());
 			}
 			if(this.timeInState > this.timers.shoot) {

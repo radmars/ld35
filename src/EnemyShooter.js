@@ -42,15 +42,6 @@ var EnemyShooter = Enemy.extend({
 		this.detectDistance = 300;
 	},
 
-	// Is the player above us?
-	playerAbove : function() {
-		var angle = this.angleTo(this.getPlayer());
-		if(angle < 0){
-			return true;
-		}
-		return false;
-	},
-
 	// Move mostly left and right, so reduced magnitude up and down.  Favor moving toward the player on the vertical axis, but do not do so all the time.
 	wanderDirection : function () {
 		// Left or right?
@@ -142,7 +133,7 @@ var EnemyShooter = Enemy.extend({
 					time : this.timeInState,
 					totalTime: this.timers.shootspread
 			})){
-
+				me.audio.play("shooter-shoot");
 				this.shoot(this.angleToPlayer() + this.bulletAngle);
 				this.bulletAngle += (this.bulletSpread / bulletCount);
 			}
@@ -163,7 +154,7 @@ var EnemyShooter = Enemy.extend({
 					time : this.timeInState,
 					totalTime: this.timers.shootburst
 			})){
-
+				me.audio.play("shooter-shoot");
 				this.shoot(this.angleToPlayer());
 			}
 
