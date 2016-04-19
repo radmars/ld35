@@ -12,9 +12,7 @@ var GameOverScreen = me.ScreenObject.extend({
 
 		me.game.world.addChild( this.bg, this.bg.pos.z);
 
-		me.audio.stopTrack();
-		//me.audio.playTrack( "ld33-title", 0.7 );
-		//me.audio.play("micromancer");
+		me.audio.playTrack( "ld35-title", 0.5 );
 
 		var keys = {
 			OK:    [me.input.KEY.ENTER],
