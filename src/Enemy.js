@@ -14,7 +14,7 @@ var Enemy = me.Entity.extend({
 
 		this.flippedX = false;
 		this.hp = 2;
-		this.meatChance = 0;
+		this.meatChance = 1;
 		this.screenShakeIntensity = 4;
 		this.screenShakeDuration = 500;
 

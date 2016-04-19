@@ -35,7 +35,7 @@
   </object>
  </objectgroup>
  <objectgroup name="Entities">
-  <object id="4" name="mainPlayer" x="448" y="384" width="64" height="64"/>
+  <object id="4" name="mainPlayer" x="512" y="832" width="64" height="64"/>
   <object id="6" x="-8" y="1102"/>
   <object id="7" name="destructable" x="750.667" y="133.333" width="65.3333" height="58.6667">
    <properties>
