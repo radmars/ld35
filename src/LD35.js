@@ -46,6 +46,8 @@ LD35.prototype.loaded = function() {
 	me.state.set(me.state.GAMEOVER, new GameOverScreen(this));
 	me.state.set(me.state.PLAY, this.playState);
 
+	var volume = 0.5;
+
 	if(this.options.level) {
 		this.playState.setNextLevel(this.options.level);
 	}
@@ -53,8 +55,9 @@ LD35.prototype.loaded = function() {
 		this.playState.nodie = true;
 	}
 	if(this.options.mute) {
-		me.audio.setVolume(0.0);
+		volume = 0.0;
 	}
+	me.audio.setVolume(volume);
 
 	me.pool.register("mainPlayer", PlayerEntity);
 	me.pool.register("shooter", EnemyShooter, true);
