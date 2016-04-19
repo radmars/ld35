@@ -32,13 +32,15 @@ var GameOverScreen = me.ScreenObject.extend({
 		}
 
 		this.subscription = me.event.subscribe( me.event.KEYDOWN, function (action, keyCode, edge) {
-			if( keyCode === me.input.KEY.SPACE ) {
+			if( keyCode === me.input.KEY.ENTER ) {
 				me.state.change( me.state.PLAY );
 			}
+			/*
 			if( keyCode === me.input.KEY.ENTER ) {
 				globalSettings.level = "level1";
 				me.state.change( me.state.MENU);
 			}
+			*/
 		});
 		me.game.viewport.fadeOut( '#000000', 1000, function() {});
 	},
