@@ -185,7 +185,7 @@ var Enemy = me.Entity.extend({
 		var sprite = new me.Sprite(this.pos.x, this.pos.y, {
 			image: "splat" + (Number.prototype.random(0, 3) + 1),
 		});
-		sprite.pos.z = 3;
+		sprite.pos.z = 1;
 		ancestor.addChild(sprite, sprite.pos.z);
 		splode.setCurrentAnimation('splode', (function() {
 			splode.setCurrentAnimation("splode_over");
