@@ -33,7 +33,7 @@ LD35.prototype.onload = function() {
 		});
 	}
 
-  me.audio.init("m4a,ogg");
+	me.audio.init("m4a,ogg");
 	me.loader.onload = this.loaded.bind(this);
 	me.loader.preload(GameResources);
 	me.state.change(me.state.LOADING);
@@ -47,9 +47,7 @@ LD35.prototype.loaded = function() {
 	me.state.set(me.state.GAME_END, new GameWinScreen(this));
 	me.state.set(me.state.PLAY, this.playState);
 
-
-
-	var volume = 0.5;
+	var volume = 0.3;
 
 	if(this.options.level) {
 		this.playState.setNextLevel(this.options.level);
@@ -98,6 +96,7 @@ var LevelChanger = me.LevelEntity.extend({
 
 	levelChanged: function() {
 		me.state.current().player.hp = this.hp;
+		me.state.current().player.changeAnimation("idle");
 	},
 
 	update: function(dt) {

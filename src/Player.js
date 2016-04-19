@@ -322,8 +322,6 @@ var PlayerEntity = me.Entity.extend({
 
 
 	update : function (dt) {
-
-
 		if(this.shootDelay >=0){
 			this.shootDelay-=dt;
 		}
@@ -342,7 +340,6 @@ var PlayerEntity = me.Entity.extend({
 				}
 			}
 		}
-
 
 		if(
 			!this.dashing
