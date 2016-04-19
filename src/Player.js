@@ -127,6 +127,8 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	addMeat: function() {
+		me.audio.play("pickup");
+
 		var mode = this.getMode();
 		this.hp++;
 		if(this.hp > 7) {
@@ -134,6 +136,8 @@ var PlayerEntity = me.Entity.extend({
 		}
 		var newMode = this.getMode();
 		if(mode != newMode){
+			me.audio.play("transform");
+
 			var splode = new me.AnimationSheet(this.pos.x + Math.random()*32, this.pos.y+ Math.random()*32, {
 				image: 'blood_explode_128',
 				framewidth: 128,
@@ -175,6 +179,8 @@ var PlayerEntity = me.Entity.extend({
 
 	tryToDash: function(action, keycode, edge) {
 		if (action === "dash" && !this.dashing) {
+			me.audio.play("dash");
+
 			var dashAnimCount = 0; // Goodbye recursion
 			var dir = this.getControlDirection();
 			if( dir.y != 0 || dir.x != 0) {
@@ -215,6 +221,8 @@ var PlayerEntity = me.Entity.extend({
 		var dir = this.fireDirection; //this.getControlDirection();
 
 		if( dir.y != 0 || dir.x != 0) {
+			me.audio.play("player-shoot");
+
 			this.shooting = true;
 			this.changeAnimation("shoot", function(){
 				this.changeAnimation("idle");
@@ -259,6 +267,8 @@ var PlayerEntity = me.Entity.extend({
 
 
 	fireAoe: function() {
+		me.audio.play("player-melee");
+
 		me.game.viewport.shake(3,500);
 
 		var dir = new me.Vector2d(0,0);
@@ -379,6 +389,8 @@ var PlayerEntity = me.Entity.extend({
 			this.takingDamage = true;
 			this.hp--;
 
+			me.audio.play("player-hit");
+
 			// Cheat to win!
 			if(
 				me.state.current().nodie
@@ -389,6 +401,8 @@ var PlayerEntity = me.Entity.extend({
 			}
 
 			if(this.hp <= 0){
+				me.audio.play("death");
+
 				this.dying = true;
 				this.changeAnimation("die", function() {
 					this.changeAnimation("dead");

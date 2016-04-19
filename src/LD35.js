@@ -49,6 +49,9 @@ LD35.prototype.loaded = function() {
 	if(this.options.nodie) {
 		this.playState.nodie = true;
 	}
+	if(this.options.mute) {
+		me.audio.setVolume(0.0);
+	}
 
 	me.pool.register("mainPlayer", PlayerEntity);
 	me.pool.register("shooter", EnemyShooter, true);

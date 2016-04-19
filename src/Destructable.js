@@ -62,6 +62,7 @@ var Destructable = me.Entity.extend({
 				}
 			}
 
+			me.audio.play("hit");
 			this.body.setCollisionMask(me.collision.types.NO_OBJECT);
 			me.game.world.removeChild(this);
 		}

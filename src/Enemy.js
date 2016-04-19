@@ -94,6 +94,8 @@ var Enemy = me.Entity.extend({
 	},
 
 	damage: function() {
+		me.audio.play("hit");
+
 		this.hp--;
 
 		if(this.hp > 0){
@@ -134,6 +136,8 @@ var Enemy = me.Entity.extend({
 	},
 
 	die: function() {
+		me.audio.play("splat");
+
 		me.game.viewport.shake(this.screenShakeIntensity, this.screenShakeDuration);
 
 		if(this.chanceInN(this.meatChance)){

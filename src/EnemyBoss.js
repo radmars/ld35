@@ -108,6 +108,11 @@ var EnemyBoss = Enemy.extend({
 		}).bind(this));
 	},
 
+	die : function() {
+		me.audio.play("boss-death");
+		this._super();
+	},
+
 	// melonJS built-in handlers
 	update : function (dt) {
 		if(!this.active){

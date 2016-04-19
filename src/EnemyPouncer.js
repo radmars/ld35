@@ -59,6 +59,8 @@ var EnemyPouncer = Enemy.extend({
 		this.dir = new me.Vector2d(this.speed.charge, 0);
 		this.dir.rotate(this.chargeAngle);
 		this.state = 'charge';
+
+		me.audio.play("pouncer-dash");
 	},
 
 	// cosmetic behavior

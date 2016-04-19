@@ -129,7 +129,7 @@ var EnemyShooter = Enemy.extend({
 					time : this.timeInState,
 					totalTime: this.timers.shootspread
 			})){
-
+				me.audio.play("shooter-shoot");
 				this.shoot(this.angleToPlayer() + this.bulletAngle);
 				this.bulletAngle += (this.bulletSpread / bulletCount);
 			}
@@ -149,7 +149,7 @@ var EnemyShooter = Enemy.extend({
 					time : this.timeInState,
 					totalTime: this.timers.shootburst
 			})){
-
+				me.audio.play("shooter-shoot");
 				this.shoot(this.angleToPlayer());
 			}
 

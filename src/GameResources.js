@@ -86,6 +86,22 @@ var GameResources = (function() {
 		_Image('rock'),
 
         _Image('player_blood_bullet'),
+		
+		_Audio('bomber-shoot'),
+		_Audio('bomb-tick'),
+		_Audio('boss-death'),
+		_Audio('dash'),
+		_Audio('death'),
+		_Audio('explosion'),
+		_Audio('hit'),
+		_Audio('pickup'),
+		_Audio('player-hit'),
+		_Audio('player-melee'),
+		_Audio('player-shoot'),
+		_Audio('pouncer-dash'),
+		_Audio('shooter-shoot'),
+		_Audio('splat'),
+		_Audio('transform'),
 
 	];
 
