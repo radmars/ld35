@@ -6,7 +6,6 @@ var Enemy = me.Entity.extend({
 
 		this._super(me.Entity, 'init', [x, y, settings]);
 
-		this.alwaysUpdate = true;
 		this.body.setVelocity(0, 0);
 		this.body.setFriction(.1, .1);
 		this.body.gravity = 0;

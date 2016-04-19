@@ -87,6 +87,8 @@ var GameResources = (function() {
 		_Image('rock'),
 		_Image('tiles'),
 		_Image('player_blood_bullet'),
+		_Image('win_screen_concept'),
+
 
 		_Image('Boss_HP_Skull'),
 		_Image('Boss_HP_Back'),

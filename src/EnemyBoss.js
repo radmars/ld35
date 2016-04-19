@@ -107,6 +107,12 @@ var EnemyBoss = Enemy.extend({
 
 	die : function() {
 		me.audio.play("boss-death");
+
+		this.dying = true;
+		me.timer.setTimeout(function(){
+			me.state.change( me.state.GAME_END);
+		}, 1000);
+
 		this._super(Enemy, 'die', []);
 	},
 

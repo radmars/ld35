@@ -44,7 +44,10 @@ LD35.prototype.loaded = function() {
 	me.state.set(me.state.INTRO, new RadmarsScreen(this));
 	me.state.set(me.state.MENU, new TitleScreen(this));
 	me.state.set(me.state.GAMEOVER, new GameOverScreen(this));
+	me.state.set(me.state.GAME_END, new GameWinScreen(this));
 	me.state.set(me.state.PLAY, this.playState);
+
+
 
 	var volume = 0.5;
 
