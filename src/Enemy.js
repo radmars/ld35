@@ -13,7 +13,7 @@ var Enemy = me.Entity.extend({
 		this.pos.z = 5;
 
 		this.flippedX = false;
-		this.hp = 1;
+		this.hp = 2;
 		this.meatChance = 0;
 		this.screenShakeIntensity = 4;
 		this.screenShakeDuration = 500;

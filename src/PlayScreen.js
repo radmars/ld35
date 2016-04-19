@@ -4,10 +4,12 @@ var PlayScreen = me.ScreenObject.extend({
 	init: function(game) {
 		this._super(me.ScreenObject, 'init', []);
 		this.game = game;
-		this.setNextLevel("level1");
+		this.setNextLevel(globalSettings.level); //"level1"
 	},
 
 	setNextLevel: function(name) {
+		console.log("[PlayScreen](setNextLevel) " + name);
+		globalSettings.level = name;
 		this.nextLevel = name;
 	},
 
@@ -46,6 +48,8 @@ var PlayScreen = me.ScreenObject.extend({
 	},
 
 	loadNextLevel: function() {
+		console.log("[PlayScreen](loadNextLevel) " + this.nextLevel);
+
 		me.levelDirector.loadLevel(this.nextLevel, {
 			onLoaded: (function() {
 				me.game.world.addChild(new BGColor(this.game));

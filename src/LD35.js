@@ -1,13 +1,16 @@
 "use strict";
 
+var globalSettings = {level:"level1"};
+
 function LD35() {
 	this.screenHeight = 640;
 	this.screenWidth = 960;
-	this.options = {level:"level1"};
+	this.options = {};
 }
 
 LD35.prototype.onload = function() {
 	// Load URL parameters
+
 	window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
 		this.options[key] = value;
 	}.bind(this));
@@ -82,6 +85,7 @@ var LevelChanger = me.LevelEntity.extend({
 		settings.fade = "#000";
 		settings.duration = 500;
 		settings.onLoaded = this.levelChanged.bind(this);
+		this.level = settings.to;
 		this._super(me.LevelEntity, 'init', [x, y, settings]);
 		this.body.gravity = 0;
 	},
@@ -98,6 +102,8 @@ var LevelChanger = me.LevelEntity.extend({
 	onCollision: function(response, other) {
 		if(other == me.state.current().player) {
 			this.hp = me.state.current().player.hp;
+			globalSettings.level = this.level;
+			console.log("levelchanger level!" + this.level);
 			this.goTo();
 		}
 		return false;

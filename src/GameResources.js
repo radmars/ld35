@@ -55,9 +55,9 @@ var GameResources = (function() {
 		_Level("level1"),
 		_Level("level2"),
 		_Level("level3"),
-		//_Level("level4"),
-		//_Level("level5"),
-		//_Level("level6"),
+		_Level("level4"),
+		_Level("level5"),
+		_Level("level6"),
 
 		_Image("player"),
 		_Image("blood_explode_128"),

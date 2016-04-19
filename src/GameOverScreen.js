@@ -36,6 +36,7 @@ var GameOverScreen = me.ScreenObject.extend({
 				me.state.change( me.state.PLAY );
 			}
 			if( keyCode === me.input.KEY.ENTER ) {
+				globalSettings.level = "level1";
 				me.state.change( me.state.MENU);
 			}
 		});
