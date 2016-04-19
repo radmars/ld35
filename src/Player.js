@@ -414,7 +414,16 @@ var PlayerEntity = me.Entity.extend({
 		if(!this.takingDamage) {
 			me.game.viewport.shake(5,1000);
 			this.takingDamage = true;
+
+			var mode = this.getMode();
+
 			this.hp--;
+
+			var newMode = this.getMode();
+
+			if (mode != newMode) {
+				me.state.current().onModeChange(mode, newMode);
+			}
 
 			me.audio.play("player-hit");
 
