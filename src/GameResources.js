@@ -103,6 +103,10 @@ var GameResources = (function() {
 		_Audio('shooter-shoot'),
 		_Audio('splat'),
 		_Audio('transform'),
+
+		_Audio('Boss_HP_Skull'),
+		_Audio('Boss_HP_Back'),
+		_Audio('Boss_HP_Full'),
 	];
 
 	return GameResources;
