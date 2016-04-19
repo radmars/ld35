@@ -51,6 +51,7 @@ var GameResources = (function() {
 		/* Less exciting stuff */
 		_Image("collision_tiles"),
 		_Image("map_tiles"),
+		_Image("tiles"),
 		_Level("test-level"),
 		_Level("level1"),
 		_Level("level2"),
@@ -85,9 +86,8 @@ var GameResources = (function() {
 		_Image("totem"),
 		_Image('rock'),
 		_Image('tiles'),
+		_Image('player_blood_bullet'),
 
-        _Image('player_blood_bullet'),
-		
 		_Audio('bomber-shoot'),
 		_Audio('bomb-tick'),
 		_Audio('boss-death'),
@@ -103,7 +103,6 @@ var GameResources = (function() {
 		_Audio('shooter-shoot'),
 		_Audio('splat'),
 		_Audio('transform'),
-
 	];
 
 	return GameResources;
