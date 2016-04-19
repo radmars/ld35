@@ -21,7 +21,8 @@ var EnemyBoss = Enemy.extend({
 
 		// Properties of this nefarious creature.
 		this.speed = 2;
-		this.hp = 10;
+		this.hp = 50;
+		this.meatChance = 1;
 
 		this.body.setMaxVelocity(this.speed, this.speed);
 		this.detectDistance = 500;

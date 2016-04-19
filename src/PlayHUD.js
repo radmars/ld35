@@ -22,6 +22,8 @@ var PlayHUD = me.Container.extend({
 		this.hpbar.setCurrentAnimation("0");
 		this.hpbar.floating = true;
 		this.addChild(this.hpbar, this.hpbar.pos.z);
+
+
 	},
 
 	update: function(dt) {
