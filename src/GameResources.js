@@ -88,6 +88,10 @@ var GameResources = (function() {
 		_Image('tiles'),
 		_Image('player_blood_bullet'),
 
+		_Image('Boss_HP_Skull'),
+		_Image('Boss_HP_Back'),
+		_Image('Boss_HP_Full'),
+
 		_Audio('ld35-boss-big_mess'),
 		_Audio('ld35-boss-mess'),
 		_Audio('ld35-boss-skel'),
@@ -109,10 +113,6 @@ var GameResources = (function() {
 		_Audio('shooter-shoot'),
 		_Audio('splat'),
 		_Audio('transform'),
-
-		_Audio('Boss_HP_Skull'),
-		_Audio('Boss_HP_Back'),
-		_Audio('Boss_HP_Full'),
 	];
 
 	return GameResources;
