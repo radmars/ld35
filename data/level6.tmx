@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="15" height="62" tilewidth="64" tileheight="64">
- <tileset firstgid="1" name="tiles" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="62" tilewidth="64" tileheight="64" nextobjectid="91">
+ <tileset firstgid="1" name="tiles" tilewidth="64" tileheight="64" tilecount="256" columns="16">
   <image source="tiles.png" width="1024" height="1024"/>
  </tileset>
  <layer name="foreground" width="15" height="62">
@@ -8,120 +8,154 @@
    ggAAAIMAAACCAAAAgwAAAHQAAACCAAAAgwAAAHMAAACCAAAAgwAAAHIAAACCAAAAgwAAAHQAAAB0AAAAkgAAAJMAAAByAAAAkwAAAJQAAACTAAAAkwAAAJQAAACSAAAAkwAAAJQAAACSAAAAcwAAAJQAAACEAAAAcwAAAHQAAACiAAAAowAAAKQAAACiAAAAowAAAKQAAACiAAAAowAAAKQAAACiAAAAowAAAJIAAACUAAAAdAAAAHUAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAHEAAAByAAAAhAAAAIUAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAAIEAAACCAAAAYwAAAJUAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAABlAAAAKgAAAJEAAACSAAAAdAAAAHUAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAAHEAAABzAAAAcwAAAIUAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAIEAAACCAAAAlAAAAJUAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAAJEAAACSAAAAdAAAAHUAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAAgAAAAJAAAACgAAAHEAAAByAAAAhAAAAIUAAAAZAAAAGgAAAGEAAAAZAAAAGgAAABgAAAAZAAAAGgAAABgAAAAZAAAAGgAAAIEAAACCAAAAlAAAAJUAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAACgAAAApAAAAKgAAAJEAAACSAAAApAAAAKUAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAADgAAAA5AAAAOgAAAKEAAACiAAAAAwAAACkAAAApAAAARgAAAEcAAAApAAAAKQAAACkAAAApAAAAKQAAACkAAAApAAAAJgAAACcAAAADAAAAAwAAACYAAAACAAAABAAAAAIAAAACAAAARAAAAEcAAAApAAAARgAAAEQAAABHAAAARAAAAEMAAAADAAAAAwAAAFMAAAASAAAAFAAAABIAAAASAAAAVAAAAFMAAAAxAAAAUwAAAFQAAABTAAAAQgAAAFMAAAADAAAAAwAAADMAAAA0AAAAEQAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAADAAAAAwAAADEAAABEAAAAQwAAAEQAAABCAAAARAAAAEMAAABEAAAAAgAAAAYAAAACAAAAAgAAAEMAAAADAAAAAwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAEgAAABYAAAASAAAAEgAAAFMAAAADAAAAAwAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAAQgAAADMAAAADAAAAAwAAAEMAAAACAAAAAgAAAAIAAAACAAAARAAAAEMAAABEAAAAQwAAAEEAAABDAAAARAAAADEAAAADAAAAAwAAAFMAAAASAAAAEgAAABIAAAASAAAAVAAAAFMAAABUAAAAQgAAAFQAAABTAAAAVAAAAFMAAAADAAAAAwAAADMAAAA0AAAAQQAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAADAAAAAwAAAEMAAABEAAAAQwAAAEIAAABDAAAARAAAAEMAAABEAAAAAgAAAAIAAAACAAAAAgAAAEMAAAADAAAAAwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAEgAAABIAAAASAAAAEgAAAFMAAAADAAAAAwAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAADAAAAAwAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAAADAAAAAwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAAADAAAAAwAAADMAAAA0AAAAMwAAADQAAAAHAAAAAgAAAAIAAAACAAAAAgAAADQAAAAzAAAANAAAADMAAAADAAAAAwAAAEMAAABEAAAAQwAAAEQAAAAXAAAAEgAAABIAAAASAAAAEgAAAEQAAABDAAAARAAAAEMAAAADAAAAAwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAAADAAAAAwAAAEUAAAA0AAAAMwAAADQAAABFAAAANAAAADMAAAA0AAAARQAAADQAAAAzAAAANAAAAEUAAAADAAAAAwAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAAADAAAAAwAAAFMAAABUAAAAMQAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAAADAAAAAwAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAADAAAAAwAAAEUAAABEAAAAQwAAAEQAAABFAAAARAAAAEMAAABEAAAARQAAAEQAAABDAAAARAAAAEUAAAADAAAAAwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAAADAAAAAwAAADMAAAA0AAAAMwAAADQAAAACAAAAAgAAAAIAAAAEAAAABwAAADQAAAAzAAAANAAAADMAAAADAAAAAwAAAEMAAABEAAAAQwAAAEQAAAASAAAAEgAAABIAAAAUAAAAFwAAAEQAAABDAAAARAAAAEMAAAADAAAAAwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAAARAAAAUwAAAFQAAABTAAAAVAAAAFMAAAADAAAAAwAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAADAAAAAwAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAAADAAAAAwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAAIAAAACAAAAAgAAAAIAAAADAAAAAwAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAAAIAAAACAAAAAgAAAAIAAAADAAAAAwAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAABEAAAAQwAAABIAAAACAAAABAAAAAIAAAADAAAAAwAAAFMAAABUAAAAAgAAAAIAAAACAAAAVAAAAFMAAABUAAAAUwAAAFQAAAASAAAAFAAAABIAAAADAAAAAwAAADMAAAA0AAAABgAAAAIAAAASAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAAMQAAADMAAAADAAAAAwAAAEMAAABEAAAAFgAAABIAAAARAAAARAAAAEMAAABEAAAAQwAAAEQAAAA1AAAAUgAAAEMAAAADAAAAAwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAAAkAAAANQAAAFMAAAADAAAAAwAAADMAAAA0AAAAMwAAADQAAABCAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAADAAAAAwAAAEMAAAA1AAAAQwAAAEQAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAAAgAAAAIAAAADAAAAAwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAAACAAAAAgAAAAIAAAADAAAAAwAAAAIAAAACAAAAAgAAAAIAAAACAAAANAAAADMAAAA0AAAAMwAAADQAAAASAAAAEgAAABIAAAADAAAAAwAAABIAAAASAAAAEgAAABIAAAASAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAAADAAAAAwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAAADAAAAAwAAADMAAABFAAAAMwAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAARQAAADMAAAADAAAAYwAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAAADAAAAYwAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAAADAAAAAwAAAGMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAADAAAAAwAAAGMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAABEAAAAQwAAAEQAAABDAAAARAAAAEMAAAADAAAAAwAAAFMAAABjAAAAUwAAAFQAAABTAAAAVAAAAFMAAABUAAAAUwAAAFQAAABTAAAAVAAAAFMAAAADAAAAAwAAADMAAABjAAAAMwAAADQAAAAzAAAANAAAADMAAAA0AAAAMwAAADQAAAAzAAAANAAAADMAAAADAAAA
   </data>
  </layer>
- <objectgroup color="#fa3c32" name="collision layer" width="15" height="62">
-  <object x="769" y="3198" width="128" height="64"/>
-  <object x="897" y="2686" width="64" height="1280"/>
-  <object x="65" y="3326" width="320" height="128"/>
-  <object x="1" y="2686" width="64" height="1280"/>
-  <object x="193" y="2878" width="192" height="128"/>
-  <object x="641" y="2686" width="256" height="192"/>
-  <object x="193" y="3006" width="128" height="64"/>
-  <object x="705" y="3262" width="192" height="128"/>
-  <object x="705" y="2878" width="192" height="64"/>
-  <object x="1" y="1792" width="64" height="896"/>
-  <object x="897" y="1792" width="64" height="896"/>
-  <object x="321" y="2368" width="320" height="128"/>
-  <object x="321" y="1792" width="320" height="128"/>
-  <object x="129" y="896" width="256" height="128"/>
-  <object x="897" y="896" width="64" height="896"/>
-  <object x="1" y="896" width="64" height="896"/>
-  <object x="577" y="1472" width="256" height="128"/>
-  <object x="129" y="1280" width="256" height="128"/>
-  <object x="577" y="1088" width="256" height="128"/>
-  <object x="0" y="0" width="64" height="896"/>
-  <object x="896" y="0" width="64" height="896"/>
-  <object x="64" y="0" width="861" height="177"/>
-  <object x="64" y="3904" width="832" height="64"/>
+ <objectgroup color="#fa3c32" name="collision layer">
+  <object id="1" x="769" y="3198" width="128" height="64"/>
+  <object id="2" x="897" y="2686" width="64" height="1280"/>
+  <object id="3" x="65" y="3326" width="320" height="128"/>
+  <object id="4" x="1" y="2686" width="64" height="1280"/>
+  <object id="5" x="193" y="2878" width="192" height="128"/>
+  <object id="6" x="641" y="2686" width="256" height="192"/>
+  <object id="7" x="193" y="3006" width="128" height="64"/>
+  <object id="8" x="705" y="3262" width="192" height="128"/>
+  <object id="9" x="705" y="2878" width="192" height="64"/>
+  <object id="10" x="1" y="1792" width="64" height="896"/>
+  <object id="11" x="897" y="1792" width="64" height="896"/>
+  <object id="12" x="321" y="2368" width="320" height="128"/>
+  <object id="13" x="321" y="1792" width="320" height="128"/>
+  <object id="14" x="129" y="896" width="256" height="128"/>
+  <object id="15" x="897" y="896" width="64" height="896"/>
+  <object id="16" x="1" y="896" width="64" height="896"/>
+  <object id="17" x="577" y="1472" width="256" height="128"/>
+  <object id="18" x="129" y="1280" width="256" height="128"/>
+  <object id="19" x="577" y="1088" width="256" height="128"/>
+  <object id="20" x="0" y="0" width="64" height="896"/>
+  <object id="21" x="896" y="0" width="64" height="896"/>
+  <object id="22" x="64" y="0" width="861" height="177"/>
+  <object id="23" x="64" y="3904" width="832" height="64"/>
  </objectgroup>
- <objectgroup name="Entities" width="15" height="62">
-  <object name="pouncer" x="205" y="3177" width="64" height="64"/>
-  <object name="pouncer" x="613" y="3438" width="64" height="64"/>
-  <object name="pouncer" x="450" y="2794" width="64" height="64"/>
-  <object name="pouncer" x="208" y="2739" width="64" height="64"/>
-  <object name="pouncer" x="480" y="3109" width="64" height="64"/>
-  <object name="bomber" x="736" y="3042" width="64" height="64"/>
-  <object name="bomber" x="450" y="1986" width="64" height="64"/>
-  <object name="shooter" x="708" y="1987" width="64" height="64"/>
-  <object name="pouncer" x="580" y="2559" width="64" height="64"/>
-  <object name="shooter" x="193" y="1985" width="64" height="64"/>
-  <object name="pouncer" x="324" y="2560" width="64" height="64"/>
-  <object name="pouncer" x="338" y="1551" width="64" height="64"/>
-  <object name="shooter" x="677" y="1317" width="64" height="64"/>
-  <object name="pouncer" x="204" y="1505" width="64" height="64"/>
-  <object name="pouncer" x="630" y="972" width="64" height="64"/>
-  <object name="pouncer" x="508" y="931" width="64" height="64"/>
-  <object name="bomber" x="223" y="1125" width="64" height="64"/>
-  <object name="boss" x="428" y="397" width="128" height="96"/>
-  <object name="mainPlayer" x="448" y="3715" width="64" height="64"/>
-  <object name="destructable" x="384" y="3328" width="64" height="64">
+ <objectgroup name="Entities">
+  <object id="24" name="pouncer" x="205" y="3177" width="64" height="64"/>
+  <object id="25" name="pouncer" x="613" y="3438" width="64" height="64"/>
+  <object id="26" name="pouncer" x="450" y="2794" width="64" height="64"/>
+  <object id="27" name="pouncer" x="208" y="2739" width="64" height="64"/>
+  <object id="28" name="pouncer" x="480" y="3109" width="64" height="64"/>
+  <object id="29" name="bomber" x="736" y="3042" width="64" height="64"/>
+  <object id="30" name="bomber" x="450" y="1986" width="64" height="64"/>
+  <object id="31" name="shooter" x="708" y="1987" width="64" height="64"/>
+  <object id="32" name="pouncer" x="580" y="2559" width="64" height="64"/>
+  <object id="33" name="shooter" x="193" y="1985" width="64" height="64"/>
+  <object id="34" name="pouncer" x="324" y="2560" width="64" height="64"/>
+  <object id="35" name="pouncer" x="338" y="1551" width="64" height="64"/>
+  <object id="36" name="shooter" x="677" y="1317" width="64" height="64"/>
+  <object id="37" name="pouncer" x="204" y="1505" width="64" height="64"/>
+  <object id="38" name="pouncer" x="630" y="972" width="64" height="64"/>
+  <object id="39" name="pouncer" x="508" y="931" width="64" height="64"/>
+  <object id="40" name="bomber" x="223" y="1125" width="64" height="64"/>
+  <object id="41" name="boss" x="428" y="397" width="128" height="96"/>
+  <object id="42" name="mainPlayer" x="448" y="3715" width="64" height="64"/>
+  <object id="43" name="destructable" x="384" y="3328" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="448" y="3328" width="64" height="64">
+  <object id="44" name="destructable" x="448" y="3328" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="706" y="3202" width="64" height="64">
+  <object id="45" name="destructable" x="706" y="3202" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="642" y="3202" width="64" height="64">
+  <object id="46" name="destructable" x="642" y="3202" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="386" y="3011" width="64" height="64">
+  <object id="47" name="destructable" x="386" y="3011" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="322" y="3011" width="64" height="64">
+  <object id="48" name="destructable" x="322" y="3011" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="640" y="2882" width="64" height="64">
+  <object id="49" name="destructable" x="640" y="2882" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="576" y="2882" width="64" height="64">
+  <object id="50" name="destructable" x="576" y="2882" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="385" y="2177" width="64" height="64">
+  <object id="51" name="destructable" x="385" y="2177" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="321" y="2177" width="64" height="64">
+  <object id="52" name="destructable" x="321" y="2177" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="578" y="2178" width="64" height="64">
+  <object id="53" name="destructable" x="578" y="2178" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="514" y="2178" width="64" height="64">
+  <object id="54" name="destructable" x="514" y="2178" width="64" height="64">
    <properties>
     <property name="image" value="box"/>
    </properties>
   </object>
-  <object name="destructable" x="831" y="2240" width="64" height="64">
+  <object id="55" name="destructable" x="831" y="2240" width="64" height="64">
    <properties>
     <property name="image" value="totem"/>
    </properties>
   </object>
-  <object name="destructable" x="65" y="2241" width="64" height="64">
+  <object id="56" name="destructable" x="65" y="2241" width="64" height="64">
    <properties>
     <property name="image" value="totem"/>
    </properties>
   </object>
+  <object id="57" name="pouncer" x="807" y="972" width="64" height="64"/>
+  <object id="58" name="pouncer" x="404" y="1012" width="64" height="64"/>
+  <object id="59" name="pouncer" x="79" y="1076" width="64" height="64"/>
+  <object id="60" name="pouncer" x="321" y="1113" width="64" height="64"/>
+  <object id="61" name="pouncer" x="116" y="1203" width="64" height="64"/>
+  <object id="62" name="pouncer" x="445" y="1197" width="64" height="64"/>
+  <object id="63" name="pouncer" x="328" y="1453" width="64" height="64"/>
+  <object id="64" name="pouncer" x="101" y="1441" width="64" height="64"/>
+  <object id="65" name="pouncer" x="87" y="1656" width="64" height="64"/>
+  <object id="66" name="pouncer" x="189" y="1658" width="64" height="64"/>
+  <object id="67" name="pouncer" x="285" y="1658" width="64" height="64"/>
+  <object id="68" name="pouncer" x="651" y="1666" width="64" height="64"/>
+  <object id="69" name="pouncer" x="734" y="1657" width="64" height="64"/>
+  <object id="70" name="pouncer" x="810" y="1655" width="64" height="64"/>
+  <object id="71" name="pouncer" x="680" y="1797" width="64" height="64"/>
+  <object id="72" name="pouncer" x="785" y="1788" width="64" height="64"/>
+  <object id="73" name="pouncer" x="775" y="2111" width="64" height="64"/>
+  <object id="74" name="pouncer" x="671" y="2116" width="64" height="64"/>
+  <object id="75" name="pouncer" x="216" y="2090" width="64" height="64"/>
+  <object id="76" name="pouncer" x="108" y="2093" width="64" height="64"/>
+  <object id="77" name="pouncer" x="142" y="2270" width="64" height="64"/>
+  <object id="78" name="pouncer" x="229" y="2272" width="64" height="64"/>
+  <object id="79" name="pouncer" x="671" y="2278" width="64" height="64"/>
+  <object id="80" name="pouncer" x="751" y="2281" width="64" height="64"/>
+  <object id="81" name="pouncer" x="661" y="2391" width="64" height="64"/>
+  <object id="82" name="pouncer" x="742" y="2401" width="64" height="64"/>
+  <object id="83" name="pouncer" x="197" y="2394" width="64" height="64"/>
+  <object id="84" name="pouncer" x="104" y="2397" width="64" height="64"/>
+  <object id="85" name="pouncer" x="96" y="2588" width="64" height="64"/>
+  <object id="86" name="pouncer" x="186" y="2585" width="64" height="64"/>
+  <object id="87" name="pouncer" x="576" y="3014" width="64" height="64"/>
+  <object id="88" name="pouncer" x="657" y="3015" width="64" height="64"/>
+  <object id="89" name="pouncer" x="83" y="3079" width="64" height="64"/>
+  <object id="90" name="pouncer" x="76" y="2966" width="64" height="64"/>
  </objectgroup>
 </map>
