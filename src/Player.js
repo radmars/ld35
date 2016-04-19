@@ -185,7 +185,12 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	tryToDash: function(action, keycode, edge) {
-		if (action === "dash" && !this.dashing) {
+		if (
+			action === "dash"
+			&& !this.dashing
+			&& !this.dying
+		) {
+
 			me.audio.play("dash");
 
 			var dashAnimCount = 0; // Goodbye recursion
@@ -402,8 +407,6 @@ var PlayerEntity = me.Entity.extend({
 
 		this.cameraTargetPos.x = this.pos.x;
 		this.cameraTargetPos.y = this.highestY + this.cameraTargetOffsetY;
-
-
 
 		me.collision.check(this);
 
