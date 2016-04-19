@@ -25,7 +25,7 @@ var PlayerEntity = me.Entity.extend({
 		me.state.current().player = this;
 
 		this.takingDamage = false;
-		this.hp = 1;
+		this.hp = 7;
 
 		this.aoeTriggered = false;
 
@@ -88,7 +88,7 @@ var PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation("big_mess_shoot",        [86, 87, 88, 89, 90, 91, 92, 93, 94, 95], 100);
 		this.renderable.addAnimation("big_mess_idle_up",    [96, 97, 98], 200);
 		this.renderable.addAnimation("big_mess_run_up",     [99,100,101,102,103,104], 100);
-		this.renderable.addAnimation("big_mess_shoot_up",   [86, 87, 88, 89, 90, 91, 92, 93, 94, 95], 100);
+		this.renderable.addAnimation("big_mess_shoot_up",   [104, 105, 106, 107, 108, 109, 110, 111, 112, 113], 100);
 		// Just stealing the skelly dash animation for the short term to resolve bug.
 		this.renderable.addAnimation("big_mess_dash",         [80, 81, 82], 100);
 		this.renderable.addAnimation("big_mess_dash_up",         [99,100,101], 100);

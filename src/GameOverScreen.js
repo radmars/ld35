@@ -33,7 +33,7 @@ var GameOverScreen = me.ScreenObject.extend({
 
 		this.subscription = me.event.subscribe( me.event.KEYDOWN, function (action, keyCode, edge) {
 			if( keyCode === me.input.KEY.SPACE ) {
-				me.state.change( me.state.PLAY);
+				me.state.change( me.state.PLAY );
 			}
 			if( keyCode === me.input.KEY.ENTER ) {
 				me.state.change( me.state.MENU);

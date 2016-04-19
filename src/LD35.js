@@ -3,7 +3,7 @@
 function LD35() {
 	this.screenHeight = 640;
 	this.screenWidth = 960;
-	this.options = {};
+	this.options = {level:"level1"};
 }
 
 LD35.prototype.onload = function() {
