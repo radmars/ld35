@@ -18,7 +18,7 @@ var RadmarsScreen = me.ScreenObject.extend({
 
 	keyHandler: function (action, keyCode, edge) {
 		if( keyCode === me.input.KEY.ENTER ) {
-			me.state.change( me.state.PLAY);
+			me.state.change( me.state.MENU);
 		}
 	},
 
