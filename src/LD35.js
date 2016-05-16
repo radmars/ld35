@@ -47,7 +47,7 @@ LD35.prototype.loaded = function() {
 	me.state.set(me.state.GAME_END, new GameWinScreen(this));
 	me.state.set(me.state.PLAY, this.playState);
 
-	var volume = 0.3;
+	var volume = 1;
 
 	if(this.options.level) {
 		this.playState.setNextLevel(this.options.level);
