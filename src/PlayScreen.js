@@ -9,6 +9,8 @@ var PlayScreen = me.ScreenObject.extend({
 		this.fadeTime = 100;
 
 		this.hitForMusic = false;
+		this.modes = ['skel', 'mess', 'big_mess'];
+		this.stages = ['main', 'boss'];
 
 		this.setNextLevel(globalSettings.level); //"level1"
 	},
@@ -67,24 +69,28 @@ var PlayScreen = me.ScreenObject.extend({
 			}).bind(this),
 		});
 
-		if (this.nextLevel == "level6") {
-			me.audio.stop("ld35-main-skel");
-			me.audio.stop("ld35-main-mess");
-			me.audio.stop("ld35-main-big_mess");
-			me.audio.play("ld35-boss-skel", true, null, this.player.getMode() == "skel" ? this.musicVolume : 0.0);
-			me.audio.play("ld35-boss-mess", true, null, this.player.getMode() == "mess" ? this.musicVolume : 0.0);
-			me.audio.play("ld35-boss-big_mess", true, null, this.player.getMode() == "big_mess" ? this.musicVolume : 0.0);
+		if (this.nextLevel === "level6") {
+			this.modes.forEach(function(mode) {
+				me.audio.stop("ld35-main-" + mode);
+				me.audio.play(
+					"ld35-boss-" + mode,
+					true,
+					null,
+					this.player.getMode() == mode
+						? this.musicVolume
+						: 0.0
+				);
+			}.bind(this));
 		}
 	},
 
 	onDestroyEvent: function() {
 		me.game.world.removeChild(this.hud);
-		me.audio.stop("ld35-main-skel");
-		me.audio.stop("ld35-main-mess");
-		me.audio.stop("ld35-main-big_mess");
-		me.audio.stop("ld35-boss-skel");
-		me.audio.stop("ld35-boss-mess");
-		me.audio.stop("ld35-boss-big_mess");
+		this.stages.forEach(function(stage) {
+			this.modes.forEach(function(mode) {
+				me.audio.stop("ld35-" + stage + "-" + mode);
+			}.bind(this));
+		}.bind(this));
 	},
 
 	onModeChange: function(oldMode, newMode) {
