@@ -49,8 +49,6 @@ var GameOverScreen = me.ScreenObject.extend({
 	}
 });
 
-
-
 var GameWinScreen = me.ScreenObject.extend({
 	init: function() {
 		this._super(me.ScreenObject, 'init', []);
@@ -64,8 +62,6 @@ var GameWinScreen = me.ScreenObject.extend({
 		me.game.world.addChild( this.bg, this.bg.pos.z);
 
 		me.audio.stopTrack();
-		//me.audio.playTrack( "ld33-title", 0.7 );
-		//me.audio.play("micromancer");
 
 		var keys = {
 			OK:    [me.input.KEY.ENTER],
