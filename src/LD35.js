@@ -92,6 +92,9 @@ var LevelChanger = me.LevelEntity.extend({
 		this.level = settings.to;
 		this._super(me.LevelEntity, 'init', [x, y, settings]);
 		this.body.gravity = 0;
+		// Not sure what ACTION_OBJECT is meant for, so here it means "regions on maps that trigger behavior when the player runs over them without impeding movement."
+		this.body.collisionType = me.collision.types.ACTION_OBJECT;
+		this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);
 	},
 
 	levelChanged: function() {
