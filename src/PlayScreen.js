@@ -14,7 +14,6 @@ var PlayScreen = me.ScreenObject.extend({
 	},
 
 	setNextLevel: function(name) {
-		console.log("[PlayScreen](setNextLevel) " + name);
 		globalSettings.level = name;
 		this.nextLevel = name;
 	},
@@ -60,8 +59,6 @@ var PlayScreen = me.ScreenObject.extend({
 	},
 
 	loadNextLevel: function() {
-		console.log("[PlayScreen](loadNextLevel) " + this.nextLevel);
-
 		me.levelDirector.loadLevel(this.nextLevel, {
 			onLoaded: (function() {
 				me.game.world.addChild(new BGColor(this.game));
