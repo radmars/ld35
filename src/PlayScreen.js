@@ -10,7 +10,6 @@ var PlayScreen = me.ScreenObject.extend({
 
 		this.hitForMusic = false;
 		this.modes = ['skel', 'mess', 'big_mess'];
-		this.stages = ['main', 'boss'];
 
 		this.setNextLevel(globalSettings.level); //"level1"
 	},
@@ -53,9 +52,25 @@ var PlayScreen = me.ScreenObject.extend({
 			me.input.bindGamepad(0, me.input.GAMEPAD.BUTTONS.RIGHT, keys.right[0]);
 		}
 
-		me.audio.play("ld35-main-skel", true, null, this.musicVolume);
-		me.audio.play("ld35-main-mess", true, null, 0.0);
-		me.audio.play("ld35-main-big_mess", true, null, 0.0);
+		// Blast dem hip tunez
+		//
+		// This conditional logic only actually matters if you use the level-skip get string to skip straight to the boss level.
+		var stage = (this.nextLevel === "level6")
+			? 'boss'
+			: 'main'
+		;
+
+		this.modes.forEach(function(mode) {
+			me.audio.play(
+				"ld35-" + stage + "-" + mode,
+				true,
+				null,
+				// Can only start in skelly mode
+				mode === 'skel'
+					? this.musicVolume
+					: 0.0
+			);
+		}.bind(this));
 
 		this.loadNextLevel();
 	},
@@ -65,28 +80,14 @@ var PlayScreen = me.ScreenObject.extend({
 			onLoaded: (function() {
 				me.game.world.addChild(new BGColor(this.game));
 				me.game.world.addChild(this.hud, this.hud.pos.z);
-				me.game.viewport.fadeOut( '#000000', 1000, function() {});
+				me.game.viewport.fadeOut('#000000');
 			}).bind(this),
 		});
-
-		if (this.nextLevel === "level6") {
-			this.modes.forEach(function(mode) {
-				me.audio.stop("ld35-main-" + mode);
-				me.audio.play(
-					"ld35-boss-" + mode,
-					true,
-					null,
-					this.player.getMode() === mode
-						? this.musicVolume
-						: 0.0
-				);
-			}.bind(this));
-		}
 	},
 
 	onDestroyEvent: function() {
 		me.game.world.removeChild(this.hud);
-		this.stages.forEach(function(stage) {
+		['main', 'boss'].forEach(function(stage) {
 			this.modes.forEach(function(mode) {
 				me.audio.stop("ld35-" + stage + "-" + mode);
 			}.bind(this));

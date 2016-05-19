@@ -28,13 +28,23 @@ var LevelChanger = me.LevelEntity.extend({
 			this.hp = me.state.current().player.hp;
 			globalSettings.level = this.level;
 
-			if (globalSettings.level == "level6" && !me.state.current().hitForMusic) {
-				me.audio.stop("ld35-main-skel");
-				me.audio.stop("ld35-main-mess");
-				me.audio.stop("ld35-main-big_mess");
-				me.audio.play("ld35-boss-skel", true, null, me.state.current().player.getMode() == "skel" ? me.state.current().musicVolume : 0.0);
-				me.audio.play("ld35-boss-mess", true, null, me.state.current().player.getMode() == "mess" ? me.state.current().musicVolume : 0.0);
-				me.audio.play("ld35-boss-big_mess", true, null, me.state.current().player.getMode() == "big_mess" ? me.state.current().musicVolume : 0.0);
+			if (
+				globalSettings.level === "level6"
+				&& !me.state.current().hitForMusic
+			) {
+
+				me.state.current().player.getModes().forEach(function(mode) {
+					me.audio.stop("ld35-main-" + mode);
+					me.audio.play(
+						"ld35-boss-" + mode,
+						true,
+						null,
+						me.state.current().player.getMode() === mode
+							? me.state.current().musicVolume
+							: 0.0
+					);
+				}.bind(this));
+
 				me.state.current().hitForMusic = true;
 			}
 
