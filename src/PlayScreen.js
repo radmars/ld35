@@ -76,7 +76,7 @@ var PlayScreen = me.ScreenObject.extend({
 					"ld35-boss-" + mode,
 					true,
 					null,
-					this.player.getMode() == mode
+					this.player.getMode() === mode
 						? this.musicVolume
 						: 0.0
 				);
@@ -95,7 +95,7 @@ var PlayScreen = me.ScreenObject.extend({
 
 	onModeChange: function(oldMode, newMode) {
 		var song = "ld35-";
-		song += globalSettings.level == "level6" ? "boss" : "main";
+		song += globalSettings.level === "level6" ? "boss" : "main";
 		song += "-";
 		me.audio.fade(song + oldMode, this.musicVolume * Howler.volume(), 0.0, this.fadeTime);
 		me.audio.fade(song + newMode, 0.0, this.musicVolume * Howler.volume(), this.fadeTime);
