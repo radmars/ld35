@@ -18,7 +18,6 @@ var Destructable = me.Entity.extend({
 
 		this._super(me.Entity, 'init', [x, y, settings]);
 		this.pos.z = 10;
-		this.alwaysUpdate = true;
 		this.body.collisionType = me.collision.types.ACTION_OBJECT;
 		this.body.setCollisionMask(
 			me.collision.types.PROJECTILE_OBJECT

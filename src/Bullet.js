@@ -8,7 +8,6 @@ var Bullet = me.Entity.extend({
 		this.pos.z = 10;
 		this.speed = settings.speed || 5;
 
-		this.alwaysUpdate = true;
 		this.body.collisionType = me.collision.types.PROJECTILE_OBJECT;
 		this.body.setVelocity(0, 0);
 		this.body.setMaxVelocity(this.speed, this.speed);
