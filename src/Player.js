@@ -102,6 +102,11 @@ var PlayerEntity = me.Entity.extend({
 		this.dashing = false;
 	},
 
+	// Return the array of all possible modes.
+	getModes: function() {
+		return ['skel', 'mess', 'big_mess'];
+	},
+
 	getAnimationName: function(name) {
 		var n = name;
 		if(this.facingUp) {
@@ -130,6 +135,32 @@ var PlayerEntity = me.Entity.extend({
 		}
 	},
 
+	// Uses the magic of PARTICLES to celebrate aquisition of a new form.
+	spurtBlood: function() {
+		var emitter = new me.ParticleEmitter(this.pos.x, this.pos.y, {
+			totalParticles : 40,
+			angleVariation : Math.PI / 2,
+			gravity : 0.1,
+			speed : 4,
+			image : me.loader.getImage('splat1'),
+		});
+
+		// Adjust the emitter properties
+		// Add the emitter to the game world
+		me.game.world.addChild(emitter, 10);
+
+		// The line below shows up tutorials but things seem to work fine without it.
+		//me.game.world.addChild(emitter.container, 10);
+
+		// This timeout-based removal isn't quite right.  It can cause bugs if the particle emitter still exists while loading a new level.  Need to figure out a better implementation!
+		me.timer.setTimeout(function() {
+			me.game.world.removeChild(emitter);
+		}, 2000);
+
+		emitter.burstParticles();
+
+	},
+
 	addMeat: function() {
 		me.audio.play("pickup");
 
@@ -143,24 +174,8 @@ var PlayerEntity = me.Entity.extend({
 			me.state.current().onModeChange(mode, newMode);
 
 			me.audio.play("transform");
-
+			this.spurtBlood();
 			me.game.viewport.shake(5,300);
-			var splode = new me.AnimationSheet(this.pos.x + Math.random()*32, this.pos.y+ Math.random()*32, {
-				image: 'blood_explode_128',
-				framewidth: 128,
-				frameheight: 128,
-			});
-			splode.pos.z = 3;
-			splode.addAnimation('splode', [0, 1, 2, 3, 4, 5], 100);
-			splode.addAnimation('splode_over', [5], 100);
-
-			var ancestor = this.ancestor;
-			splode.setCurrentAnimation('splode', (function() {
-				splode.setCurrentAnimation("splode_over");
-				ancestor.removeChild(splode);
-			}).bind(this));
-
-			ancestor.addChild(splode, splode.pos.z);
 		}
 	},
 
@@ -191,12 +206,12 @@ var PlayerEntity = me.Entity.extend({
 			&& !this.dying
 		) {
 
-			me.audio.play("dash");
-
 			var dashAnimCount = 0; // Goodbye recursion
 			var dir = this.getControlDirection();
 			if( dir.y != 0 || dir.x != 0) {
 				this.dashing = true;
+				me.audio.play("dash");
+
 				this.body.setMaxVelocity(15, 15);
 				this.body.vel.x = dir.x * 15;
 				this.body.vel.y = dir.y * 15;
@@ -456,15 +471,20 @@ var PlayerEntity = me.Entity.extend({
 	},
 
 	onCollision : function (response, other) {
-		if(other.body.collisionType == me.collision.types.PROJECTILE_OBJECT) {
-			return false;
+		switch(other.body.collisionType) {
+			// We want the player to be able to pass through several object types without impeding movement.
+			case me.collision.types.PROJECTILE_OBJECT:
+			case me.collision.types.ACTION_OBJECT:
+				return false;
+				// All of these breaks shouldn't be necessary, but I'm being pedantic.
+				break;
+			case me.collision.types.COLLECTABLE_OBJECT:
+				other.collect(this);
+				return false;
+				break;
+			default:
+				return true;
+				break;
 		}
-
-		if(other.body.collisionType == me.collision.types.COLLECTABLE_OBJECT) {
-			other.collect(this);
-			return false;
-		}
-
-		return true;
 	}
 });
