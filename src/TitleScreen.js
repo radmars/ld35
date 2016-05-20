@@ -5,18 +5,20 @@ var PressEnter = me.ImageLayer.extend({
 		this._super(me.ImageLayer, 'init', [x, y, args]);
 		this.flicker = 0;
 	},
-	draw: function(context) {
+	update: function(dt) {
 		this.flicker++;
 
 		if(this.flicker === 20){
 			this.alpha = 0;
+			me.game.repaint();
 		}
 		if(this.flicker === 40){
 			this.alpha = 1;
 			this.flicker = 0;
+			me.game.repaint();
 		}
 
-		this._super(me.ImageLayer, 'draw', [context]);
+		this._super(me.ImageLayer, 'update', [dt]);
 	},
 });
 
