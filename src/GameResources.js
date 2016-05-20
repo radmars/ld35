@@ -30,7 +30,11 @@ var GameResources = (function() {
 	 * @param {String} name file name relative to data/ without extension.
 	 */
 	function _Level( name ) {
-		return { name: name, type: "tmx", src: "data/" + name + ".tmx" };
+		return {
+			name: name,
+			type: "tmx",
+			src: "data/level/" + name + ".tmx"
+		};
 	}
 
 	var GameResources = [
