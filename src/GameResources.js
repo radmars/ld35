@@ -5,14 +5,22 @@ var GameResources = (function() {
 	 * @param {String} name file name relative to data/ without extension.
 	 */
 	function _Image( name ) {
-		return { name: name, type: "image", src: "data/" + name + ".png" };
+		return {
+			name: name,
+			type: "image",
+			src: "data/image/" + name + ".png"
+		};
 	}
 
 	/**
 	 * @param {String} name file name relative to data/audio.
 	 */
 	function _Audio( name ) {
-		return { name: name, type: "audio", src: "data/audio/" , channels: 2 };
+		return {
+			name: name,
+			type: "audio",
+			src: "data/audio/",
+			channels: 2 };
 	}
 
 	function _AddAudioArray( name, num, parent ) {
