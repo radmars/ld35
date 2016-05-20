@@ -7,18 +7,21 @@ var PressEnter = me.ImageLayer.extend({
 	},
 	update: function(dt) {
 		this.flicker++;
+		var changed = false;
 
 		if(this.flicker === 20){
 			this.alpha = 0;
-			me.game.repaint();
+			changed = true;
 		}
 		if(this.flicker === 40){
 			this.alpha = 1;
 			this.flicker = 0;
-			me.game.repaint();
+			changed = true;
 		}
 
 		this._super(me.ImageLayer, 'update', [dt]);
+
+		return changed;
 	},
 });
 
