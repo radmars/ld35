@@ -142,12 +142,9 @@ var Enemy = me.Entity.extend({
 
 		if(this.hp > 0){
 			this.changeAnimation("hit");
-			me.game.viewport.shake(2,250);
-
 		}else{
 			this.die();
 		}
-
 	},
 
 	addMeat: function() {
