@@ -1,9 +1,9 @@
 "use strict";
 
 var PlayScreen = me.ScreenObject.extend({
-	init: function(game) {
+	init: function(settings) {
 		this._super(me.ScreenObject, 'init', []);
-		this.game = game;
+		this.settings = settings;
 
 		this.musicVolume = 0.7;
 		this.fadeTime = 100;
@@ -11,11 +11,11 @@ var PlayScreen = me.ScreenObject.extend({
 		this.hitForMusic = false;
 		this.modes = ['skel', 'mess', 'big_mess'];
 
-		this.setNextLevel(globalSettings.level); //"level1"
+		this.setNextLevel(settings.level); //"level1"
 	},
 
 	setNextLevel: function(name) {
-		globalSettings.level = name;
+		this.settings.level = name;
 		this.nextLevel = name;
 	},
 
@@ -78,7 +78,7 @@ var PlayScreen = me.ScreenObject.extend({
 	loadNextLevel: function() {
 		me.levelDirector.loadLevel(this.nextLevel, {
 			onLoaded: (function() {
-				me.game.world.addChild(new BGColor(this.game));
+				me.game.world.addChild(new BGColor(this.settings));
 				me.game.world.addChild(this.hud, this.hud.pos.z);
 				me.game.viewport.fadeOut('#000000');
 			}).bind(this),
@@ -96,7 +96,8 @@ var PlayScreen = me.ScreenObject.extend({
 
 	onModeChange: function(oldMode, newMode) {
 		var song = "ld35-";
-		song += globalSettings.level === "level6" ? "boss" : "main";
+		// Go go globals!
+		song += game.data.level === "level6" ? "boss" : "main";
 		song += "-";
 		me.audio.fade(song + oldMode, this.musicVolume * Howler.volume(), 0.0, this.fadeTime);
 		me.audio.fade(song + newMode, 0.0, this.musicVolume * Howler.volume(), this.fadeTime);

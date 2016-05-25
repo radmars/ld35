@@ -26,10 +26,10 @@ var LevelChanger = me.LevelEntity.extend({
 	onCollision: function(response, other) {
 		if(other == me.state.current().player) {
 			this.hp = me.state.current().player.hp;
-			globalSettings.level = this.level;
+			game.data.level = this.level;
 
 			if (
-				globalSettings.level === "level6"
+				this.level === "level6"
 				&& !me.state.current().hitForMusic
 			) {
 

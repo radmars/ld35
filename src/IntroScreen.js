@@ -1,14 +1,14 @@
 "use strict";
 
 var RadmarsScreen = me.ScreenObject.extend({
-	init: function(game) {
+	init: function(settings) {
 		this._super(me.ScreenObject, 'init', []);
-		this.game = game;
+		this.settings = settings;
 	},
 
 	onResetEvent: function() {
-		this.radmars = new RadmarsRenderable(this.game);
-		me.game.world.addChild( new BGColor(this.game) );
+		this.radmars = new RadmarsRenderable(this.settings);
+		me.game.world.addChild( new BGColor(this.settings) );
 		me.game.world.addChild( this.radmars );
 
 		this.subscription = me.event.subscribe( me.event.KEYDOWN, this.keyHandler.bind(this));
@@ -30,8 +30,8 @@ var RadmarsScreen = me.ScreenObject.extend({
 });
 
 var RadmarsRenderable = me.Renderable.extend({
-	init: function(game) {
-		this._super( me.Renderable, "init", [0, 0, game.screenWidth, game.screenHeight] );
+	init: function(settings) {
+		this._super( me.Renderable, "init", [0, 0, settings.screenWidth, settings.screenHeight] );
 		this.counter = 0;
 		this.floating = true;
 
