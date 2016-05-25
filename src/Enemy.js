@@ -14,8 +14,6 @@ var Enemy = me.Entity.extend({
 		this.flippedX = false;
 		this.hp = 2;
 		this.meatChance = 1;
-		this.screenShakeIntensity = 4;
-		this.screenShakeDuration = 500;
 
 		this.renderable.addAnimation("stand", [0]);
 		this.renderable.setCurrentAnimation("stand");
@@ -159,7 +157,9 @@ var Enemy = me.Entity.extend({
 	die: function() {
 		me.audio.play("splat");
 
-		me.game.viewport.shake(this.screenShakeIntensity, this.screenShakeDuration);
+		if(this.screenShakeIntensity){
+			me.game.viewport.shake(this.screenShakeIntensity, this.screenShakeDuration);
+		}
 
 		if(this.chanceInN(this.meatChance)){
 			this.addMeat();

@@ -21,8 +21,6 @@ var EnemyBomber = Enemy.extend({
 		};
 
 		this.hp = 6;
-		this.screenShakeIntensity = 5;
-		this.screenShakeDuration = 750;
 
 		this.bulletSpeed = 0.5;
 		this.bulletType = 'bulletBomber';
